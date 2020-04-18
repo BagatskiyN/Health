@@ -12,13 +12,12 @@ namespace Health.Domain.Entities
         public string PatientName { get; set; }
         public string PatientSurname { get; set; }
         public string PatientPatronymic { get; set; }
-        public DateTime PatientBirthday { get; set; }
+        public DateTime PatientBirthdate { get; set; }
         public string PatientBloodType { get; set; }
         public int PatientWeight { get; set; }
         public int PatientHeight { get; set; }
         public byte[] PatientImageData { get; set; }
         public string PatientImageMimeType { get; set; }
-
 
 
 

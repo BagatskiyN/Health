@@ -30,7 +30,7 @@ namespace Health.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IRepository<Patient>>().To<EFPatientRepository>();
-            // Здесь размещаются привязки
+          
         }
     }
 }
