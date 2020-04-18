@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Moq;
 using Ninject;
+using Health.Domain.Entities;
+using Health.Domain.Abstract;
+using Health.Domain.Concrete;
+
 namespace Health.WebUI.Infrastructure
 {
     public class NinjectDependencyResolver
@@ -28,6 +29,7 @@ namespace Health.WebUI.Infrastructure
 
         private void AddBindings()
         {
+            kernel.Bind<IRepository<Patient>>().To<EFPatientRepository>();
             // Здесь размещаются привязки
         }
     }
