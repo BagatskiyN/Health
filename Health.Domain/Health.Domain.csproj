@@ -76,7 +76,11 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPatientRepository.cs" />
     <Compile Include="Concrete\EFSpacializationRepository.cs" />
+    <Compile Include="Entities\Authorization.cs" />
     <Compile Include="Entities\Diagnosis.cs" />
+    <Compile Include="Entities\Doctor.cs" />
+    <Compile Include="Entities\PreviousAppointment.cs" />
+    <Compile Include="Entities\UpcomingAppointment.cs" />
     <Compile Include="Entities\Patient.cs" />
     <Compile Include="Entities\Specialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

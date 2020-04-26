@@ -1,0 +1,25 @@
+﻿@using Health.Domain.Entities
+
+
+
+@model IEnumerable<Patient>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+
+@{
+    ViewBag.Title = "Товары";
+}
+
+@foreach (var p in @Model)
+{
+    <div>
+        <h3>@p.PatientName</h3>
+       
+    </div>
+}

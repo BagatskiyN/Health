@@ -9,7 +9,7 @@ namespace Health.Domain.Abstract
    public interface IRepository<T>:IDisposable
                where T : class
     {
-        IEnumerable<T> GetItemList();
+        IEnumerable<T> GetItemList { get; }
         T GetItem(int id);
         void Create(T item);
         void Update(T item);

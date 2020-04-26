@@ -4,10 +4,10 @@ using Ninject;
 using Health.Domain.Entities;
 using Health.Domain.Abstract;
 using Health.Domain.Concrete;
-
+using System.Web.Mvc;
 namespace Health.WebUI.Infrastructure
 {
-    public class NinjectDependencyResolver
+    public class NinjectDependencyResolver : IDependencyResolver
     {
         private IKernel kernel;
 

@@ -10,6 +10,8 @@ namespace Health.Domain.Concrete
 {
    public class EFPatientRepository : IRepository<Patient>
     {
+        EFDbContext context = new EFDbContext();
+     
         public void Create(Patient item)
         {
             throw new NotImplementedException();
@@ -30,9 +32,9 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Patient> GetItemList()
+        public IEnumerable<Patient> GetItemList
         {
-            throw new NotImplementedException();
+           get { return context.Patients; }
         }
 
         public void Save()

@@ -19,7 +19,17 @@ namespace Health.Domain.Entities
         public byte[] PatientImageData { get; set; }
         public string PatientImageMimeType { get; set; }
 
-
+        public ICollection<Diagnosis> Diagnoses { get; set; } 
+        public ICollection<UpcomingAppointment> UpcomingAppointments { get; set; }
+        public ICollection<PreviousAppointment> PreviousAppointments { get; set; }
+        public Patient()
+        {
+            Diagnoses = new List<Diagnosis>();
+            UpcomingAppointments = new List<UpcomingAppointment>();
+            PreviousAppointments = new List<PreviousAppointment>();
+        }
+   
+    
 
     }
 }

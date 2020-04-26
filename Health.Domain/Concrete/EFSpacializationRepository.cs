@@ -30,10 +30,8 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Specialization> GetItemList()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Specialization> GetItemList
+        { get; }
 
         public void Save()
         {

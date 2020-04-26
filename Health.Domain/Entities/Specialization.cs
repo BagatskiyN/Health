@@ -13,10 +13,10 @@ namespace Health.Domain.Entities
         public byte[] SpecializationImageData { get; set; }
         public string SpecializationImageMimeType { get; set; }
 
-        public virtual ICollection<Specialization> Specializations { get; set; }
+        public virtual ICollection<Doctor> Doctors { get; set; }
         public Specialization()
         {
-            Specializations = new List<Specialization>();
+            Doctors = new List<Doctor>();
         }
     }
 }
