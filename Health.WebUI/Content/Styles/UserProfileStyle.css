@@ -1,0 +1,305 @@
+.block_userHistory_element_green {
+    width: 1000px;
+    height: 220px;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.block_userHistory_element_white {
+    width: 800px;
+    height: 100%;
+    display: flex;
+
+    background-color: white;
+    border-radius: 55px;
+    margin-left: 40px;
+    align-items: center;
+
+}
+
+.block_userHistory {
+    width: 1100px;
+
+}
+
+.block_userHistory_Icon {
+    height: 100px;
+    width: 100px;
+    margin-left: 40px;
+}
+
+.block_userHistory_textBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.text_userHistory_title {
+    font-size: 38px;
+    color: black;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.text_userHistory_element_gray {
+    font-size: 24px;
+    color: #8a8a8a;
+    font-weight: 600;
+}
+
+.text_userHistory_element_black {
+    font-size: 24px;
+    color: black;
+    font-weight: 600;
+}
+
+.block_userHistory_arrowIcon {
+    height: 125px;
+    width: 125px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    background-color: transparent;
+    border: transparent;
+    outline: none;
+
+    background-image: url(../svgIcons/arrowt.svg);
+
+}
+
+.block_user_rightSide {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.block_userInfo {
+    width: 550px;
+    height: 500px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 55px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.flexbox_userInfo_title {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block_userInfo_title {
+    color: white;
+    width: 300px;
+    height: 40px;
+
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.block_userInfo_edit {
+    height: 45px;
+    width: 45px;
+    padding-left: 5px;
+    background-position: 70% 50%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+
+
+
+    border: transparent;
+    outline: none;
+
+    background-image: url(../svgIcons/EditUser.svg);
+    background-color: #02AD46;
+
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.block_userInfo_edit img {}
+
+.block_userInfo_mainInfo {
+    display: flex;
+
+
+
+
+
+}
+
+.block_userInfo_mainInfo img {
+    height: 200px;
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.block_column_userInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    margin-top: 20px;
+
+}
+
+.text_userInfo_styleGray {
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.text_userInfo_styleBlack {
+    margin-left: 0px;
+    margin-top: 3px;
+}
+
+.block_additionalInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right:20px;
+    margin-top:30px;
+}
+
+.block_additionalInfo_element_white {
+    height: 100px;
+    width: 120px;
+    background-color: white;
+    border-radius: 25px;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.block_additionalInfo_element_green {
+    height: 110px;
+    width: 120px;
+border-radius: 25px;
+position: relative;
+
+display: flex;
+justify-content: flex-start;
+}
+.block_upcomingSessions
+{
+    width: 550px;
+    height: 500px;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.block_upcomingSessions_title
+{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+.block_upcomingSessions_rectangle
+{
+    width: 310px;
+    height: 4px;
+    margin-top: 3px;
+}
+.block_upcomingSessions_pagination
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.block_upcomingSessions_element
+{
+    display: flex;
+    width: 460px;
+    height: 115px;
+    background-color: white;
+    border-radius:40px;
+}
+.block_upcomingSessions_elementIcon
+{
+    width: 110px;
+height: 115px;
+border-radius: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.block_upcomingSessions_elementIcon img{
+    width: 60%;
+    height: 60%;
+}
+.flexbox_upcomingSessions_element
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+justify-content: space-between;
+}
+.upcomingSessions_element_title
+{
+    
+}
+.lower_shadow
+{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+box-sizing: border-box;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.text_upcomingSessions_styleBlack_title
+{margin-top: 5px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.text_upcomingSessions_styleBlack
+{
+    font-size: 14px;
+    font-weight: 700;
+}
+.text_upcomingSessions_styleGray
+{
+    font-size: 14px;
+    font-weight: 700;
+    color: #8a8a8a;
+}
+.block_text_aboutSession
+{   display: flex;
+
+    margin-top: 15px;
+}
+.block_text_userSession
+{ display: flex;
+    flex-direction: column;
+    align-items: center;
+  flex: auto;
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+.block_text_userSession_additionalInfo
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}

@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace Health.Domain.Concrete
 {
-    class EFSpacializationRepository : IRepository<Specialization>
+  public  class EFAppointmentRepository : IRepository<Appointment>
     {
-        public void Create(Specialization item)
+        EFDbContext context = new EFDbContext();
+        
+        public void Create(Appointment item)
         {
             throw new NotImplementedException();
         }
@@ -24,21 +26,21 @@ namespace Health.Domain.Concrete
         {
             throw new NotImplementedException();
         }
-
-        public Specialization GetItem(int id)
+        public IEnumerable<Appointment> GetItemList
         {
-            throw new NotImplementedException();
+            get { return context.Appointments; }
         }
-
-        public IEnumerable<Specialization> GetItemList
-        { get; }
+        public Appointment GetItem(int id)
+        {
+            return context.Appointments.FirstOrDefault(p => p.AppointmentId == id);
+        }
 
         public void Save()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Specialization item)
+        public void Update(Appointment item)
         {
             throw new NotImplementedException();
         }

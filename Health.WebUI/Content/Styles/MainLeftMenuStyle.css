@@ -1,0 +1,97 @@
+﻿.MainLeftMenu {
+   position: relative;
+    width: 120px;
+    height: 100vh;
+    color: white;
+    float: left;
+
+
+    
+ 
+}
+
+.RountedBackgroundRectandle {
+   
+    overflow: scroll;
+    height: 100vh;
+    background-color: #ECECEC;
+    border-radius: 40px 0px 0px 40px;  
+}
+.NavigationItemsGroup
+{
+  position: absolute;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%) 
+}
+
+.MenuImage
+{   margin: 0 auto;
+    height: 46px;
+    width: 46px;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 15px;
+}
+.Medical_Icon 
+{height: 80px;
+    width: 83px;
+    margin-top: 25px;
+    background-image: url(../icons/medicon.png);
+   
+}
+.Help_Icon 
+{position: absolute;
+    height: 40px;
+    width: 40px;
+   bottom: 15px;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%) ;
+    background-image: url(../icons/svgIcons/HelpIcon.svg);
+   
+}
+.AccountIconActive
+{
+    background-image: url(../icons/svgIcons/accountIconActive.svg);
+}
+.AccountIcon
+{
+    background-image: url(../icons/svgIcons/accountIcon.svg);
+}
+.MedCardIconActive
+{
+    background-image: url(../icons/svgIcons/MedCardIconActive.svg);
+}
+.MedCardIcon
+{
+    background-image: url(../icons/svgIcons/MedCardIcon.svg);
+}
+.СouponIconActive
+{
+    background-image: url(../icons/svgIcons/CouponIconActive.svg);
+}
+.СouponIcon
+{
+    background-image: url(../icons/svgIcons/CouponIcon.svg);
+}
+
+.NavigationMenuImage
+{
+    width: 46px;
+    height: 46px;
+}
+.NavigationMenuText 
+{font-family: Roboto;
+  text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+ color: #A2A5A5;
+
+}
+.ActiveMenuText
+{   color:  #00963C;
+
+}

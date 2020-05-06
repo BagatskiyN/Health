@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Health.Domain.Concrete
 {
-   public class EFPatientRepository : IRepository<Patient>
+    public class EFGenderRepository : IRepository<Gender>
     {
         EFDbContext context = new EFDbContext();
-     
-        public void Create(Patient item)
+
+        public IEnumerable<Gender> GetItemList => throw new NotImplementedException();
+
+        public void Create(Gender item)
         {
             throw new NotImplementedException();
         }
@@ -27,14 +29,9 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public Patient GetItem(int id)
+        public Gender GetItem(int id)
         {
-            return context.Patients.FirstOrDefault(p => p.PatientId==id);
-        }
-
-        public IEnumerable<Patient> GetItemList
-        {
-           get { return context.Patients; }
+            return context.Genders.FirstOrDefault(p => p.GenderId == id);
         }
 
         public void Save()
@@ -42,7 +39,7 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public void Update(Patient item)
+        public void Update(Gender item)
         {
             throw new NotImplementedException();
         }

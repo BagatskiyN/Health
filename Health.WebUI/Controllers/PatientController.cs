@@ -12,15 +12,27 @@ namespace Health.WebUI.Controllers
     {
         // GET: Patient
         private IRepository<Patient> repository;
-        public PatientController(IRepository<Patient> repos)
+        private IRepository<Appointment> repositoryAppointment;
+        private IRepository<Doctor> repositoryDoctor;
+        public PatientController(IRepository<Patient> repos,IRepository<Appointment> _repositoryAppointment,IRepository<Doctor> _repositoryDoctor)
         {
             repository = repos;
+            repositoryAppointment = _repositoryAppointment;
+            repositoryDoctor = _repositoryDoctor;
+  
         }
         public ActionResult Index()
         {
-            return View(repository.GetItemList);
+            return View(repository.GetItem(2));
+            
         }
 
+        [ChildActionOnly]
+       public ActionResult AppointmentList(object id)
+        {
+            return PartialView("AppointmentList.cshtml",repositoryAppointment.GetItemList.Where(p=>p.PatientId==(int)id));
+        
+        }
 
     }
 }

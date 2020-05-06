@@ -1,0 +1,193 @@
+.block_theme_gradient {
+    background: linear-gradient(92.95deg, #02933C -3.76%, #02AD46 99.91%);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 55px;
+}
+
+.block_theme_green {
+    position: relative;
+    width: 1100px;
+    height: 80px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0px);
+    margin-top: 30px;
+
+}
+
+.block_theme_white {
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0px);
+    border-radius: 55px;
+    width: 1000px;
+    height: 80px;
+    background-color: white;
+}
+
+.headblock_text {
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 80px;
+}
+
+.search_text {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    line-height: 60px;
+    color: #8A8A8A;
+    margin-left: 30px;
+
+}
+
+.searchblock_theme {
+    display: flex;
+
+    justify-content: start;
+    height: 60px;
+
+}
+
+.searchblock_theme input[type="text"] {
+    font-family: "Roboto";
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    line-height: 60px;
+    color: #8A8A8A;
+    padding-left: 30px;
+    font-weight: 700;
+}
+
+.search_input {
+    margin-left: 20px;
+
+
+    margin-right: 30px;
+    background-color: transparent;
+    border: transparent;
+    line-height: 60px;
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    outline: none;
+
+}
+
+.searchblock_theme_white {
+
+    margin-left: 10px;
+    border-radius: 55px;
+    width: 850px;
+    height: 59px;
+    background-color: white;
+    border: none;
+    outline: none;
+}
+
+.searchblock_theme_white ::placeholder {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    line-height: 60px;
+    color: #8A8A8A;
+    margin-left: 30px;
+}
+
+.search_Icon {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 42px;
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 42px;
+
+
+    background-image: url(../icons/svgIcons/searchIcon.svg);
+}
+
+.flexblock_specialize {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+}
+
+.block_specialize {
+    width: 280px;
+    height: 280px;
+    position: absolute;
+    top: -30px;
+
+}
+
+.block_specialize_theme_white {
+    width: 280px;
+    height: 280px;
+    background-color: white;
+    position: relative;
+    border-radius: 55px;
+    margin-top: 70px;
+    margin-left: 80px;
+    -webkit-box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+
+}
+
+.Specialization_Icon {
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    top: 45%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -45%);
+}
+
+.Teeth_White_Icon {
+    background-image: url(../icons/svgIcons/TeethWhiteIcon.svg);
+
+
+}
+
+.Specialization_Text {
+    position: absolute;
+    bottom: 0%;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    color: white;
+    font-size: 26px;
+}
+.order_button
+{
+    height: 60px;
+    width: 240px;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+margin-top: 30px;
+}
+.order_button:hover
+{
+    text-decoration: underline;
+}
+.flexbox_order_button
+{ width: 85%;
+    display: flex;
+    justify-content: flex-end;
+   
+}

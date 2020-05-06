@@ -1,0 +1,234 @@
+.block_choosed_doctorIcon {
+    height: 60px;
+    width: 414px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.block_choosed_doctorSpecialization {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 310px;
+    border-radius: 55px;
+    background-color: white;
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
+.block_choosed_doctorSpecialization p {
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+.block_choosed_doctorIcon img {
+    width: 43px;
+    height: 43px;
+    margin-left: 25px;
+
+
+}
+
+.block_medcardHistory_Title {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 60px;
+    margin-top: 60px;
+
+
+}
+
+.text_medcardHistory_Title {
+    font-size: 40px;
+    font-weight: 700;
+
+}
+
+.block_green_underline {
+    width: 258px;
+    height: 5px;
+    margin-top: 5px;
+
+}
+
+
+
+.flexbox_choosedDoctor_history {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin-left: 50px;
+    overflow-y: scroll;
+
+
+
+}
+
+.flexbox_choosedDoctor_history::-webkit-scrollbar {
+    width: 0px;
+    background: rgba(255, 255, 255, 0.0);
+}
+
+.flexbox_background_rectangle {
+    display: flex;
+    justify-content: space-between;
+
+
+
+}
+
+.block_history_element_green {
+    width: 690px;
+    height: 175px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.block_history_element_white {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 640px;
+    height: 175px;
+    background-color: white;
+    border-radius: 55px;
+
+}
+
+.history_element_DoctorName {
+    margin-top: 40px;
+
+}
+
+.block_doctor_dopInfo {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.block_choosedDoctorAbout_Green {
+
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100vh;
+    border-radius: 55px 0px 0px 55px;
+    background: linear-gradient(92.95deg, #02933C -3.76%, #02AD46 99.91%);
+    box-shadow: -1px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+
+}
+
+.block_choosedDoctorAbout_white {
+    border-radius: 55px 0px 0px 55px;
+    width: 99%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    
+
+
+}
+.block_choosedDoctorAbout_white::-webkit-scrollbar {
+    width: 0px;
+    background: rgba(255, 255, 255, 0.0);
+}
+.text_choosedDoctorAbout_title {
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 30px;
+
+}
+
+.block_choosedDoctorAbout_titleUnderline {
+    width: 370px;
+    height: 5px;
+    margin-top: 5px;
+
+}
+
+.block_DocorInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.block_doctorInfo_FirstColumn {
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+
+}
+
+.block_doctorInfo_SecondColumn {
+    display: flex;
+
+    flex-direction: column;
+    margin-right: 30px;
+
+}
+
+.text_blackStyle_DocInfo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+
+}
+
+.doctorMecard_image {
+    margin-left: 30px;
+}
+.block_medcard_diagnosis
+{
+    margin-left: 80px;
+width: 90%;
+
+
+}
+.text_diagnosis_styleGray
+{margin-top: 20px;
+font-size: 30px;
+font-weight: 600;
+color: #8A8A8A;
+}
+.text_diagnosis_styleBlack
+{margin-top: 15px;
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+    
+
+}
+.text_diagnosisComment_styleBlack
+{   overflow-y:scroll;
+    height: 190px;
+    font-size: 26px;
+   
+}
+.text_diagnosisRecomend_styleBlack
+{overflow-y:scroll;
+    height: 150px;
+    font-size: 26px;
+}

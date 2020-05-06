@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Data.Entity;
+using Health.Domain.Concrete;
 
 namespace Health.WebUI
 {
@@ -11,6 +13,7 @@ namespace Health.WebUI
     {
         protected void Application_Start()
         {
+          
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

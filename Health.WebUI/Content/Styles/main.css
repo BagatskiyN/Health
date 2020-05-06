@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
+@import url('MainLeftMenuStyle.css');
+@import url('MedCard.css');
+@import url('DoctorChooserStyle.css');
+@import url('DoctorOrderStyle.css');
+@import url('ChoosedDoctorStyle.css');
+@import url('UserProfileStyle.css');
+body
+{font-family: "Roboto",sans-serif;
+	font-style: normal;
+	 width: 100vw;
+	height: 100vh;
+	padding: 0 auto;
+	margin: 0 auto;
+
+}
+.default_shadow
+{
+	-webkit-box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+}
+
+.HalfOfScreen
+{
+width: 50%;
+height: 100vh;
+
+
+}
+.LeftSideOfScreen
+{
+background-color: #00963C;
+z-index:-1;
+}
+.OldSideOfScreen
+{
+	color: white;
+
+}
+.AuthorizationSection
+{ position: absolute;
+
+	top: 55%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) ;
+	background-color:white;
+	-webkit-box-shadow: 0px 4px 12px 3px rgba(0,0,0,0.25); 
+box-shadow: 0px 4px 12px 3px rgba(0,0,0,0.25);
+
+border-radius: 55px;
+}
+.LoginSection
+{
+	height:800px;
+width: 650px;
+}
+.RegisterSection
+{	margin-top: 200px;
+	margin-bottom: 100px;
+	height:1100px;
+width: 1200px;
+}
+
+.HealthTextLogo
+{
+	position:fixed;
+	width: 160px;
+	height: 73px;
+    left: 50.75%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%) ;
+	top: 1%;
+	
+	font-family: Anton;
+	
+	font-weight: normal;
+	font-size: 56px;
+	line-height: 82px;
+	background: rgb(255,255,255);
+	background: linear-gradient(90deg, rgba(255,255,255,1) 41%, rgba(0,150,60,1) 41%);
+	-webkit-background-clip: text;  /* подробнее про background-clip */ 
+	color: transparent;
+	
+}
+
+.EnterNavigationBar
+{
+position: absolute;
+  list-style-type: none;
+
+}
+.EnterNavigationBar li
+{
+display: inline;
+margin-left: 15px;
+}
+.EnterNavigationBar a
+{line-height: 35px;
+font-family: "Roboto",sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+color: white;
+text-decoration: none;
+}
+.AuthorizationFlexContainer
+{  display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	height: 700px;
+	width: 1200px;
+
+}
+.AuthorizationFlexInputGroup
+{
+	align-self: start;
+}
+
+.AuthorizationBlockHeadText
+{
+	
+	font-family:"Roboto",sans-serif;
+	font-style: normal;
+	font-weight: black;
+	font-size: 45px;
+margin-top: 40px;
+text-align: center;
+color:black;
+}
+.AuthorizationInputHelper
+{
+	font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 26px;
+line-height: 30px;
+margin-top: 100px;
+margin-left: 85px;
+
+}
+.TextInputLogin {
+	font-size: 20px;
+	padding: 10px;
+	display: block;
+	width: 450px;
+	border: none;
+	border-bottom: 2px solid  rgba(84, 84, 84, 0.9);
+
+	background: rgba(0, 0, 0, 0);
+	color:black;
+	font-size: 20px;
+  }
+  
+  .TextInputLogin:focus {
+	outline: none;
+  }
+  .AuthorizationInputGroup {
+	position: relative;
+	margin-top: 25px;
+	margin-left: 80px;
+  }
+  .ButtonInput
+  {   font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+		
+	color: #FFFFFF;
+	position: relative;  
+	left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) ;
+	margin-top: 120px;
+
+	background: #00963C;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+	border-radius: 55px;
+	outline:none;
+  }
+  .ButtonInputLogin
+  {
+	width: 430px;
+	height: 70px;
+  }
+  .ButtonInputRegister
+  {
+	width: 500px;
+	height: 80px;
+  }
+  .ToRegisterRef
+  {position: relative;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+
+	text-align: center;	
+
+  }
+  .ToRegisterRef a{
+	text-decoration: none;	
+		color: #000000;
+  }
+  .RefreshPasswordRef
+  {
+	  margin-top: 15px;
+  }
+  .RefreshPasswordRef a
+{
+	color: #00963C;
+}

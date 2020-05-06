@@ -2,7 +2,7 @@
 
 
 
-@model IEnumerable<Patient>
+@model Health.Domain.Entities.Patient
 @{
     ViewBag.Title = "Index";
 }
@@ -16,10 +16,3 @@
     ViewBag.Title = "Товары";
 }
 
-@foreach (var p in @Model)
-{
-    <div>
-        <h3>@p.PatientName</h3>
-       
-    </div>
-}

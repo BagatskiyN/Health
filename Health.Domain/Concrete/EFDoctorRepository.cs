@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Health.Domain.Concrete
 {
-   public class EFPatientRepository : IRepository<Patient>
+    public class EFDoctorRepository : IRepository<Doctor>
     {
         EFDbContext context = new EFDbContext();
-     
-        public void Create(Patient item)
+        public IEnumerable<Doctor> GetItemList => throw new NotImplementedException();
+
+        public void Create(Doctor item)
         {
             throw new NotImplementedException();
         }
@@ -27,14 +29,9 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public Patient GetItem(int id)
+        public Doctor GetItem(int id)
         {
-            return context.Patients.FirstOrDefault(p => p.PatientId==id);
-        }
-
-        public IEnumerable<Patient> GetItemList
-        {
-           get { return context.Patients; }
+            return context.Doctors.FirstOrDefault(p => p.DoctorId == id);
         }
 
         public void Save()
@@ -42,7 +39,7 @@ namespace Health.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public void Update(Patient item)
+        public void Update(Doctor item)
         {
             throw new NotImplementedException();
         }

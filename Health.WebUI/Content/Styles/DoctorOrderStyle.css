@@ -1,0 +1,92 @@
+.block_white_style {
+    position: relative;
+    width: 95%;
+    height: 80vh;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 50px;
+    -webkit-box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.block_aboutdoctor_border {
+    width: 40%;
+    margin-left: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    height: 650px;
+
+}
+
+.doctor_image_order {
+    margin-top: 50px;
+}
+
+.text_Order_DoctorName {
+    margin-top: 60px;
+}
+
+.flexblock_select_ordertime {
+    display: flex;
+    justify-content: space-between;
+    
+    margin-left: 90px;
+    margin-right: 90px;
+    width: 90%;
+
+}
+
+.block_select_background {
+    margin-left: 40px;
+    margin-right: 40px;
+    height: 130px;
+    width: 368px;
+    border-radius: 35px;
+}
+
+.selector_timeChooser_style {
+    text-align-last: center;
+    margin-left: 0px;
+    height: 70px;
+    width: 368px;
+    color: black;
+    -webkit-box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 12px 3px rgba(0, 0, 0, 0.25);
+}
+
+.selector_timeChooser_style::placeholder {
+    text-align: center;
+
+}
+
+.text_timeChooser_title {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+}
+
+.block_comment_input {
+    width: 878px;
+    height: 250px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    outline: transparent;
+    border-radius: 55px;
+    padding: 30px;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    resize: none;
+    margin-top: 80px;
+}
+
+
+
+.flexbox_order {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    align-items: center;
+}

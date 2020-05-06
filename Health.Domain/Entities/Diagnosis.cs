@@ -11,17 +11,17 @@ namespace Health.Domain.Entities
    public class Diagnosis
     {
         [Key]
-        [ForeignKey("PreviousAppointment")]
+        [ForeignKey("Appointment")]
         public int DiagnosisId { get; set; }
-        public string DiagnosisTitle { get; set; }
+  
         public string DiagnosisComment { get; set; }
         public string DiagnosisRecommendations { get; set; }
-        public int PatientId { get; set; }
+      
+        public int? DiseaseId { get; set; }
+        public virtual Disease Disease { get; set; }
+   
+        public Appointment Appointment { get; set; }
 
-        public int DoctorId { get; set; }
-        public PreviousAppointment PreviousAppointment { get; set; }
-        public virtual Patient Patient { get; set; }
-        public virtual Doctor Doctor { get; set; }
 
     }
 }

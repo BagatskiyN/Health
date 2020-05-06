@@ -30,7 +30,12 @@ namespace Health.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IRepository<Patient>>().To<EFPatientRepository>();
-          
+            kernel.Bind<IRepository<Appointment>>().To<EFAppointmentRepository>();
+            kernel.Bind<IRepository<Doctor>>().To<EFDoctorRepository>();
+            kernel.Bind<IRepository<Disease>>().To<EFDiseaseRepository>();
+            kernel.Bind<IRepository<BloodType>>().To<EFBloodTypeRepository>();
+            kernel.Bind<IRepository<Gender>>().To<EFGenderRepository>();
+            kernel.Bind<IRepository<Specialization>>().To<EFSpecializationRepository>();
         }
     }
 }

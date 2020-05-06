@@ -19,14 +19,16 @@ namespace Health.Domain.Entities
 
         public byte[] DoctorImageData { get; set; }
         public string DoctorImageMimeType { get; set; }
-        public ICollection<Diagnosis> Diagnoses { get; set; }
-        public ICollection<UpcomingAppointment> UpcomingAppointments { get; set; }
-        public ICollection<PreviousAppointment> PreviousAppointments { get; set; }
+        public int? SpecializationId { get; set; }
+        public virtual Specialization Specialization { get; set; }
+       
+        public ICollection<Appointment> Appointments { get; set; }
+       public int GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
         public Doctor()
         {
-            Diagnoses = new List<Diagnosis>();
-            UpcomingAppointments = new List<UpcomingAppointment>();
-            PreviousAppointments = new List<PreviousAppointment>();
+         Appointments = new List<Appointment>();
+      
         }
 
 
