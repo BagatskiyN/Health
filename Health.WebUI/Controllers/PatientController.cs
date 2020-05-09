@@ -1,5 +1,6 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Entities;
+using Health.WebUI.Models.PatientModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,9 @@ namespace Health.WebUI.Controllers
         }
         public ActionResult Index()
         {
-            return View(repository.GetItem(2));
+            PatientPage patientPage = new PatientPage(2);
+
+            return View(patientPage);
             
         }
 

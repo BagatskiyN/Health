@@ -36,6 +36,7 @@ namespace Health.WebUI.Infrastructure
             kernel.Bind<IRepository<BloodType>>().To<EFBloodTypeRepository>();
             kernel.Bind<IRepository<Gender>>().To<EFGenderRepository>();
             kernel.Bind<IRepository<Specialization>>().To<EFSpecializationRepository>();
+            kernel.Bind<IGenericRepository<Patient>>().To<EFGenericRepository<Patient>>();
         }
     }
 }

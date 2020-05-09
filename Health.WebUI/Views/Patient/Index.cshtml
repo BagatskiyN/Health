@@ -1,18 +1,22 @@
 ﻿@using Health.Domain.Entities
+@using Health.WebUI.Models.PatientModels
 
 
 
-@model Health.Domain.Entities.Patient
+@model PatientPage
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+@Model.Patient.PatientName
 
 
-
-
-@{
-    ViewBag.Title = "Товары";
+@foreach(var v in Model.PreviousAppointments)
+{
+<span> @v.Appointment.AppointmentComment;</span>
+   if(v.Appointment.Diagnosis==null)
+   {
+       <span> sdfsdgsdg</span>
+   }
 }
-

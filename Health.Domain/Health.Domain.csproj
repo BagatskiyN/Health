@@ -72,12 +72,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\EFAppointmentRepository.cs" />
     <Compile Include="Concrete\EFBloodTypeRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFDiseaseRepository.cs" />
     <Compile Include="Concrete\EFDoctorRepository.cs" />
+    <Compile Include="Concrete\EFGenericRepository.cs" />
     <Compile Include="Concrete\EFPatientRepository.cs" />
     <Compile Include="Concrete\EFGenderRepository.cs" />
     <Compile Include="Concrete\EFSpecializationRepository.cs" />
