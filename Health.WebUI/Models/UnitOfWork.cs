@@ -60,8 +60,8 @@ namespace Health.WebUI.Models
         {
             get
             {
-                if (repositoryPatient == null)
-                    repositoryPatient = new EFGenericRepository<Patient>(db);
+                if (repositoryDisease == null)
+                    repositoryDisease = new EFGenericRepository<Disease>(db);
                 return repositoryDisease;
             }
         }

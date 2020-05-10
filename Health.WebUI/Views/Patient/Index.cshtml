@@ -1,22 +1,102 @@
 ﻿@using Health.Domain.Entities
 @using Health.WebUI.Models.PatientModels
-
-
+@using System.Web.Optimization
 
 @model PatientPage
+
+
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h2>Index</h2>
-@Model.Patient.PatientName
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+        <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body overflow="auto">
+        <div class="MainLeftMenu">
+            <div class="MenuImage Medical_Icon"></div>
+            <div class="NavigationItemsGroup">
+
+                <div class="MenuImage AccountIconActive">
+
+                </div>
+                <p class="NavigationMenuText ActiveMenuText">Аккаунт</p>
+                <div class="MenuImage  MedCardIcon">
+
+                </div>
+                <p class="NavigationMenuText">Медкарта</p>
+                <div class="MenuImage СouponIcon">
+
+                </div>
+                <p class="NavigationMenuText">Талончик</p>
+
+            </div>
+            <div class="MenuImage Help_Icon"></div>
+        </div>
+
+        <div class="RountedBackgroundRectandle flexbox_background_rectangle">
+            <div class="flexbox_choosedDoctor_history block_userHistory" id="userHistory">
+                <div class="block_medcardHistory_Title">
+                    <span class="text_medcardHistory_Title">Список посещений врачей</span>
+                    <div class="block_green_underline block_theme_gradient"></div>
+                </div>
+                <div id="scrolList">@Html.Partial("~/Views/Shared/PatientPartialViews/AppointmentList.cshtml")</div>
+
+                <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                $('div#loading').hide();
+
+                var page = 0;
+                var _inCallback = false;
+                function loadItems() {
+
+                    if (page > -1 && !_inCallback) {
+                        _inCallback = true;
+                        page++;
+                        $('div#loading').show();
+
+                        $.ajax({
+                            type: 'GET',
+                            url: '/Patient/Index/' + page,
+                            success: function (data, textstatus) {
+                                if (data != '') {
+                                    $("#scrolList").append(data);
+                                }
+                                else {
+                                    page = -1;
+                                }
+                                _inCallback = false;
+                                $("div#loading").hide();
+                            }
+                        });
+                    }
+                }
+                // обработка события скроллинга
+                $("#userHistory").scroll(function () {
+                    console.log('scrollTopsrab', $("#userHistory").scrollTop())
+                    console.log('d-w srab', $("#userHistory").height())
+                    console.log('doc h', this.scrollHeight - this.clientHeight)
+                    if( this.scrollTop >= this.scrollHeight - this.clientHeight) {
+                       
+                        loadItems();
+                    }
+                });
+            })
 
 
-@foreach(var v in Model.PreviousAppointments)
-{
-<span> @v.Appointment.AppointmentComment;</span>
-   if(v.Appointment.Diagnosis==null)
-   {
-       <span> sdfsdgsdg</span>
-   }
-}
+        </script>
+
+    </body>

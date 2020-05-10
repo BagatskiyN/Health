@@ -1,11 +1,12 @@
 ﻿@using Health.Domain.Entities
+@using Health.WebUI.Models.PatientModels
 
-@model IEnumerable<Appointment>
+@model  PatientPage
 
-@foreach (var p in @Model)
+@foreach (var p in Model.PreviousAppointments)
 {
     <div>
-
+        @Html.Partial("~/Views/Shared/PatientPartialViews/PatientAppointment.cshtml", p)
 
     </div>
 }

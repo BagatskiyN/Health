@@ -1,31 +1,34 @@
-﻿@model Health.Domain.Entities.Appointment
+﻿@using Health.WebUI.Models.PatientModels
 
-<div class="block_userHistory_element_white default_shadow">
-    <div class="block_userHistory_textBlock">
-        <div class="text_userHistory_title">
-           @Model.Doctor.Specialization.SpecializationTitle
-        </div>
-        <div class="block_text_aboutdoctor history_element_DoctorName">
-            <div class="text_grayStyle">Доктор:</div>
-            <div class="text_blackStyle"> @Model.Doctor.DoctorSurname+" "+@Model.Doctor.DoctorName +" "+@Model.Doctor.DoctorPatronymic </div>
-        </div>
-        <div class="block_doctor_dopInfo">
+@model PatientAppointment
+    <div class="block_userHistory_element_green block_theme_gradient">
+        <div class="block_userHistory_element_white default_shadow">
+            <div class="block_userHistory_textBlock">
+                <div class="text_userHistory_title">
+                    @Model.Doctor.Specialization.SpecializationTitle
+                </div>
+                <div class="block_text_aboutdoctor history_element_DoctorName">
+                    <div class="text_grayStyle">Доктор:</div>
+                    <div class="text_blackStyle"> @Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic </div>
+                </div>
+                <div class="block_doctor_dopInfo">
 
-            <div class="block_text_aboutdoctor">
-                <div class="text_grayStyle">Дата:</div>
-                <div class="text_blackStyle">@Convert.ToDateTime( @Model.AppointmentDateTime).ToString("dd-MMM-yyyy") </div>
+                    <div class="block_text_aboutdoctor">
+                        <div class="text_grayStyle">Дата:</div>
+                        <div class="text_blackStyle">@Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("dd MMM yyyy") </div>
+                    </div>
+                    <div class="block_text_aboutdoctor">
+                        <div class="text_grayStyle">Время:</div>
+                        <div class="text_blackStyle">@Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("hh:mm:ss tt")  </div>
+                    </div>
+                    <div class="block_text_aboutdoctor">
+                        <div class="text_grayStyle">Кабинет:</div>
+                        <div class="text_blackStyle">@Model.Appointment.AppointmentPlace</div>
+                    </div>
+                </div>
             </div>
-            <div class="block_text_aboutdoctor">
-                <div class="text_grayStyle">Время:</div>
-                <div class="text_blackStyle">@Convert.ToDateTime(@Model.AppointmentDateTime).ToString("hh:mm:ss tt")  </div>
-            </div>
-            <div class="block_text_aboutdoctor">
-                <div class="text_grayStyle">Кабинет:</div>
-                <div class="text_blackStyle">@Model.AppointmentPlace</div>
-            </div>
+            <input type="submit" class="block_userHistory_arrowIcon" value="">
+
+
         </div>
     </div>
-    <input type="submit" class="block_userHistory_arrowIcon" value="">
-
-
-</div>

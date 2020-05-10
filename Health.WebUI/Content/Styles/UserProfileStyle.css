@@ -64,14 +64,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
-
     background-color: transparent;
     border: transparent;
     outline: none;
-
-    background-image: url(../svgIcons/arrowt.svg);
-
+    background-image: url(../icons/svgIcons/arrowt.svg);
 }
 
 .block_user_rightSide {

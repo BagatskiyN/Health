@@ -14,7 +14,7 @@ namespace Health.WebUI.Models.PatientModels
     public class PatientPage : IMakeElement<PatientPage>
     {
         UnitOfWork unitOfWork;
-        const int pageSize = 15;
+        const int pageSize = 6;
 
         private int PatientId;
         public Patient Patient { get; set; }
@@ -44,18 +44,20 @@ namespace Health.WebUI.Models.PatientModels
         }
         public List<PatientAppointment> GetPreviousPatientAppointmentsList(int page = 0)
         {
-
+            List<PatientAppointment> result = new List<PatientAppointment>();
             List<Appointment> appointments = GetPreviousAppointmentsList(page);
             for (int i = 0; i < appointments.Count; i++)
             {
-                PreviousAppointments.Add(new PatientAppointment(appointments[i]));
+              result.Add(new PatientAppointment(appointments[i]));
             }
-            return this.PreviousAppointments;
+
+            PreviousAppointments = result;
+            return result;
 
         }
-        public List<PatientAppointment> GetNextPatientAppointmentsList(int page = 0)
+        public List<PatientAppointment> GetNextPatientAppointmentsList(int page = 0)//Сделать похожей на previous
         {
-
+        
             List<Appointment> appointments = GetNextAppointmentsList(page);
             for (int i = 0; i < appointments.Count; i++)
             {
@@ -84,7 +86,7 @@ namespace Health.WebUI.Models.PatientModels
             var skipRecords = page * pageSize;
             if (appointments.Count() - skipRecords >= 0)
             {
-                if (appointments.Count() - skipRecords < 10)
+                if (appointments.Count() - skipRecords < 6)
                 {
                     return appointments.OrderBy(t => t.AppointmentDateTime)
                            .Skip(skipRecords).Take(appointments.Count() - skipRecords).ToList();

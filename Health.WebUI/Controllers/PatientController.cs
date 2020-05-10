@@ -15,27 +15,35 @@ namespace Health.WebUI.Controllers
         private IRepository<Patient> repository;
         private IRepository<Appointment> repositoryAppointment;
         private IRepository<Doctor> repositoryDoctor;
-        public PatientController(IRepository<Patient> repos,IRepository<Appointment> _repositoryAppointment,IRepository<Doctor> _repositoryDoctor)
+        PatientPage patientPage;
+        public PatientController(IRepository<Patient> repos, IRepository<Appointment> _repositoryAppointment, IRepository<Doctor> _repositoryDoctor)
         {
             repository = repos;
             repositoryAppointment = _repositoryAppointment;
             repositoryDoctor = _repositoryDoctor;
-  
+            patientPage = new PatientPage(2);
         }
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            PatientPage patientPage = new PatientPage(2);
+            int page = id ?? 0;
+            if (Request.IsAjaxRequest())
+            {
+                patientPage.GetPreviousPatientAppointmentsList(page);
 
+                return PartialView("~/Views/Shared/PatientPartialViews/AppointmentList.cshtml", patientPage);
+            }
             return View(patientPage);
-            
+
         }
 
-        [ChildActionOnly]
-       public ActionResult AppointmentList(object id)
-        {
-            return PartialView("AppointmentList.cshtml",repositoryAppointment.GetItemList.Where(p=>p.PatientId==(int)id));
-        
-        }
+
+        //[ChildActionOnly]
+        //public ActionResult AppointmentList(object id)
+        // {
+        //     return PartialView("AppointmentList.cshtml",repositoryAppointment.GetItemList.Where(p=>p.PatientId==(int)id));
+
+        // }
+
 
     }
 }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Data.Entity;
 using Health.Domain.Concrete;
+using Health.WebUI.App_Start;
+using System.Web.Optimization;
 
 namespace Health.WebUI
 {
@@ -16,6 +18,7 @@ namespace Health.WebUI
           
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
