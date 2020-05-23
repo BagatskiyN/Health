@@ -10,7 +10,7 @@ namespace Health.WebUI.Models
 {
     public class UnitOfWork : IDisposable
     {
-        private EFDbContext db = new EFDbContext();
+        private static EFDbContext db = new EFDbContext();
         EFGenericRepository<Doctor> repositoryDoctor;
         EFGenericRepository<Specialization> repositorySpecialization;
         EFGenericRepository<Diagnosis> repositoryDiagnosis;

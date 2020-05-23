@@ -1,0 +1,25 @@
+﻿@using Health.WebUI.Models.PatientAppointmentModels
+@model PatientAppointmentDoctor
+
+    <div class="block_doctor_greenstyle block_theme_gradient">
+
+        <div class="block_doctor ">
+            <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
+                new { Model.Doctor.DoctorId})" class="doctorsearch_image">
+            <p class="text_blackStyle">@Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic</p>
+            <div class="block_text_aboutdoctor">
+                <div class="text_grayStyle">Телефон:</div>
+                <div class="text_blackStyle">@Model.Doctor.DoctorPhone</div>
+            </div>
+
+
+            <div class="block_specialization_name block_theme_gradient">
+                <p class="text_specialization">@Model.Specialization.SpecializationTitle</p>
+            </div>
+
+        </div>
+        <div class="order_input"> <a href="@Url.Action("MakeNewAppointment",new { doctorId=Model.Doctor.DoctorId})" class=" order_ref">Записаться</a> </div>
+
+    </div>
+
+

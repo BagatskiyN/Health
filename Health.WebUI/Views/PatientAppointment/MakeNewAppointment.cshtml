@@ -1,0 +1,88 @@
+﻿@using Health.WebUI.Models.PatientAppointmentModels
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "MakeNewAppointment";
+}
+@model NewAppointmentViewModel
+
+<div class="RountedBackgroundRectandle">
+
+    <div class="block_theme_gradient block_theme_green ">
+
+        <div class="block_theme_white">
+            <h1 class="headblock_text">Запись к доктору</h1>
+        </div>
+    </div>
+    <div class="block_white_style">
+        <div class="block_doctor  block_aboutdoctor_border">
+            <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
+                new { Model.Doctor.DoctorId})" class="doctorsearch_image  doctor_image_order">
+           
+            <p class="text_blackStyle text_Order_DoctorName">@Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic</p>
+            <div class="block_text_aboutdoctor">
+                <div class="text_grayStyle">Телефон:</div>
+                <div class="text_blackStyle">@Model.Doctor.DoctorPhone</div>
+            </div>
+
+            <div class="block_text_aboutdoctor">
+                <div class="text_grayStyle">Кабинет:</div>
+                <div class="text_blackStyle">@Model.Appointment.AppointmentPlace</div>
+            </div>
+            <div class="block_specialization_name block_theme_gradient">
+                <p class="text_specialization">@Model.Specialization.SpecializationTitle</p>
+            </div>
+
+        </div>
+        @using (Html.BeginForm("MakeNewAppointment", "PatientAppointment", FormMethod.Post))
+        {
+    <div class="flexbox_order">
+        <div class="flexblock_select_ordertime">
+            <div class="block_theme_gradient block_select_background">
+                <p class="text_timeChooser_title">Выберите дату</p>
+                @*<select name="" id="" class="specialization_selector selector_timeChooser_style">*@
+                @Html.DropDownList("Day", ViewBag.Days as SelectList, new { @id = "day", @class = "specialization_selector selector_timeChooser_style" })
+                @*</select>*@
+            </div>
+            <div class="block_theme_gradient block_select_background ">
+                <p class="text_timeChooser_title">Выберите время</p>
+                @Html.DropDownList("Hour", ViewBag.Hours as SelectList, new { @id = "hour", @class = "specialization_selector selector_timeChooser_style" })
+
+            </div>
+        </div>
+        @Html.TextArea("comment", "Комментарий:", 3, 40,new { @class = "block_comment_input" })
+        @*<textarea placeholder="Комментарий:" name="comment" cols="40" rows="3"
+                  class="block_comment_input"></textarea>*@
+        <div class="flexbox_order_button">
+            <input class="block_theme_gradient order_button" type="submit" value="Записаться">
+        </div>
+
+    </div>
+
+        }
+
+
+
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(function () {
+
+        $('#day').change(function()
+        {
+       
+            var id = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetItems")/' + id,
+                success: function (data) {
+
+                 
+                    $('#hour').replaceWith(data);
+                }
+            });
+        });
+    })
+</script>
+

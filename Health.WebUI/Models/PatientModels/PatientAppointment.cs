@@ -36,7 +36,7 @@ namespace Health.WebUI.Models.PatientModels
             Doctor = unitOfWork.Doctors.FindById((int)appointment.DoctorId);
             Diagnosis = unitOfWork.Diagnoses.FindById((int)appointment.DoctorId);
             Specialization = unitOfWork.Specializations.FindById((int)Doctor.DoctorId);
-            if (Diagnosis!= null)
+            if (Diagnosis!= null&& Diagnosis.Disease!=null)
             Disease = unitOfWork.Diseases.FindById((int)Diagnosis.DiseaseId); 
       
 

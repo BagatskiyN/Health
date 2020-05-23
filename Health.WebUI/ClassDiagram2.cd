@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="Health.WebUI.App_Start.BundleConfig" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Health.WebUI.App_Start.NinjectWebCommon" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAQACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\NinjectWebCommon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Health.WebUI.RouteConfig" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Health.WebUI.MvcApplication" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Health.WebUI.Controllers.PatientAppointmentController">
+    <Position X="8.75" Y="12" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAEAAAAAAAAQAAAAAAAACAAAAAAgAAEAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PatientAppointmentController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="DoctorListViewModel" />
+      <Field Name="newAppointmentViewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Controllers.PatientController">
+    <Position X="4.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAIAAEAAACAACAAAAAAAACAAGQAAAAAQA=</HashCode>
+      <FileName>Controllers\PatientController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+      <Field Name="patientPage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Infrastructure.NinjectDependencyResolver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Infrastructure\NinjectDependencyResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientAppointmentModels.DayOfAppointment">
+    <Position X="9" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAggAAAAAAAAAAAEAAAACAAAAAAAMAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\PatientAppointmentModels\DayOfAppointment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientAppointmentModels.DoctorListViewModel">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAACAAAAAACAAACAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\PatientAppointmentModels\DoctorListViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="PatientAppointmentDoctors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientAppointmentModels.NewAppointmentViewModel">
+    <Position X="4" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQBAAAAAAAAAAAAACAQAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\PatientAppointmentModels\NewAppointmentViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Specialization" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="daysOfWeek" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientAppointmentModels.PatientAppointmentDoctor">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Specialization" Type="Health.Domain.Entities.Specialization" ManuallyRouted="true">
+      <Path>
+        <Point X="7.23" Y="2.055" />
+        <Point X="7.23" Y="5.758" />
+        <Point X="8.229" Y="5.758" Type="JumpStart" />
+        <Point X="8.49" Y="5.758" Type="JumpEnd" />
+        <Point X="8.729" Y="5.758" Type="JumpStart" />
+        <Point X="8.896" Y="5.758" Type="JumpEnd" />
+        <Point X="11.323" Y="5.758" Type="JumpStart" />
+        <Point X="11.49" Y="5.758" Type="JumpEnd" />
+        <Point X="12.635" Y="5.758" Type="JumpStart" />
+        <Point X="12.802" Y="5.758" Type="JumpEnd" />
+        <Point X="13.167" Y="5.758" Type="JumpStart" />
+        <Point X="13.333" Y="5.758" Type="JumpEnd" />
+        <Point X="13.51" Y="5.758" Type="JumpStart" />
+        <Point X="13.677" Y="5.758" Type="JumpEnd" />
+        <Point X="13.792" Y="5.758" Type="JumpStart" />
+        <Point X="13.958" Y="5.758" Type="JumpEnd" />
+        <Point X="16.557" Y="5.758" Type="JumpStart" />
+        <Point X="16.724" Y="5.758" Type="JumpEnd" />
+        <Point X="17.26" Y="5.758" Type="JumpStart" />
+        <Point X="17.427" Y="5.758" Type="JumpEnd" />
+        <Point X="17.964" Y="5.758" Type="JumpStart" />
+        <Point X="18.13" Y="5.758" Type="JumpEnd" />
+        <Point X="18.801" Y="5.758" />
+        <Point X="18.801" Y="6.218" />
+        <Point X="19.505" Y="6.218" Type="JumpStart" />
+        <Point X="19.671" Y="6.218" Type="JumpEnd" />
+        <Point X="22.135" Y="6.218" Type="JumpStart" />
+        <Point X="22.302" Y="6.218" Type="JumpEnd" />
+        <Point X="22.619" Y="6.218" />
+        <Point X="22.619" Y="6.085" />
+        <Point X="22.959" Y="6.085" Type="JumpStart" />
+        <Point X="23.126" Y="6.085" Type="JumpEnd" />
+        <Point X="23.445" Y="6.085" Type="JumpStart" />
+        <Point X="23.612" Y="6.085" Type="JumpEnd" />
+        <Point X="24.042" Y="6.085" Type="JumpStart" />
+        <Point X="24.208" Y="6.085" Type="JumpEnd" />
+        <Point X="24.5" Y="6.085" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\PatientAppointmentModels\PatientAppointmentDoctor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Doctor" />
+      <Property Name="Specialization" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientModels.NextAppointmentsListViewModel">
+    <Position X="15.25" Y="13" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\PatientModels\NextAppointmentsListViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NextAppointmentsBlockInfo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientModels.PatientAppointment">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEABAAAAAAAACAQAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\PatientModels\PatientAppointment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+      <Property Name="Doctor" />
+      <Property Name="Specialization" />
+      <Property Name="Disease" />
+      <Property Name="Appointment" />
+      <Property Name="Diagnosis" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientModels.PatientPage" BaseTypeListCollapsed="true">
+    <Position X="13" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAGBAAAAQAAEACASAAACAIABACAAAAACRg=</HashCode>
+      <FileName>Models\PatientModels\PatientPage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Patient" />
+      <Property Name="PatientGender" />
+      <Property Name="PatientBloodType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Health.WebUI.Models.UnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAIAAYAACCAQAAAAAACAAABBSAARIAAABgAAEAAEAEA=</HashCode>
+      <FileName>Models\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Doctors" />
+      <Property Name="Patients" />
+      <Property Name="Appointments" />
+      <Property Name="Specializations" />
+      <Property Name="Diseases" />
+      <Property Name="BloodTypes" />
+      <Property Name="Diagnoses" />
+      <Property Name="Genders" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Health.Domain.Concrete.EFDbContext">
+    <Position X="24.5" Y="10.75" Width="2.5" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Patients" />
+      <Property Name="Diagnoses" />
+      <Property Name="Doctors" />
+      <Property Name="Specializations" />
+      <Property Name="Appointments" />
+      <Property Name="Genders" />
+      <Property Name="BloodTypes" />
+      <Property Name="Diseases" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.Domain.Concrete.EFGenericRepository&lt;TEntity&gt;" BaseTypeListCollapsed="true">
+    <Position X="6" Y="12" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Health.Domain.Entities.Appointment">
+    <Position X="8.25" Y="0.5" Width="2" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Diagnosis" />
+      <Property Name="Patient" />
+      <Property Name="Doctor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.Domain.Entities.BloodType">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Patients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.Domain.Entities.Diagnosis">
+    <Position X="15.25" Y="8.25" Width="2" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Disease" />
+      <Property Name="Appointment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Health.Domain.Entities.Disease">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Health.Domain.Entities.Doctor">
+    <Position X="16" Y="0.5" Width="2.75" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Specialization" />
+      <Property Name="Gender" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Appointments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.Domain.Entities.Gender">
+    <Position X="22" Y="1" Width="2.75" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Doctors" />
+      <Property Name="Patients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.Domain.Entities.Patient">
+    <Position X="18.75" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Health.Domain.Entities.Specialization">
+    <Position X="24.5" Y="4.75" Width="3" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Doctors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Health.WebUI.Models.PatientModels.NextAppointmentsBlockInfo">
+    <Position X="22.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\PatientModels\NextAppointmentsBlockInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Health.Domain.Abstract.IGenericRepository&lt;TEntity&gt;">
+    <Position X="24.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

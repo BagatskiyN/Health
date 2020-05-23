@@ -1,0 +1,49 @@
+﻿@using Health.WebUI.Models.PatientModels
+
+@model PatientAppointment
+
+
+<div class="block_upcomingSessions_pagination">
+    <div class="block_upcomingSessions_element lower_shadow">
+        <div class="block_theme_gradient block_upcomingSessions_elementIcon  ">
+            <img src="@Url.Action("GetSpacializationImage", "Patient",
+                new { Model.Specialization.SpecializationId})" alt="">
+        </div>
+
+        <div class="block_text_userSession">
+            <div class="delbutton_flex ">
+                <div class="text_upcomingSessions_styleBlack_title">
+                    @Model.Doctor.Specialization.SpecializationTitle
+                </div> @using (Html.BeginForm("DeleteAppointment", "Patient"))
+                {@Html.Hidden("AppointmentId", Model.Appointment.AppointmentId)
+                <input type="submit"
+                       class="delete_appointment"
+                       value="" />
+            }</div>
+            <div class="block_text_aboutSession history_element_DoctorName">
+                <div class="text_upcomingSessions_styleGray">Доктор:</div>
+                <div class="text_upcomingSessions_styleBlack">@Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic </div>
+            </div>
+            <div class="block_text_userSession_additionalInfo">
+
+                <div class="block_text_aboutSession">
+                    <div class="text_upcomingSessions_styleGray">Дата:</div>
+                    <div class="text_upcomingSessions_styleBlack"> @Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("dd MMM yyyy")</div>
+                </div>
+                <div class="block_text_aboutSession">
+                    <div class="text_upcomingSessions_styleGray">Время:</div>
+                    <div class="text_upcomingSessions_styleBlack">@Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("hh:mm tt")  </div>
+                </div>
+                <div class="block_text_aboutSession">
+                    <div class="text_upcomingSessions_styleGray">Кабинет:</div>
+                    <div class="text_upcomingSessions_styleBlack">@Model.Appointment.AppointmentPlace </div>
+                </div>
+            </div>
+
+
+            @*<a href="#" onclick="DeleteAppointment(@Model.Appointment.AppointmentId)">Delete</a>*@
+            </div>
+
+
+    </div>
+    </div>

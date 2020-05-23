@@ -25,7 +25,7 @@ body
 .HalfOfScreen
 {
 width: 50%;
-height: 100vh;
+height: 150vh;
 
 
 }
@@ -33,6 +33,25 @@ height: 100vh;
 {
 background-color: #00963C;
 z-index:-1;
+}
+.delete_appointment {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: transparent;
+	border: transparent;
+	outline: none;
+	background-image: url(../icons/svgIcons/deleteAppointment.svg);
+	height: 20px;
+	width: 20px;
+	margin-top: 5px;
+	margin-left: 110px;
+}
+.delbutton_flex {
+	display: flex;
+	flex-direction: row;
+	margin-left: 30px;
+	justify-content: center;
 }
 .OldSideOfScreen
 {

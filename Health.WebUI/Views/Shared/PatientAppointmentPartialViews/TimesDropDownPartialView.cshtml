@@ -1,0 +1,8 @@
+﻿@model List<DateTime>
+
+    <select id="hour" name="Hour" class="specialization_selector selector_timeChooser_style">
+        @foreach (var item in Model)
+        {
+            <option>@item</option>
+        }
+    </select>

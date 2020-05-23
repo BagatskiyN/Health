@@ -1,0 +1,75 @@
+﻿@model Health.Domain.Entities.Patient
+@{
+    Layout = null;
+
+}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+        <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+       
+        <link href="~/Content/EditError.css" rel="stylesheet" />
+    </head>
+
+<body>
+    <p class="HealthTextLogo">HEALTH</p>
+    <div class="HalfOfScreen LeftSideOfScreen">
+        <div class="EnterNavigationBar"></div>
+
+    </div>
+    <div class="AuthorizationSection RegisterSection">
+        <h1 class="AuthorizationBlockHeadText"> Редактирование</h1>
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+        @*@Html.EditorForModel(new { htmlAttributes = new { @class = "TextInputLogin" } })*@
+        <div class="AuthorizationFlexContainer">
+            <p class="AuthorizationInputHelper">Фамилия</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientSurname", Model.PatientSurname, new { @class = "TextInputLogin" })
+
+                <span class="bar"></span>
+            </div>
+            <p class="AuthorizationInputHelper">Имя</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientName", Model.PatientName, new { @class = "TextInputLogin" })
+
+                <span class="bar"></span>
+            </div>
+            <p class="AuthorizationInputHelper">Отчество</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientPatronymic", Model.PatientPatronymic, new { @class = "TextInputLogin" })
+
+                <span class="bar"></span>
+            </div>
+            <p class="AuthorizationInputHelper">Вес</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientWeight", Model.PatientWeight, new { @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
+            <p class="AuthorizationInputHelper">Рост</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientHeight", Model.PatientHeight, new { @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
+            <p class="AuthorizationInputHelper">Дата рождения</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, new { @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
+        </div>
+        <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister" />
+        <div class="ToRegisterRef">
+            @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.PatientId })
+        </div>
+    }
+
+    </div>
+</body>

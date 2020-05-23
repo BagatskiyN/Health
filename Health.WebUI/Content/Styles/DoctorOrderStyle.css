@@ -80,6 +80,7 @@
     font-weight: 600;
     resize: none;
     margin-top: 80px;
+    max-width: inherit;
 }
 
 

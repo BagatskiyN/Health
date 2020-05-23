@@ -15,9 +15,10 @@ namespace Health.WebUI.Models.PatientModels
     {
         UnitOfWork unitOfWork;
         const int pageSize = 6;
-
+        const int nextPageSize = 4;
         private int PatientId;
         public Patient Patient { get; set; }
+        public int PatientAge { get; set; }
 
         public Gender PatientGender { get; set; }
         public BloodType PatientBloodType { get; set; }
@@ -40,6 +41,11 @@ namespace Health.WebUI.Models.PatientModels
               PreviousAppointments= GetPreviousPatientAppointmentsList();
                 NextAppointments = GetNextPatientAppointmentsList();
             }
+            DateTime nowDate = DateTime.Today;
+            int age = nowDate.Year - Patient.PatientBirthdate.Year;
+            if (Patient.PatientBirthdate > nowDate.AddYears(-age)) age--;
+            PatientAge = age;
+           
 
         }
         public List<PatientAppointment> GetPreviousPatientAppointmentsList(int page = 0)
@@ -57,27 +63,30 @@ namespace Health.WebUI.Models.PatientModels
         }
         public List<PatientAppointment> GetNextPatientAppointmentsList(int page = 0)//Сделать похожей на previous
         {
-        
+            List<PatientAppointment> result = new List<PatientAppointment>();
             List<Appointment> appointments = GetNextAppointmentsList(page);
             for (int i = 0; i < appointments.Count; i++)
             {
-                NextAppointments.Add(new PatientAppointment(appointments[i]));
+                result.Add(new PatientAppointment(appointments[i]));
             }
-            return this.NextAppointments;
+            NextAppointments = result;
+            return result;
 
         }
-
+       
         private List<Appointment> GetPreviousAppointmentsList(int page = 0)
         {
 
-            List<Appointment> appointments = unitOfWork.Appointments.Get().Where(p => p.PatientId == PatientId && p.AppointmentDateTime < DateTime.Now).ToList();
+            List<Appointment> appointments = unitOfWork.Appointments.Get()
+                .Where(p => p.PatientId == PatientId && p.AppointmentDateTime < DateTime.Now).ToList();
             return SkipUsedAppointments(appointments, page);
         }
         private List<Appointment> GetNextAppointmentsList(int page = 0)
         {
 
-            List<Appointment> appointments = unitOfWork.Appointments.Get().Where(p => p.PatientId == PatientId && p.AppointmentDateTime > DateTime.Now).ToList();
-            return SkipUsedAppointments(appointments, page);
+            List<Appointment> appointments = unitOfWork.Appointments.Get()
+                .Where(p => p.PatientId == PatientId && p.AppointmentDateTime > DateTime.Now).ToList();
+            return SkipUsedNextAppointments(appointments, page);
 
         }
 
@@ -88,12 +97,13 @@ namespace Health.WebUI.Models.PatientModels
             {
                 if (appointments.Count() - skipRecords < 6)
                 {
-                    return appointments.OrderBy(t => t.AppointmentDateTime)
-                           .Skip(skipRecords).Take(appointments.Count() - skipRecords).ToList();
+                    return appointments.OrderByDescending(t => t.AppointmentDateTime)
+                           .Skip(skipRecords).Take(appointments.Count() - skipRecords)
+                           .ToList();
                 }
                 else
                 {
-                    return appointments.OrderBy(t => t.AppointmentDateTime)
+                    return appointments.OrderByDescending(t => t.AppointmentDateTime)
                       .Skip(skipRecords).Take(pageSize).ToList();
                 }
             }
@@ -102,7 +112,29 @@ namespace Health.WebUI.Models.PatientModels
                 return new List<Appointment> { };
             }
         }
-
+        
+        private List<Appointment> SkipUsedNextAppointments(List<Appointment> appointments,int page)
+        {
+            var skipRecords = page * nextPageSize;
+            if (appointments.Count() - skipRecords >= 0)
+            {
+                if (appointments.Count() - skipRecords < 4)
+                {
+                    return appointments.OrderBy(t => t.AppointmentDateTime)
+                           .Skip(skipRecords).Take(appointments.Count() - skipRecords)
+                           .ToList();
+                }
+                else
+                {
+                    return appointments.OrderBy(t => t.AppointmentDateTime)
+                      .Skip(skipRecords).Take(nextPageSize).ToList();
+                }
+            }
+            else
+            {
+                return new List<Appointment> { };
+            }
+        }
 
         public PatientPage MakeElement(int patientId)
         {

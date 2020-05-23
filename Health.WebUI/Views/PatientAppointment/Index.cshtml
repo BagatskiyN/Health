@@ -1,0 +1,69 @@
+﻿@using Health.Domain.Entities
+@using System.Web.Optimization
+@using Health.WebUI.Models.PatientAppointmentModels
+
+@model DoctorListViewModel
+@{
+    ViewBag.Title = "Index";
+
+}    <body overflow="auto">
+    <div class="RountedBackgroundRectandle" id="doctorsList">
+        <div class="block_theme_gradient block_theme_green ">
+
+            <div class="block_theme_white">
+                <h1 class="headblock_text">Выбор доктора</h1>
+            </div>
+        </div>
+        <div  id="doctorsList">
+            <div id="scrolListDoctors" class="flexblock_doctors">@Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml")</div>
+
+            <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('div#loading').hide();
+
+            var page = 0;
+            var _inCallback = false;
+            function loadItems() {
+
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
+                    page++;
+                    $('div#loading').show();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/PatientAppointment/GetDoctorsAppointmentsList/' + page,
+                        success: function (data, textstatus) {
+                            if (data != '') {
+                                $("#scrolListDoctors").append(data);
+                            }
+                            else {
+                                page = -1;
+                            }
+                            _inCallback = false;
+                            $("div#loading").hide();
+                        }
+                    });
+                }
+            }
+            // обработка события скроллинга
+            $("#doctorsList").scroll(function () {
+                console.log('scrollTopsrab', $("#userHistory").scrollTop())
+                console.log('d-w srab', $("#userHistory").height())
+                console.log('doc h', this.scrollHeight - this.clientHeight)
+                if (this.scrollTop+1 >= this.scrollHeight - this.clientHeight) {
+
+                    loadItems();
+                }
+            });
+        })
+
+    </script>
+</body>

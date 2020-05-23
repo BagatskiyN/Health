@@ -16,3 +16,37 @@ textarea {
     max-width: 280px;
 }
 
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+    position:absolute;
+    margin-top:-40px;
+}
+
+.validation-summary-valid {
+    display: none;
+    
+}
+.field-validation-error {
+    color: #6699CC;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.input-validation-error {
+    border: 1px solid #006699;
+    background-color: silver;
+}

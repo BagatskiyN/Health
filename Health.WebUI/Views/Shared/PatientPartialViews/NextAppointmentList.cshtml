@@ -1,0 +1,12 @@
+﻿@using Health.Domain.Entities
+@using Health.WebUI.Models.PatientModels
+
+@model PatientPage
+
+@foreach (var p in Model.NextAppointments)
+{
+    <div>
+        @Html.Partial("~/Views/Shared/PatientPartialViews/PatientNextAppointment.cshtml", p)
+
+    </div>
+}

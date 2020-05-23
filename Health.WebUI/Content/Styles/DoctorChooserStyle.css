@@ -33,6 +33,7 @@ justify-content: space-between;
     font-weight: 700;
     color: #8A8A8A;
     border: transparent;
+    max-width:inherit;
 }
 .order_input
 { font-weight: 700;
@@ -45,6 +46,11 @@ justify-content: space-between;
 width: 100%;
 background-color: transparent;
 outline: none;
+text-align:center;
+}
+.order_ref {
+    color: white;
+    text-decoration:none;
 }
 .order_input:hover
 {

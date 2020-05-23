@@ -8,6 +8,7 @@
 
     <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/EditError.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -15,31 +16,38 @@
         <div class="MenuImage Medical_Icon"></div>
         <div class="NavigationItemsGroup">
 
-            <div class="MenuImage AccountIconActive">
-
-            </div>
+            <a style="text-decoration:none" href="@Url.Action("Index","Patient")">
+                <div class="MenuImage AccountIconActive">
+                </div>
+            </a>
             <p class="NavigationMenuText ActiveMenuText">Аккаунт</p>
             <div class="MenuImage  MedCardIcon">
 
             </div>
             <p class="NavigationMenuText">Медкарта</p>
-            <div class="MenuImage СouponIcon">
-
-            </div>
-            <p class="NavigationMenuText">Талончик</p>
-
+            <a style="text-decoration:none" href="@Url.Action("Index","PatientAppointment")">
+                <div class="MenuImage СouponIcon">
+                </div> 
+                <p class="NavigationMenuText">Талончик</p>
+            </a>
         </div>
-        <div class="MenuImage Help_Icon"></div>
+      <div class="MenuImage Help_Icon"></div>
+    </div>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        @RenderBody()
     </div>
 
 
- 
-        @RenderBody()    
-     
 
 
 
-   
+
+
+
 
 
 </body>

@@ -2,6 +2,14 @@
 
 @model PatientAppointment
     <div class="block_userHistory_element_green block_theme_gradient">
+        @if (Model.Specialization.SpecializationImageData != null)
+        {
+            <div class="pull-left" style="margin-right: 10px">
+                <img class="block_userHistory_Icon" width="75" height="75"
+                     src="@Url.Action("GetSpacializationImage", "Patient",
+                new { Model.Specialization.SpecializationId})" />
+            </div>
+        }
         <div class="block_userHistory_element_white default_shadow">
             <div class="block_userHistory_textBlock">
                 <div class="text_userHistory_title">
@@ -19,7 +27,7 @@
                     </div>
                     <div class="block_text_aboutdoctor">
                         <div class="text_grayStyle">Время:</div>
-                        <div class="text_blackStyle">@Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("hh:mm:ss tt")  </div>
+                        <div class="text_blackStyle">@Convert.ToDateTime(@Model.Appointment.AppointmentDateTime).ToString("hh:mm tt")  </div>
                     </div>
                     <div class="block_text_aboutdoctor">
                         <div class="text_grayStyle">Кабинет:</div>
