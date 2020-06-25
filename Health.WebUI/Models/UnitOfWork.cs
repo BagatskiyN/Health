@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Health.Domain.Abstract;
 
 namespace Health.WebUI.Models
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable,IUnitOfWork
     {
         private static EFDbContext db = new EFDbContext();
         EFGenericRepository<Doctor> repositoryDoctor;
@@ -20,7 +21,7 @@ namespace Health.WebUI.Models
         EFGenericRepository<Patient> repositoryPatient;
         EFGenericRepository<Appointment> repositoryAppointment;
 
-        public EFGenericRepository<Doctor> Doctors
+        public IGenericRepository<Doctor> Doctors
         {
             get
             {
@@ -29,7 +30,7 @@ namespace Health.WebUI.Models
                 return repositoryDoctor;
             }
         }
-        public EFGenericRepository<Patient> Patients
+        public IGenericRepository<Patient> Patients
         {
             get
             {
@@ -38,7 +39,7 @@ namespace Health.WebUI.Models
                 return repositoryPatient;
             }
         }
-        public EFGenericRepository<Appointment> Appointments
+        public IGenericRepository<Appointment> Appointments
         {
             get
             {
@@ -47,7 +48,7 @@ namespace Health.WebUI.Models
                 return repositoryAppointment;
             }
         }
-        public EFGenericRepository<Specialization> Specializations
+        public IGenericRepository<Specialization> Specializations
         {
             get
             {
@@ -56,7 +57,7 @@ namespace Health.WebUI.Models
                 return repositorySpecialization;
             }
         }
-        public EFGenericRepository<Disease> Diseases
+        public IGenericRepository<Disease> Diseases
         {
             get
             {
@@ -65,7 +66,7 @@ namespace Health.WebUI.Models
                 return repositoryDisease;
             }
         }
-        public EFGenericRepository<BloodType> BloodTypes
+        public IGenericRepository<BloodType> BloodTypes
         {
             get
             {
@@ -74,7 +75,7 @@ namespace Health.WebUI.Models
                 return repositoryBloodType;
             }
         }
-        public EFGenericRepository<Diagnosis> Diagnoses
+        public IGenericRepository<Diagnosis> Diagnoses
         {
             get
             {
@@ -83,7 +84,7 @@ namespace Health.WebUI.Models
                 return repositoryDiagnosis;
             }
         }
-        public EFGenericRepository<Gender> Genders
+        public IGenericRepository<Gender> Genders
         {
             get
             {

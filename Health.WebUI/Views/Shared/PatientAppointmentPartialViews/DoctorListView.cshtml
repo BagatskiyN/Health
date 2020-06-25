@@ -1,8 +1,8 @@
 ﻿@using Health.WebUI.Models.PatientAppointmentModels
 
-@model DoctorListViewModel
+@model List<PatientAppointmentDoctor> 
 
-@foreach (var p in Model.PatientAppointmentDoctors)
+@foreach (var p in Model)
 {
   
         @Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorElementPartialView.cshtml", p)

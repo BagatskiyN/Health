@@ -1,4 +1,5 @@
-﻿using Health.Domain.Entities;
+﻿using Health.Domain.Abstract;
+using Health.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace Health.WebUI.Models.PatientAppointmentModels
     {
         public Doctor Doctor { get; set; }
         public Specialization Specialization { get; set; }
-        UnitOfWork unitOfWork;
-        public PatientAppointmentDoctor(int doctorId)
+       public IUnitOfWork unitOfWork;
+        public PatientAppointmentDoctor(int doctorId,IUnitOfWork _unitOfWork)
         {
-            unitOfWork = new UnitOfWork();
+            unitOfWork = _unitOfWork;
             Doctor = unitOfWork.Doctors.FindById(doctorId);
             Specialization = unitOfWork.Specializations.FindById((int)Doctor.SpecializationId);
+
         }
+       
 
     }
 }

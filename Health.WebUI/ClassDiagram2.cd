@@ -31,7 +31,7 @@
   <Class Name="Health.WebUI.Controllers.PatientAppointmentController">
     <Position X="8.75" Y="12" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAJAEAAAAAAAAQAAAAAAAACAAAAAAgAAEAEAAAAAAAA=</HashCode>
+      <HashCode>AAJAEAAAAAAAAQAAAIAAAACAAAAAAgAAGAEAAAAAAAA=</HashCode>
       <FileName>Controllers\PatientAppointmentController.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -71,12 +71,9 @@
   <Class Name="Health.WebUI.Models.PatientAppointmentModels.DoctorListViewModel">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAACAAAAAACAAACAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAACAAAAAACAAACAAAAAAAAAAAAACBA=</HashCode>
       <FileName>Models\PatientAppointmentModels\DoctorListViewModel.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="unitOfWork" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="PatientAppointmentDoctors" />
     </ShowAsCollectionAssociation>
@@ -98,7 +95,7 @@
     <Position X="6" Y="0.5" Width="1.5" />
     <AssociationLine Name="Specialization" Type="Health.Domain.Entities.Specialization" ManuallyRouted="true">
       <Path>
-        <Point X="7.23" Y="2.055" />
+        <Point X="7.23" Y="1.796" />
         <Point X="7.23" Y="5.758" />
         <Point X="8.229" Y="5.758" Type="JumpStart" />
         <Point X="8.49" Y="5.758" Type="JumpEnd" />
@@ -198,7 +195,6 @@
       <Property Name="Diseases" />
       <Property Name="BloodTypes" />
       <Property Name="Diagnoses" />
-      <Property Name="Genders" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

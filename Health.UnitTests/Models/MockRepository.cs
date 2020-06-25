@@ -1,27 +1,26 @@
 ﻿using Health.Domain.Abstract;
-using Health.Domain.Entities;
+using Health.Domain.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Data.Entity;
-using System.Linq.Expressions;
-
-namespace Health.Domain.Concrete
+namespace Health.UnitTests.Models
 {
-    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+   public class MockRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-       DbContext _context;
-       DbSet<TEntity> _dbSet;
+        DbContext _context;
+        DbSet<TEntity> _dbSet;
 
-        public EFGenericRepository(DbContext context)
+        public MockRepository(DbContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-        public EFGenericRepository()
+        public MockRepository()
         {
             _context = new EFDbContext();
             _dbSet = _context.Set<TEntity>();
@@ -74,5 +73,6 @@ namespace Health.Domain.Concrete
             return includeProperties
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
+
     }
 }

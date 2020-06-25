@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Health.Domain.Entities;
 using Ninject.Web.Common;
+using Health.WebUI.Models;
 
 namespace Health.WebUI.Infrastructure
 {
@@ -41,7 +42,7 @@ namespace Health.WebUI.Infrastructure
             kernel.Bind<IRepository<Gender>>().To<EFGenderRepository>();
             kernel.Bind<IRepository<Specialization>>().To<EFSpecializationRepository>();
             kernel.Bind<IGenericRepository<Patient>>().To<EFGenericRepository<Patient>>();
-       
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }
 }

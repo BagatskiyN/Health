@@ -7,25 +7,87 @@
     ViewBag.Title = "Index";
 
 }    <body overflow="auto">
-    <div class="RountedBackgroundRectandle" id="doctorsList">
-        <div class="block_theme_gradient block_theme_green ">
+         <div class="RountedBackgroundRectandle" id="doctorsList">
+             <div class="block_theme_gradient block_theme_green ">
 
-            <div class="block_theme_white">
-                <h1 class="headblock_text">Выбор доктора</h1>
-            </div>
-        </div>
-        <div  id="doctorsList">
-            <div id="scrolListDoctors" class="flexblock_doctors">@Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml")</div>
+                 <div class="block_theme_gradient block_theme_green ">
 
-            <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
-        </div>
-    </div>
+                     <div class="block_theme_white">
+                         <h1 class="headblock_text">Выбор доктора</h1>
+                     </div>
+                 </div>
+
+             </div>  <div class="flexbox_searchdoctor_filter">
+                 <div class="block_theme_gradient block_theme_green searchblock_theme block_doctorsearch">
+                     <div class="search_Icon"></div>
+                     <input id="searchField" type="text" class="searchblock_theme_white searchblock_theme inputblock_doctor"
+                            placeholder="Выберите врача">
+                     <input class="search_input" type="submit" value="Поиск">
+                 </div>
+                 <div class="block_theme_gradient searchblock_theme block_specializationsearch">
+                     @*<select id="filter" class="specialization_selector">
+            <option value="" style="display:none">Выберите специализацию</option>
+            <option value="acsac">rtjrtj</option>
+            <option value="acasc">rtjrtj</option>
+        </select>*@
+                     @Html.DropDownList("Specialization", ViewBag.Specializations as SelectList, "Выберите специальность", new { @id = "filter", @class = "specialization_selector" })
+                     <button id="filterBtn" class="search_input">Применить</button>
+                 </div>
+             </div>
+             <div id="doctorsList" class="flexblock_doctors">
+                 <div id="scrolListDoctors" class="flexblock_doctors">@Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml",Model.PatientAppointmentDoctors)</div>
+
+                 <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
+             </div>
+         </div>
     @Scripts.Render("~/bundles/jquery")
 
     <script type="text/javascript">
 
         $(function () {
+            var PrevSearchText = "";
+            var PrevFilterValue = "";
 
+            $("#searchField").on("input", SearchInterval);
+
+            $(document).ready(function () {
+                $("#filterBtn").click(function () {
+                    Search();
+                });
+            });
+      
+            function SearchInterval() {
+                $("#searchField").off('input');
+                setTimeout(Search, 800);
+              
+            }
+
+            function Search() {
+                if (PrevSearchText != $("#searchField").val() || PrevFilterValue != $("#filter").val()) {
+                    if ($("#searchField").val() == "" && ($("#filter").val() == "Выберите специальность" || $("#filter").val() == ""))
+                    {
+                        page = 0;
+                        loadItems();
+                    }
+                    else
+                    {
+                        $.ajax({
+                            type: "GET",
+                            url: "/PatientAppointment/DoctorsSearch",
+                            data: { searchText: $("#searchField").val(), filter: $("#filter").val() },
+
+                            success: function (data) {
+                                $("#scrolListDoctors").html(data);
+                            }
+                        });
+                    }
+                    PrevSearchText = $("#searchField").val();
+                    PrevFilterValue = $("#filter").val();
+                  
+                }
+                $("#searchField").on("input", SearchInterval);
+            }
+            
             $('div#loading').hide();
 
             var page = 0;
@@ -55,8 +117,8 @@
             }
             // обработка события скроллинга
             $("#doctorsList").scroll(function () {
-                console.log('scrollTopsrab', $("#userHistory").scrollTop())
-                console.log('d-w srab', $("#userHistory").height())
+                console.log('scrollTopsrab', $("#doctorsList").scrollTop())
+                console.log('d-w srab', $("#doctorsList").height())
                 console.log('doc h', this.scrollHeight - this.clientHeight)
                 if (this.scrollTop+1 >= this.scrollHeight - this.clientHeight) {
 

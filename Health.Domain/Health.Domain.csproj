@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\EFAppointmentRepository.cs" />
     <Compile Include="Concrete\EFBloodTypeRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />

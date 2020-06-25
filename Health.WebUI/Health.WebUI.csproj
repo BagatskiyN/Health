@@ -242,6 +242,7 @@
     <Compile Include="Models\Abstract\IMakeItemsList.cs" />
     <Compile Include="Models\Abstract\IMakeElement.cs" />
     <Compile Include="Models\Abstract\IPatientAppointment.cs" />
+    <Compile Include="Models\Abstract\IPatientAppointmentDoctor.cs" />
     <Compile Include="Models\Abstract\PatientPageAbstract.cs" />
     <Compile Include="Models\PatientAppointmentModels\DayOfAppointment.cs" />
     <Compile Include="Models\PatientAppointmentModels\DoctorListViewModel.cs" />
