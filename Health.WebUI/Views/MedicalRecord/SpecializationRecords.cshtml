@@ -1,0 +1,98 @@
+﻿@using System.Web.Optimization
+@using Health.WebUI.Models.MedicalRecord;
+@model SpecializationRecordsListViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="RountedBackgroundRectandle flexbox_background_rectangle" id="scrollRect">
+        <div class="flexbox_choosedDoctor_history">
+            <div class="block_theme_gradient block_choosed_doctorIcon">
+                <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
+                new { Model.Specialization.SpecializationId })">
+                <div class="block_choosed_doctorSpecialization default_shadow">
+                    <p>@Model.Specialization.SpecializationTitle</p>
+                </div>
+            </div>
+            <div class="block_medcardHistory_Title">
+                <span class="text_medcardHistory_Title">Список посещений</span>
+                <div class="block_green_underline block_theme_gradient"></div>
+            </div>
+            <div id="scrollList">
+                @Html.Partial("~/Views/Shared/MedicalRecordPartialViews/RecordView.cshtml", Model.Appointments)
+            </div>
+        </div>
+        <div id="AppointmentData">
+           
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(function () {
+
+            $('div#loading').hide();
+
+            var page = 0;
+            var _inCallback = false;
+            function loadItems() {
+
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
+                    page++;
+                    $('div#loading').show();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/MedicalRecord/GetSpecializationRecords/',
+                        data: { page: page },
+                        success: function (data, textstatus) {
+                            if (data != '') {
+                                $("#scrollList").append(data);
+                            }
+                            else {
+                                page = -1;
+                            }
+                            _inCallback = false;
+                            $("div#loading").hide();
+                        }
+                    });
+                }
+            }
+            // обработка события скроллинга
+            $("#scrollRect").scroll(function () {
+                console.log('scrollTopsrab', $("#scrollRect").scrollTop())
+                console.log('d-w srab', $("#scrollRect").height())
+                console.log('doc h', this.scrollHeight - this.clientHeight)
+                if (this.scrollTop + 1 >= this.scrollHeight - this.clientHeight) {
+
+                    loadItems();
+                }
+            });
+
+        })
+        function GetAppointmentData(a) {
+            $.ajax({
+                type: "GET",
+                url: "/MedicalRecord/GetAppointmentData",
+                data: { appointmentId: a },
+
+                success: function (data) {
+                    $("#AppointmentData").html(data);
+                }
+            });
+        }
+
+
+    </script>
+</body>
+</html>

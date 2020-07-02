@@ -170,7 +170,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
-    flex-wrap: wrap;
+ 
     align-items: center;
 
 }
@@ -194,7 +194,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 0px;
-
+    margin-right: 20px;
+    width: max-content;
 }
 
 .doctorMecard_image {

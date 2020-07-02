@@ -16,6 +16,7 @@ namespace Health.Domain.Abstract
         IGenericRepository<Gender> Genders { get; }
         IGenericRepository<Patient> Patients { get; }
 
+        IGenericRepository<Diagnosis> Diagnoses { get; }
         IGenericRepository<Disease> Diseases { get; }
         IGenericRepository<BloodType> BloodTypes { get; }
         void Save();

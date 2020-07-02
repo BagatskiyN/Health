@@ -1,0 +1,82 @@
+﻿@using Health.Domain.Entities;
+@using System.Web.Optimization
+@model List<Specialization>
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="FlexBackgroundItems">
+
+        <div class="RountedBackgroundRectandle">
+
+            <div class="block_theme_gradient block_theme_green">
+
+                <div class="block_theme_white">
+                    <h1 class="headblock_text">Медицинская карта пациента</h1>
+
+
+
+                </div>
+            </div>
+
+            <div class="block_theme_gradient block_theme_green searchblock_theme">
+                <div class="search_Icon"></div>
+                <input id="specializationSearch" type="text" class="searchblock_theme_white searchblock_theme" placeholder="Выберите врача">
+         
+            </div>
+            <div class="flexblock_specialize" id="specializationList">
+
+                @Html.Partial("~/Views/Shared/MedicalRecordPartialViews/MedicalRecordSpecializationListView.cshtml", Model)
+
+            </div>
+        </div>
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#specializationSearch").on("input", SearchInterval);
+            function SearchInterval() {
+                $("#specializationSearch").off('input');
+                setTimeout(Search, 800);
+
+            }
+            var PrevSearchText="";
+            function Search() {
+                if (PrevSearchText != $("#specializationSearch").val() ) {
+          
+                 
+                        $.ajax({
+                            type: "GET",
+                            url: "/MedicalRecord/SearchSpecialization",
+                            data: { searchText: $("#specializationSearch").val() },
+
+                            success: function (data) {
+                                $("#specializationList").html(data);
+                            }
+                        });
+                    
+                    PrevSearchText = $("#specializationSearch").val();
+                
+
+                }
+                $("#specializationSearch").on("input", SearchInterval);
+            }
+        })
+    </script>
+</body>
+
+</html>

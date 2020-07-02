@@ -1,0 +1,48 @@
+﻿@using Health.WebUI.Models.MedicalRecord;
+@using Health.WebUI.Models.PatientAppointmentModels;
+@model AppointmentData
+
+<div class="block_choosedDoctorAbout_Green">
+    <div class="block_choosedDoctorAbout_white">
+        <div class="text_choosedDoctorAbout_title">
+            Данные о посещении
+
+
+        </div>
+        <div class="block_choosedDoctorAbout_titleUnderline block_theme_gradient"> </div>
+        <div class="block_DocorInfo">
+            <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
+                new { Model.Doctor.DoctorId})" class="doctorsearch_image doctorMecard_image" alt="">
+
+            <div class="block_doctorInfo_FirstColumn">
+                <div class="text_grayStyle">Доктор:</div>
+                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.DoctorName  @Model.Doctor.DoctorPatronymic @Model.Doctor.DoctorSurname</div>
+                <div class="text_grayStyle">Телефон:</div>
+                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.DoctorPhone</div>
+            </div>
+            <div class="block_doctorInfo_SecondColumn">
+                <div class="text_grayStyle">Специализация:</div>
+                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Specialization.SpecializationTitle</div>
+                <div class="text_grayStyle">Почта:</div>
+                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.DoctorEmail</div>
+            </div>
+
+
+        </div>
+
+        <div class="block_medcard_diagnosis">
+            <div class="text_diagnosis_styleGray"> Диагноз:</div>
+            <div class="text_diagnosis_styleBlack"> @Model.Disease.DiseaseTitle</div>
+            <div class="text_diagnosis_styleGray"> Комментарий доктора:</div>
+            <div class="text_diagnosis_styleBlack text_diagnosisComment_styleBlack">
+                @Model.Diagnosis.DiagnosisComment
+            </div>
+            <div class="text_diagnosis_styleGray"> Рекомендации:</div>
+            <div class="text_diagnosis_styleBlack text_diagnosisRecomend_styleBlack">
+                @Model.Diagnosis.DiagnosisRecommendations
+            </div>
+
+        </div>
+    </div>
+</div>
+

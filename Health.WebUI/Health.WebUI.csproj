@@ -233,17 +233,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MedicalRecordController.cs" />
     <Compile Include="Controllers\PatientAppointmentController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\Abstract\IMakeItemsList.cs" />
-    <Compile Include="Models\Abstract\IMakeElement.cs" />
-    <Compile Include="Models\Abstract\IPatientAppointment.cs" />
-    <Compile Include="Models\Abstract\IPatientAppointmentDoctor.cs" />
-    <Compile Include="Models\Abstract\PatientPageAbstract.cs" />
+    <Compile Include="Models\MedicalRecord\AppointmentData.cs" />
+    <Compile Include="Models\MedicalRecord\SpecializationRecordsListViewModel.cs" />
     <Compile Include="Models\PatientAppointmentModels\DayOfAppointment.cs" />
     <Compile Include="Models\PatientAppointmentModels\DoctorListViewModel.cs" />
     <Compile Include="Models\PatientAppointmentModels\NewAppointmentViewModel.cs" />
@@ -281,6 +279,11 @@
     <Content Include="Views\Shared\PatientAppointmentPartialViews\DoctorElementPartialView.cshtml" />
     <Content Include="Views\PatientAppointment\MakeNewAppointment.cshtml" />
     <Content Include="Views\Shared\PatientAppointmentPartialViews\TimesDropDownPartialView.cshtml" />
+    <Content Include="Views\MedicalRecord\Index.cshtml" />
+    <Content Include="Views\Shared\MedicalRecordPartialViews\MedicalRecordSpecializationListView.cshtml" />
+    <Content Include="Views\MedicalRecord\SpecializationRecords.cshtml" />
+    <Content Include="Views\Shared\MedicalRecordPartialViews\RecordView.cshtml" />
+    <Content Include="Views\Shared\MedicalRecordPartialViews\AppointmentDataView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

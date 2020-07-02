@@ -1,7 +1,7 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Entities;
 using Health.WebUI.App_Start;
-using Health.WebUI.Models.Abstract;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Health.WebUI.Models.PatientModels
 {
-    public class PatientPage : IMakeElement<PatientPage>
+    public class PatientPage 
     {
         UnitOfWork unitOfWork;
         const int pageSize = 6;

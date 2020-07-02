@@ -75,15 +75,10 @@
     <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUnitOfWork.cs" />
-    <Compile Include="Concrete\EFAppointmentRepository.cs" />
-    <Compile Include="Concrete\EFBloodTypeRepository.cs" />
+    <Compile Include="Abstract\IWorkWithAppointments.cs" />
+    <Compile Include="Concrete\AppointmentManipulator.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\EFDiseaseRepository.cs" />
-    <Compile Include="Concrete\EFDoctorRepository.cs" />
     <Compile Include="Concrete\EFGenericRepository.cs" />
-    <Compile Include="Concrete\EFPatientRepository.cs" />
-    <Compile Include="Concrete\EFGenderRepository.cs" />
-    <Compile Include="Concrete\EFSpecializationRepository.cs" />
     <Compile Include="Entities\Appointment.cs" />
     <Compile Include="Entities\Authorization.cs" />
     <Compile Include="Entities\BloodType.cs" />

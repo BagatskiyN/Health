@@ -1,0 +1,19 @@
+﻿@using Health.Domain.Entities;
+
+@model List<Specialization>
+@foreach (var m in Model)
+{
+
+    <a href="@Url.Action("SpecializationRecords",new {specializationId=m.SpecializationId})">
+        <div class="block_specialize_theme_white">
+            <div class="block_theme_gradient block_specialize">
+
+                <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
+                new { m.SpecializationId })" class="Specialization_Icon">
+
+                <p class="Specialization_Text">@m.SpecializationTitle</p>
+            </div>
+        </div>
+    </a>
+}
+

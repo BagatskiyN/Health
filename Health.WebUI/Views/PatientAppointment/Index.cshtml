@@ -25,11 +25,7 @@
                      <input class="search_input" type="submit" value="Поиск">
                  </div>
                  <div class="block_theme_gradient searchblock_theme block_specializationsearch">
-                     @*<select id="filter" class="specialization_selector">
-            <option value="" style="display:none">Выберите специализацию</option>
-            <option value="acsac">rtjrtj</option>
-            <option value="acasc">rtjrtj</option>
-        </select>*@
+            
                      @Html.DropDownList("Specialization", ViewBag.Specializations as SelectList, "Выберите специальность", new { @id = "filter", @class = "specialization_selector" })
                      <button id="filterBtn" class="search_input">Применить</button>
                  </div>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Health.WebUI.Models.Abstract;
 
 namespace Health.WebUI.Models.PatientAppointmentModels
 {
@@ -13,6 +14,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
         public Specialization Specialization { get; set; }
 
         public Appointment Appointment { get; set; }
+        public Diagnosis Diagnosis { get; set; }
 
         public List<DayOfAppointment> daysOfWeek { get; set; }
         UnitOfWork unitOfWork;
@@ -21,6 +23,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
         public NewAppointmentViewModel(int doctorId,int patientId)
         { unitOfWork = new UnitOfWork();
             Appointment = new Appointment();
+          
             Appointment.AppointmentPlace = (doctorId * 12).ToString();
             Appointment.Patient = unitOfWork.Patients.FindById(patientId);
             Appointment.PatientId = patientId;
