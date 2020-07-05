@@ -96,8 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Models\MockRepository.cs" />
-    <Compile Include="Models\MockUnitOfWork.cs" />
+    <Compile Include="MedicalRecordController\MedicalRecordTest.cs" />
     <Compile Include="PatientAppointmentsTests\PatientAppointmentsTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

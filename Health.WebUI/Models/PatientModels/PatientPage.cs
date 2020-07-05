@@ -54,7 +54,7 @@ namespace Health.WebUI.Models.PatientModels
             List<Appointment> appointments = GetPreviousAppointmentsList(page);
             for (int i = 0; i < appointments.Count; i++)
             {
-              result.Add(new PatientAppointment(appointments[i]));
+              result.Add(new PatientAppointment(appointments[i],unitOfWork));
             }
 
             PreviousAppointments = result;
@@ -67,7 +67,7 @@ namespace Health.WebUI.Models.PatientModels
             List<Appointment> appointments = GetNextAppointmentsList(page);
             for (int i = 0; i < appointments.Count; i++)
             {
-                result.Add(new PatientAppointment(appointments[i]));
+                result.Add(new PatientAppointment(appointments[i],unitOfWork));
             }
             NextAppointments = result;
             return result;

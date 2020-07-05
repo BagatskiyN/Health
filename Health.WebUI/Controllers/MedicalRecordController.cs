@@ -12,8 +12,8 @@ namespace Health.WebUI.Controllers
     public class MedicalRecordController : Controller
     {
         // GET: MedicalRecord
-        private List<Specialization> specializations;
-       private static SpecializationRecordsListViewModel specializationRecordsListViewModel;
+      private List<Specialization> specializations;
+      public static SpecializationRecordsListViewModel specializationRecordsListViewModel;
         public ActionResult Index()
         {
            specializations = unitOfWork.Specializations.Get().ToList();
@@ -47,7 +47,7 @@ namespace Health.WebUI.Controllers
         }
         public ActionResult SpecializationRecords(int specializationId)
         {
-           specializationRecordsListViewModel= new SpecializationRecordsListViewModel(unitOfWork,specializationId);
+           specializationRecordsListViewModel= new SpecializationRecordsListViewModel(unitOfWork,specializationId,2);
             specializationRecordsListViewModel.GetAppointmentsBySpecialization();
             return View(specializationRecordsListViewModel);
 

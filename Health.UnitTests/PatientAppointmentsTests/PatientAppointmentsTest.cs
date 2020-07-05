@@ -19,45 +19,44 @@ namespace Health.UnitTests.PatientAppointmentsTests
     public class PatientAppointmentsTest
     {
 
-
-        [TestMethod]
-        public void CanSearchDoctords()
+        Mock<IUnitOfWork> mock;
+        Mock<IGenericRepository<Doctor>> mock1;
+        Mock<IGenericRepository<Specialization>> mockUoWSpecialization;
+        [TestInitialize]
+        public void Initialize()
         {
-
-            // Организация (arrange)
-
-            Mock<IUnitOfWork> mock = new Mock<IUnitOfWork>();
-            Mock<IGenericRepository<Doctor>> mock1 = new Mock<IGenericRepository<Doctor>>();
-            Mock<IGenericRepository<Specialization>> mockUoWSpecialization = new Mock<IGenericRepository<Specialization>>();
+            mock = new Mock<IUnitOfWork>();
+            mock1 = new Mock<IGenericRepository<Doctor>>();
+            mockUoWSpecialization = new Mock<IGenericRepository<Specialization>>();
             mockUoWSpecialization.Setup(m => m.FindById(1)).Returns(new Specialization() { SpecializationId = 1, SpecializationTitle = "Психолог" });
             mockUoWSpecialization.Setup(m => m.FindById(2)).Returns(new Specialization() { SpecializationId = 2, SpecializationTitle = "Лор" });
             mockUoWSpecialization.Setup(m => m.FindById(3)).Returns(new Specialization() { SpecializationId = 3, SpecializationTitle = "Стоматолог" });
-            mock1.Setup(m => m.FindById(1)).Returns(new Doctor() 
-            { 
+            mock1.Setup(m => m.FindById(1)).Returns(new Doctor()
+            {
                 DoctorId = 1,
                 DoctorName = "Сергей",
                 DoctorSurname = "Аксенов",
-                DoctorPatronymic = "Валентинович", 
-                DoctorPhone = "32423432", 
-                SpecializationId = 3 
+                DoctorPatronymic = "Валентинович",
+                DoctorPhone = "32423432",
+                SpecializationId = 3
             });
             mock1.Setup(m => m.FindById(2)).Returns(new Doctor()
-            { 
+            {
                 DoctorId = 2,
                 DoctorName = "Олег",
                 DoctorSurname = "Валов",
-                DoctorPatronymic = "Валентинович", 
+                DoctorPatronymic = "Валентинович",
                 DoctorPhone = "32423432",
-                SpecializationId = 2 
+                SpecializationId = 2
             });
-            mock1.Setup(m => m.FindById(3)).Returns(new Doctor() 
+            mock1.Setup(m => m.FindById(3)).Returns(new Doctor()
             {
-                DoctorId = 3, 
+                DoctorId = 3,
                 DoctorName = "Ксения",
                 DoctorSurname = "Римова",
-                DoctorPatronymic = "Оксановна", 
-                DoctorPhone = "43242432", 
-                SpecializationId = 1 
+                DoctorPatronymic = "Оксановна",
+                DoctorPhone = "43242432",
+                SpecializationId = 1
             });
             mock1.Setup(m => m.Get()).Returns(new List<Doctor>
                {
@@ -73,6 +72,14 @@ namespace Health.UnitTests.PatientAppointmentsTests
             });
             mock.Setup(m => m.Doctors).Returns(mock1.Object);
             mock.Setup(m => m.Specializations).Returns(mockUoWSpecialization.Object);
+
+        }
+        [TestMethod]
+        public void CanSearchDoctords()
+        {
+
+            // Организация (arrange)
+
             PatientAppointmentController controller = new PatientAppointmentController(mock.Object);
 
             // Действие (act)

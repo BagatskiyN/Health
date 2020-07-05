@@ -12,7 +12,7 @@ namespace Health.WebUI.Models.PatientModels
     public class PatientAppointment
     {
 
-        UnitOfWork unitOfWork;
+        IUnitOfWork unitOfWork;
 
         public Doctor Doctor { get; set; }
         public Specialization Specialization { get; set; }
@@ -21,9 +21,9 @@ namespace Health.WebUI.Models.PatientModels
      
 
 
-        public PatientAppointment( Appointment appointment)
+        public PatientAppointment( Appointment appointment,IUnitOfWork _unitOfWork)
         {
-            unitOfWork = new UnitOfWork();
+            unitOfWork = _unitOfWork;
             Appointment = unitOfWork.Appointments.FindById(appointment.AppointmentId);
             if(appointment.DoctorId!=null)
             Doctor = unitOfWork.Doctors.FindById((int)appointment.DoctorId);

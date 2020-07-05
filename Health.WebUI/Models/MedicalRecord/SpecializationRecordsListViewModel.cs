@@ -14,9 +14,11 @@ namespace Health.WebUI.Models.MedicalRecord
        public Specialization Specialization;
        public List<PatientAppointment> Appointments=new List<PatientAppointment>();
         int specializationId;
+        int patientId;
         int pageSize = 6;
-        public SpecializationRecordsListViewModel(IUnitOfWork _unitOfWork,int _specializationId)
+        public SpecializationRecordsListViewModel(IUnitOfWork _unitOfWork,int _specializationId,int _patientId)
         {
+            patientId = _patientId;
             specializationId = _specializationId;
             unitOfWork = _unitOfWork;
             Specialization = unitOfWork.Specializations.FindById(specializationId);
@@ -25,9 +27,9 @@ namespace Health.WebUI.Models.MedicalRecord
         {
             var skipRecords = page * pageSize;
             List<PatientAppointment> appointments = unitOfWork.Appointments
-                .Get().Where(m => (unitOfWork.Doctors.FindById((int)m.DoctorId).SpecializationId == specializationId))
+                .Get().Where(m => (unitOfWork.Doctors.FindById((int)m.DoctorId).SpecializationId == specializationId)&&(m.PatientId==patientId))
                 .Skip(skipRecords)
-                .Take(pageSize).Select(m=>new PatientAppointment(m)).ToList();
+                .Take(pageSize).Select(m=>new PatientAppointment(m,unitOfWork)).ToList();
             Appointments.AddRange(appointments);
             return appointments;
 

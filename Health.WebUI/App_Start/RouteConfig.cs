@@ -17,7 +17,10 @@ namespace Health.WebUI
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
             );
+            Route newRoute = new Route("{controller}/{action}", new MvcRouteHandler());
+            routes.Add(newRoute);
         }
     }
 }
