@@ -94,9 +94,9 @@ namespace Health.WebUI.Controllers
             Patient patient = unitOfWork.Patients.FindById(patientId);
 
 
-            if (patient != null && patient.PatientImageData!=null&&patient.PatientImageMimeType!=null)
+            if (patient != null && patient.ImageData!=null&&patient.ImageMimeType!=null)
             {
-                return File(patient.PatientImageData, patient.PatientImageMimeType);
+                return File(patient.ImageData, patient.ImageMimeType);
             }
             else
             {
@@ -115,15 +115,15 @@ namespace Health.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                patientPage.Patient.PatientName = patient.PatientName;
-                patientPage.Patient.PatientSurname = patient.PatientSurname;
-                patientPage.Patient.PatientPatronymic = patient.PatientPatronymic;
+                patientPage.Patient.Name = patient.Name;
+                patientPage.Patient.Surname = patient.Surname;
+                patientPage.Patient.Patronymic = patient.Patronymic;
                 patientPage.Patient.PatientWeight = patient.PatientWeight;
                 patientPage.Patient.PatientHeight = patient.PatientHeight;
                 patientPage.Patient.PatientBirthdate = patient.PatientBirthdate;
                 unitOfWork.Patients.Update(patientPage.Patient);
                 unitOfWork.Save();
-                TempData["message"] = string.Format("Изменения в пациенте\"{0}\" были сохранены", patient.PatientName);
+                TempData["message"] = string.Format("Изменения в пациенте\"{0}\" были сохранены", patient.Name);
                 return RedirectToAction("Index");
             }
             else

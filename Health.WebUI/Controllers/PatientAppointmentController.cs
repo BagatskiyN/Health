@@ -102,9 +102,9 @@ namespace Health.WebUI.Controllers
             Doctor doctor = unitOfWork.Doctors.FindById(doctorId);
 
 
-            if (doctor!= null&& doctor.DoctorImageData!=null&&doctor.DoctorImageMimeType!=null)
+            if (doctor!= null&& doctor.ImageData!=null&&doctor.ImageMimeType!=null)
             {
-                return File(doctor.DoctorImageData, doctor.DoctorImageMimeType);
+                return File(doctor.ImageData, doctor.ImageMimeType);
             }
             else
             {

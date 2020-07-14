@@ -5,24 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Health.Domain.Entities
 {
     public class Patient
     {
-        [HiddenInput(DisplayValue = false)]
-        public int PatientId { get; set; }
+
+        [Key]
+        public int Id { get; set; }
+
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         [Required]
         [Display(Name = "Имя")]
-        public string PatientName { get; set; }
+        public string Name { get; set; }
         [Required]
         [Display(Name = "Фамилия")]
-        public string PatientSurname { get; set; }
+        public string Surname { get; set; }
         [Required]
         [Display(Name = "Отчество")]
-        public string PatientPatronymic { get; set; }
-        [Required]
-        [Display(Name = "День рождения")]
+        public string Patronymic { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public byte[] ImageData { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public string ImageMimeType { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public int? GenderId { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public virtual Gender Gender { get; set; }
         public DateTime PatientBirthdate { get; set; }
         [Required]
         [Display(Name = "Вес")]
@@ -31,16 +46,6 @@ namespace Health.Domain.Entities
         [Display(Name = "Рост")]
         public int PatientHeight { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public byte[] PatientImageData { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public string PatientImageMimeType { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public int? GenderId { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public virtual Gender Gender { get; set; }
-        
         [HiddenInput(DisplayValue = false)]
         public int? BloodTypeId { get; set; }
         

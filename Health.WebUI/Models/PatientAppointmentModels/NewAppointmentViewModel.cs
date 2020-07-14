@@ -39,7 +39,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
             for(int i=1;i<=7;i++)
             {if(DateTime.Now.AddDays(i).DayOfWeek!=DayOfWeek.Saturday&&DateTime.Now.AddDays(i).DayOfWeek!=DayOfWeek.Sunday)
                 {
-                    dayOfAppointments.Add(new DayOfAppointment(i, Doctor.DoctorId));
+                    dayOfAppointments.Add(new DayOfAppointment(i, Doctor.Id));
                 }
 
             }

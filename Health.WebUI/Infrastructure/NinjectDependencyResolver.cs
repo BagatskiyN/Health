@@ -6,7 +6,6 @@ using Health.Domain.Abstract;
 using Health.Domain.Concrete;
 using System.Web.Mvc;
 using System.Data.Entity;
-using Health.Domain.Entities;
 using Ninject.Web.Common;
 using Health.WebUI.Models;
 

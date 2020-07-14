@@ -16,7 +16,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
         {
             unitOfWork = _unitOfWork;
             Doctor = unitOfWork.Doctors.FindById(doctorId);
-            Specialization = unitOfWork.Specializations.FindById((int)Doctor.SpecializationId);
+            Specialization = unitOfWork.Specializations.FindById(Doctor.Id);
 
         }
        

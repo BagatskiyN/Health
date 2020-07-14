@@ -33,36 +33,36 @@ namespace Health.UnitTests.PatientAppointmentsTests
             mockUoWSpecialization.Setup(m => m.FindById(3)).Returns(new Specialization() { SpecializationId = 3, SpecializationTitle = "Стоматолог" });
             mock1.Setup(m => m.FindById(1)).Returns(new Doctor()
             {
-                DoctorId = 1,
-                DoctorName = "Сергей",
-                DoctorSurname = "Аксенов",
-                DoctorPatronymic = "Валентинович",
+                Id = 1,
+                Name = "Сергей",
+                Surname = "Аксенов",
+                Patronymic = "Валентинович",
                 DoctorPhone = "32423432",
                 SpecializationId = 3
             });
             mock1.Setup(m => m.FindById(2)).Returns(new Doctor()
             {
-                DoctorId = 2,
-                DoctorName = "Олег",
-                DoctorSurname = "Валов",
-                DoctorPatronymic = "Валентинович",
+               Id = 2,
+                Name = "Олег",
+                Surname = "Валов",
+                Patronymic = "Валентинович",
                 DoctorPhone = "32423432",
                 SpecializationId = 2
             });
             mock1.Setup(m => m.FindById(3)).Returns(new Doctor()
             {
-                DoctorId = 3,
-                DoctorName = "Ксения",
-                DoctorSurname = "Римова",
-                DoctorPatronymic = "Оксановна",
+                Id = 3,
+                Name = "Ксения",
+                Surname = "Римова",
+                Patronymic = "Оксановна",
                 DoctorPhone = "43242432",
                 SpecializationId = 1
             });
             mock1.Setup(m => m.Get()).Returns(new List<Doctor>
                {
-                 new Doctor(){DoctorId=1,DoctorName="Сергей",DoctorSurname="Аксенов",DoctorPatronymic="Валентинович",DoctorPhone="32423432",SpecializationId=3 },
-                 new Doctor(){DoctorId=2,DoctorName="Олег",DoctorSurname="Валов",DoctorPatronymic="Валентинович",DoctorPhone="32423432",SpecializationId=2 },
-                 new Doctor(){DoctorId=3,DoctorName="Светлана",DoctorSurname="Римова",DoctorPatronymic="Оксановна",DoctorPhone="43242432",SpecializationId=1 }
+                 new Doctor(){Id=1,Name="Сергей",Surname="Аксенов",Patronymic="Валентинович",DoctorPhone="32423432",SpecializationId=3 },
+                 new Doctor(){Id=2,Name="Олег",Surname="Валов",Patronymic="Валентинович",DoctorPhone="32423432",SpecializationId=2 },
+                 new Doctor(){Id=3,Name="Светлана",Surname="Римова",Patronymic="Оксановна",DoctorPhone="43242432",SpecializationId=1 }
             });
             mockUoWSpecialization.Setup(m => m.Get()).Returns(new List<Specialization>
             {

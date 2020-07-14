@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using System.Data.Entity;
 using System.Linq.Expressions;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Health.Domain.Concrete
 {
@@ -16,7 +17,7 @@ namespace Health.Domain.Concrete
        DbContext _context;
        DbSet<TEntity> _dbSet;
 
-        public EFGenericRepository(DbContext context)
+        public EFGenericRepository(EFDbContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();

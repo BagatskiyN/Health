@@ -33,13 +33,13 @@ namespace Health.WebUI.Models.PatientAppointmentModels
             }
             if (searchText != "")
             {
-                patientDoctorsSearch = unitOfWork.Doctors.Get().Where(x => (x.DoctorName.Contains(searchText))).ToList();
+                patientDoctorsSearch = unitOfWork.Doctors.Get().Where(x => (x.Name.Contains(searchText))).ToList();
 
             }
 
             if (patientDoctorsSearch.Count != 0 && patientDoctorsFilter.Count != 0)
             {
-                var result= patientDoctorsFilter.Select(x=>x.DoctorId).Intersect(patientDoctorsSearch.Select(x=>x.DoctorId)).Select(y => new PatientAppointmentDoctor(y, unitOfWork)).ToList();
+                var result= patientDoctorsFilter.Select(x=>x.Id).Intersect(patientDoctorsSearch.Select(x=>x.Id)).Select(y => new PatientAppointmentDoctor(y, unitOfWork)).ToList();
                 PatientAppointmentDoctors = result;
                 return result;
             }
@@ -47,13 +47,13 @@ namespace Health.WebUI.Models.PatientAppointmentModels
             {
                 if (patientDoctorsSearch.Count != 0)
                 {
-                    var result = patientDoctorsSearch.Select(y => new PatientAppointmentDoctor(y.DoctorId,unitOfWork)).ToList();
+                    var result = patientDoctorsSearch.Select(y => new PatientAppointmentDoctor(y.Id,unitOfWork)).ToList();
                     PatientAppointmentDoctors = result;
                     return result;
                 }
                 else
                 {
-                    var result = patientDoctorsFilter.Select(y => new PatientAppointmentDoctor(y.DoctorId, unitOfWork)).ToList();
+                    var result = patientDoctorsFilter.Select(y => new PatientAppointmentDoctor(y.Id, unitOfWork)).ToList();
                     return result;
                 }
             }
@@ -65,7 +65,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
             List<PatientAppointmentDoctor> result = new List<PatientAppointmentDoctor>();
             for (int i = 0; i < doctors.Count(); i++)
             {
-                result.Add(new PatientAppointmentDoctor(doctors[i].DoctorId, unitOfWork));
+                result.Add(new PatientAppointmentDoctor(doctors[i].Id, unitOfWork));
             }
             PatientAppointmentDoctors = result;
             return result;

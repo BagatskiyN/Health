@@ -1,0 +1,42 @@
+﻿@using System.Web.Optimization  
+@using System.Collections.Generic
+@model Dictionary<string, object>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+  
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div>
+
+        @{
+            ViewBag.Title = "ASP.NET Identity";
+        }
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Данные пользователей</div>
+            <table class="table table-striped">
+                @foreach (string key in Model.Keys)
+                {
+                    <tr>
+                        <th>@key</th>
+                        <td>@Model[key]</td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+        @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-primary" })
+    </div>
+</body>
+</html>
