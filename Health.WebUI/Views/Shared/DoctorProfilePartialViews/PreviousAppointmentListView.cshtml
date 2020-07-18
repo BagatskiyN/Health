@@ -1,0 +1,36 @@
+﻿@model List<Health.WebUI.Models.DoctorProfile.DoctorProfileAppointment>
+@foreach (var x in Model)
+{
+<div class="block_userHistory_element_green block_theme_gradient">
+
+    <div class="block_userHistory_element_white default_shadow   block_appointmentDoctor_white">
+        <img src="@Url.Action("GetPatientImage", "DoctorProfile",
+                new { patientId=x.Patient.Id })"  class="block_patient_image">
+      
+        <div class="block_userHistory_textBlock">
+
+            <div class="block_text_aboutdoctor history_element_DoctorName">
+                <div class="text_grayStyle">Пациент:</div>
+                <div class="text_blackStyle"> @x.Patient.Surname @x.Patient.Name @x.Patient.Patronymic </div>
+            </div>
+            <div class="block_doctor_dopInfo">
+
+                <div class="block_text_aboutdoctor">
+                    <div class="text_grayStyle">Дата:</div>
+                    <div class="text_blackStyle">  @Convert.ToDateTime(@x.Appointment.AppointmentDateTime).ToString("dd MMM yyyy")</div>
+                </div>
+                <div class="block_text_aboutdoctor">
+                    <div class="text_grayStyle">Время:</div>
+                    <div class="text_blackStyle">@Convert.ToDateTime(@x.Appointment.AppointmentDateTime).ToString("hh:mm tt") </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="submit" class="block_userHistory_arrowIcon" value="">
+
+
+    </div>
+
+
+</div>
+}

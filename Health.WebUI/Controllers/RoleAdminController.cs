@@ -50,18 +50,18 @@ namespace Health.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 IdentityResult result
-                    = await RoleManager.CreateAsync(new CustomRole(name));
+                    = await RoleManager.CreateAsync(new CustomRole() { Name=name});
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","RoleAdmin");
                 }
                 else
                 {
                     AddErrorsFromResult(result);
                 }
             }
-            return View(name);
+            return new EmptyResult();
         }
         public async Task<ActionResult> Edit(int id)
         {

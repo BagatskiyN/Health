@@ -1,9 +1,10 @@
-﻿@using System.Web.Optimization  
-@using System.Collections.Generic
-@model Dictionary<string, object>
+﻿@using System.Web.Optimization
+
+
+@model DoctorPageViewModel
 
 @{
-    Layout = null;
+    Layout= "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,9 +12,7 @@
 <html>
 <head>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    @Styles.Render("~/Content/css")
-  
-    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 
 <body>
@@ -23,20 +22,121 @@
             ViewBag.Title = "ASP.NET Identity";
         }
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">Данные пользователей</div>
-            <table class="table table-striped">
-                @foreach (string key in Model.Keys)
-                {
-                    <tr>
-                        <th>@key</th>
-                        <td>@Model[key]</td>
-                    </tr>
-                }
-            </table>
+
+
+    </div>
+    <div class="RountedBackgroundRectandle flexbox_background_rectangle">
+
+        <div class="flexbox_choosedDoctor_history block_userHistory" id="appointmentHistory">
+            <div class="block_medcardHistory_Title">
+                <span class="text_medcardHistory_Title">Список посещений врачей</span>
+                <div class="block_green_underline block_theme_gradient"></div>
+            </div>
+            <div id="scrollList">
+                @Html.Partial("~/Views/Shared/DoctorProfilePartialViews/PreviousAppointmentListView.cshtml", Model.PreviousAppointment)
+
+            </div>
 
         </div>
-        @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-primary" })
+
+        <div class="block_user_rightSide">
+
+            <div class="block_doctorInfo default_shadow">
+                <div class="flexbox_userInfo_title">
+                    <div class="block_userInfo_title block_theme_gradient">Данные профиля</div>
+
+
+                </div>
+                <div class="block_doctorInfo_mainInfo">
+                    <img src="@Url.Action("GetDoctorImage", "DoctorProfile",
+                new { doctorId=Model.Doctor.Id })"  class="block_doctorInfo_image">
+                   
+                    <div class="block_column_userInfo block_column_doctorInfo">
+
+                        <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Имя:</div>
+                        <div class="text_blackStyle text_userInfo_styleBlack">@Model.Doctor.Name </div>
+
+                        <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Отчество:</div>
+                        <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Doctor.Patronymic</div>
+                        <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Фамилия:</div>
+                        <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Doctor.Surname </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="block_additionalInfo block_doctor_additionalInfo">
+                    <div class="block_column_userInfo block_column_additionalInfo">
+                        <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Почта:</div>
+                        <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Doctor.DoctorEmail </div>
+                        <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Телефон:</div>
+                        <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Doctor.DoctorPhone</div>
+                    </div>
+
+
+
+                </div>
+                <div class="block_specializationTitle">
+                    <div class="block_specialization_name block_theme_gradient">
+                        <p class="text_specialization">Оттоларинголог</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
     </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+     
+            $(function () {
+
+                $('div#loading').hide();
+
+                var page = 0;
+                var _inCallback = false;
+                function loadItems() {
+
+                    if (page > -1 && !_inCallback) {
+                _inCallback = true;
+                        page++;
+                        $('div#loading').show();
+
+                        $.ajax({
+                type: 'GET',
+                            url: '/DoctorProfile/GetPreviousAppointments/' + page,
+                            success: function (data, textstatus) {
+                                if (data != '') {
+                $("#scrollList").append(data);
+                                }
+                                else {
+                page = -1;
+                                }
+                                _inCallback = false;
+                                $("div#loading").hide();
+                            }
+                        });
+                    }
+                }
+                // обработка события скроллинга
+                $("#appointmentHistory").scroll(function () {
+                console.log('scrollTopsrab', $("#userHistory").scrollTop())
+                    console.log('d-w srab', $("#userHistory").height())
+                    console.log('doc h', this.scrollHeight - this.clientHeight)
+                    if( this.scrollTop >= this.scrollHeight - this.clientHeight) {
+
+                loadItems();
+                    }
+                });
+            })
+
+
+        </script>
+
 </body>
 </html>

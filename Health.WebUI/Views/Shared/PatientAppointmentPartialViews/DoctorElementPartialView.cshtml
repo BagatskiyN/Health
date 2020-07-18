@@ -5,8 +5,8 @@
 
         <div class="block_doctor ">
             <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
-                new { Model.Doctor.DoctorId})" class="doctorsearch_image">
-            <p class="text_blackStyle">@Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic</p>
+                new { Model.Doctor.Id})" class="doctorsearch_image">
+            <p class="text_blackStyle">@Model.Doctor.Surname @Model.Doctor.Name @Model.Doctor.Patronymic</p>
             <div class="block_text_aboutdoctor">
                 <div class="text_grayStyle">Телефон:</div>
                 <div class="text_blackStyle">@Model.Doctor.DoctorPhone</div>
@@ -18,7 +18,7 @@
             </div>
 
         </div>
-        <div class="order_input"> <a href="@Url.Action("MakeNewAppointment",new { doctorId=Model.Doctor.DoctorId})" class=" order_ref">Записаться</a> </div>
+        <div class="order_input"> <a href="@Url.Action("MakeNewAppointment",new { doctorId=Model.Doctor.Id})" class=" order_ref">Записаться</a> </div>
 
     </div>
 

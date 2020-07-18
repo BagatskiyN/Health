@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+@{
+    string pageUrl = Request.Url.PathAndQuery.ToString();
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/EditError.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="MainLeftMenu">
+        <div class="MenuImage Medical_Icon"></div>
+        <div class="NavigationItemsGroup">
+
+            <a style="text-decoration:none" href="@Url.Action("Index","Patient")">
+                <div class="@((pageUrl.ToLower().Contains("/doctorprofile/")||(pageUrl.ToLower()=="/doctorprofile" ))? "AccountIconActive" : "AccountIcon") MenuImage">
+                </div>
+
+                <p class="@((pageUrl.ToLower().Contains("/doctorprofile/")||(pageUrl.ToLower()=="/doctorprofile" ))? " ActiveMenuText" : string.Empty) NavigationMenuText">Аккаунт</p>
+            </a>
+            <a style="text-decoration:none" href="@Url.Action("Index","MedicalRecord")">
+                <div class="@(pageUrl.ToLower().Contains("/medicalrecord") ? "AppointmentsIconActive" : "AppointmentsIcon") MenuImage">
+
+                </div>
+                <p class="@(pageUrl.ToLower().Contains("/medicalrecord") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Посетители</p>
+            </a>
+
+        </div>
+        <div class="MenuImage Help_Icon"></div>
+
+    </div> 
+    @RenderBody()
+</body>
+</html>

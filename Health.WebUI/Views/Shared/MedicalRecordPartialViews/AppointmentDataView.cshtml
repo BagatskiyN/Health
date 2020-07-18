@@ -12,11 +12,11 @@
         <div class="block_choosedDoctorAbout_titleUnderline block_theme_gradient"> </div>
         <div class="block_DocorInfo">
             <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
-                new { Model.Doctor.DoctorId})" class="doctorsearch_image doctorMecard_image" alt="">
+                new { Model.Doctor.Id})" class="doctorsearch_image doctorMecard_image" alt="">
 
             <div class="block_doctorInfo_FirstColumn">
                 <div class="text_grayStyle">Доктор:</div>
-                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.DoctorName  @Model.Doctor.DoctorPatronymic @Model.Doctor.DoctorSurname</div>
+                <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.Name  @Model.Doctor.Patronymic @Model.Doctor.Surname</div>
                 <div class="text_grayStyle">Телефон:</div>
                 <div class="text_blackStyle text_blackStyle_DocInfo">@Model.Doctor.DoctorPhone</div>
             </div>

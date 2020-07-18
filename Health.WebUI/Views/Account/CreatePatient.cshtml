@@ -1,0 +1,75 @@
+﻿@using System.Web.Optimization
+
+@model Health.WebUI.Models.Account.CreatePatientViewModel
+@{
+    ViewBag.Title = "Создание пользователя";
+    Layout = null;
+}
+
+<head>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/EditError.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    @*<ul class="EnterNavigationBar">
+
+            <li><a href="">Главная</a></li>
+            <li><a href="">Про нас</a></li>
+            <li><a href="">Контакты</a></li>
+        </ul>*@
+    <p class="HealthTextLogo">HEALTH</p>
+    <div class="HalfOfScreen LeftSideOfScreen">
+        <div class="EnterNavigationBar"></div>
+
+    </div>
+    <div class="AuthorizationSection RegisterSection">
+        <h1 class="AuthorizationBlockHeadText"> Регистрация</h1>
+        @Html.ValidationSummary(false)
+        @using (Html.BeginForm())
+        {
+            <div class="AuthorizationFlexContainer">
+
+                <p class="AuthorizationInputHelper">Фамилия</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.Surname, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Имя</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Отчество</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.Patronymic, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">E-mail</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Дата рождения</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.BirthDate, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Пароль</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <input class="ButtonInput ButtonInputRegister" type="submit" value="Зарегестрироваться">
+            <div class="ToRegisterRef"><a href="">Уже зарегестрированны?</a></div>
+        }
+        </div>
+</body>

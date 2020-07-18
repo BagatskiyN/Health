@@ -1,0 +1,73 @@
+.EditDiagnosisIcon {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 42px;
+    margin-top: 10px;
+    margin-left: 35px;
+    width: 42px;
+
+
+    background-image: url(../icons/svgIcons/EditDiagnosis.svg);
+}
+.block_title_white
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 87%;
+    margin-left: 30px;
+    height: 100%;
+    background-color: white;
+    border-radius:55px ;
+
+}
+.block_white_diagnosisBackground
+{
+    width:80%;
+    height: 100%;
+    display:flex;
+    justify-content: start;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 55px;
+    overflow: scroll;
+    align-items: center;
+}
+.block_white_diagnosisBackground::-webkit-scrollbar { width: 0; }
+.block_background_flex
+{
+    display: flex;
+    justify-content: center;
+}
+.block_title_green
+{
+    width: 1000px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: start;
+    height: 60px;
+    
+}
+.block_diagnosisDescription
+{
+margin-top: 50px;
+width: 90%;
+
+}
+
+
+.text_diagnosis
+{font-family: Roboto;
+
+    font-size:  28px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: 700;
+
+}
+.text_diagnosis_gray
+{margin-top: 50px;
+    color: gray;
+}

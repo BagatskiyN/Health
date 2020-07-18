@@ -1,0 +1,68 @@
+.block_appointmentDoctor_white
+{
+    width: 92%;
+
+}
+.block_patient_image
+{
+    height: 180px;
+    width: 180px;
+    margin-left: 25px;
+    border-radius:55px ;
+}
+.block_doctorInfo_image
+{
+    height: 200px;
+    width: 200px;
+    margin-left: 50px;
+  margin-top: 30px;
+    border: 10px solid #FFFFFF;
+    box-shadow: 0px 14px 22px rgba(0, 0, 0, 0.25);
+    border-radius: 115px;
+}
+.block_doctorInfo
+{
+     width: 700px;
+    height: 70%;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 55px;
+    display: flex;
+    margin-right: 40px;
+    flex-direction: column;
+}
+.text_gray_doctorInfo
+{
+margin-top: 20px;
+}
+.block_doctorInfo_mainInfo
+{ display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+    
+}
+.block_column_doctorInfo
+{
+margin-left: 80px;
+}
+.block_column_additionalInfo
+{
+margin-left: 50px;
+margin-right: 100px;
+}
+
+.block_doctor_additionalInfo
+{
+justify-content: center;
+}
+.text_gray_doctor_additionalInfo
+{
+    margin-top: 50px;
+    
+}
+.block_specializationTitle
+{margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

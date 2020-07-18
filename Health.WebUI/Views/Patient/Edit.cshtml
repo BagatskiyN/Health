@@ -33,19 +33,19 @@
         <div class="AuthorizationFlexContainer">
             <p class="AuthorizationInputHelper">Фамилия</p>
             <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientSurname", Model.PatientSurname, new { @class = "TextInputLogin" })
+                @Html.TextBox("PatientSurname", Model.Surname, new { @class = "TextInputLogin" })
 
                 <span class="bar"></span>
             </div>
             <p class="AuthorizationInputHelper">Имя</p>
             <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientName", Model.PatientName, new { @class = "TextInputLogin" })
+                @Html.TextBox("PatientName", Model.Name, new { @class = "TextInputLogin" })
 
                 <span class="bar"></span>
             </div>
             <p class="AuthorizationInputHelper">Отчество</p>
             <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientPatronymic", Model.PatientPatronymic, new { @class = "TextInputLogin" })
+                @Html.TextBox("PatientPatronymic", Model.Patronymic, new { @class = "TextInputLogin" })
 
                 <span class="bar"></span>
             </div>
@@ -67,7 +67,7 @@
         </div>
         <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister" />
         <div class="ToRegisterRef">
-            @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.PatientId })
+            @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.Id })
         </div>
     }
 

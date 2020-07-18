@@ -1,9 +1,11 @@
 ﻿using Health.Domain.Concrete;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -15,7 +17,16 @@ namespace Health.Domain.Entities
     {
         public virtual Patient Patient { get; set; }
         public virtual Doctor Doctor { get; set; }
-
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
+  UserManager<ApplicationUser, int> manager)
+        {
+            // Note the authenticationType must match the one defined in
+            // CookieAuthenticationOptions.AuthenticationType 
+            var userIdentity = await manager.CreateIdentityAsync(
+                this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here 
+            return userIdentity;
+        }
     }
     public class CustomUserRole : IdentityUserRole<int> { }
     public class CustomUserClaim : IdentityUserClaim<int> { }
@@ -43,4 +54,5 @@ namespace Health.Domain.Entities
         {
         }
     }
+  
 }

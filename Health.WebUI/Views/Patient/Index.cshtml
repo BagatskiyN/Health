@@ -37,22 +37,22 @@
                 <div class="block_userInfo default_shadow">
                     <div class="flexbox_userInfo_title">
                         <div class="block_userInfo_title block_theme_gradient"> О пользователе</div>
-                        <a href="@Url.Action("Edit",new { patientId=Model.Patient.PatientId })"> <div class="block_userInfo_edit block_theme_gradient"></div></a>
+                        <a href="@Url.Action("Edit",new { patientId=Model.Patient.Id })"> <div class="block_userInfo_edit block_theme_gradient"></div></a>
 
                     </div>
                     <div class="block_userInfo_mainInfo">
                         <img  width="75" height="75" class="doctorsearch_image"
                      src="@Url.Action("GetPatientImage", "Patient",
-                new { Model.Patient.PatientId})" >
+                new { Model.Patient.Id})" >
                         <div class="block_column_userInfo">
 
                             <div class="text_grayStyle text_userInfo_styleGray">Имя:</div>
-                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.PatientName</div>
+                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.Name</div>
 
                             <div class="text_grayStyle text_userInfo_styleGray">Отчество:</div>
-                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.PatientPatronymic</div>
+                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.Patronymic</div>
                             <div class="text_grayStyle text_userInfo_styleGray">Фамилия:</div>
-                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.PatientSurname</div>
+                            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.Surname</div>
                          
 
                         </div>

@@ -26,20 +26,19 @@ namespace Health.WebUI.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            //var users = new List<ApplicationUser>();
-            //var roles = new List<string>();
-            //foreach (var user in UserManager.Users)
-            //{
-            //    foreach (var role in UserManager.GetRoles(user.Id))
-            //    {
-            //      if(role.ToString()=="Doctors")
-            //        {
-            //            users.Add(user);
-            //        }
-            //    }
-            //}
-            //return View(users);
-            return View(UserManager.Users);
+            var users = new List<ApplicationUser>();
+            var roles = new List<string>();
+            foreach (var user in UserManager.Users.ToList())
+            {
+                foreach (var role in UserManager.GetRoles(user.Id))
+                {
+                  if(role.ToString()=="Doctors")
+                    {
+                        users.Add(user);
+                    }
+                }
+            }
+            return View(users);
         }
         private AppUserManager UserManager
         {

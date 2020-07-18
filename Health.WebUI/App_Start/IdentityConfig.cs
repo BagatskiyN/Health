@@ -8,6 +8,8 @@ using Health.WebUI.Infrastructure;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.AspNet.Identity.Owin;
+using Health.Domain.Entities;
 
 namespace Health.WebUI.App_Start
 {
@@ -23,6 +25,15 @@ namespace Health.WebUI.App_Start
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
+                Provider = new CookieAuthenticationProvider
+                {
+                    OnValidateIdentity = SecurityStampValidator
+                .OnValidateIdentity<AppUserManager, ApplicationUser, int>(
+                    validateInterval: TimeSpan.FromMinutes(30),
+                    regenerateIdentityCallback: (manager, user) =>
+                        user.GenerateUserIdentityAsync(manager),
+                    getUserIdCallback: (id) => (id.GetUserId<int>()))
+                }
             });
         }
 

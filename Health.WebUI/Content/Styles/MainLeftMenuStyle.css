@@ -77,6 +77,13 @@ transform: translate(-50%, -50%)
 {
     background-image: url(../icons/svgIcons/CouponIcon.svg);
 }
+.AppointmentsIconActive {
+    background-image: url(../icons/svgIcons/appointmentsIconActive.svg);
+}
+
+.AppointmentsIcon {
+    background-image: url(../icons/svgIcons/appointmentsIcon.svg);
+}
 
 .NavigationMenuImage
 {

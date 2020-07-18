@@ -2,6 +2,7 @@
 using Health.Domain.Entities;
 using Health.WebUI.Models;
 using Health.WebUI.Models.PatientModels;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,15 +19,15 @@ namespace Health.WebUI.Controllers
     public class PatientController : Controller
     {
 
-        UnitOfWork unitOfWork;
+        IUnitOfWork unitOfWork;
         PatientPage patientPage;
         private int pageNex=0;
 
-        public PatientController()
+        public PatientController(IUnitOfWork _unitOfWork)
         {
 
-            patientPage = new PatientPage(2);
-            unitOfWork = new UnitOfWork();
+            patientPage = new PatientPage(4);
+            unitOfWork =_unitOfWork;
         }
         public ActionResult Index(int? id)
         {
