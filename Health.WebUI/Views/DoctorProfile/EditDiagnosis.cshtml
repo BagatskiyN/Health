@@ -1,0 +1,95 @@
+﻿@model Health.WebUI.Models.DoctorProfile.DiagnosisViewModel
+@{
+    ViewBag.Title = "EditDiagnosis";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<div class="RountedBackgroundRectandle block_background_flex">
+
+    <div class="block_white_diagnosisBackground">
+        <div class="block_theme_gradient block_title_green">
+            <div class=" block_title_white">
+                <h1>Данные о посещении</h1>
+            </div>
+
+
+        </div>
+        @using (Html.BeginForm("SaveEditedDiagnosis", "DoctorProfile", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div class="block_diagnosisDescription">
+                <p class="text_diagnosis_gray text_diagnosis">Диагноз:</p>
+                <div class=" text_diagnosis">
+
+                    @Html.DropDownListFor(m=>m.DiseaseId, new SelectList(ViewBag.Disease, "DiseaseId", "DiseaseTitle",Model.DiseaseId), new { @id = "Disease", @class = "specialization_selector selector_timeChooser_style" })
+            
+                      
+                   
+                @Html.HiddenFor(m=>m.DiagnosisId)
+                    <p class="text_diagnosis_gray text_diagnosis">Комментарий:</p>
+                    <div class=" text_diagnosis">
+                        @Html.TextAreaFor(m => m.DiagnosisComment, 5, 80, new { @class = "block_comment_input" })
+                    </div>
+                    <p class="text_diagnosis_gray text_diagnosis">Рекомендации:</p>
+                    <div class=" text_diagnosis">
+                        @Html.TextAreaFor(m => m.DiagnosisRecommendations,  5, 80,new { @class = "block_comment_input" })
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister" />
+            <div class="ToRegisterRef">
+                @Html.ActionLink("Отменить изменения", "Index", "DoctorProfile")
+            </div>
+        }
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#Disease").select2(
+                {
+                    ajax: {
+
+                        url: "/DoctorProfile/GetDiseasesBySearch",
+                        datatype: "json",
+                        
+                        data: function (params) {
+                            return {
+                                searchText: params.term
+                            };
+                        },
+                        processResults: function (data, params) {
+                            return {
+                                results: data.map(function (item) {
+                                    return {
+                                        id: item.DiseaseId,
+                                        text: item.DiseaseTitle
+                                    };
+                                })
+                            }
+                        }
+
+
+                    }
+
+
+                }
+
+
+            )
+
+
+
+        }
+
+
+
+        )
+
+
+    </script>
+</div>

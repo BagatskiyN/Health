@@ -16,9 +16,9 @@
     <div class="block_white_style">
         <div class="block_doctor  block_aboutdoctor_border">
             <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
-                new { Model.Doctor.DoctorId})" class="doctorsearch_image  doctor_image_order">
+                new { Model.Doctor.Id})" class="doctorsearch_image  doctor_image_order">
            
-            <p class="text_blackStyle text_Order_DoctorName">@Model.Doctor.DoctorSurname @Model.Doctor.DoctorName @Model.Doctor.DoctorPatronymic</p>
+            <p class="text_blackStyle text_Order_DoctorName">@Model.Doctor.Surname @Model.Doctor.Name @Model.Doctor.Patronymic</p>
             <div class="block_text_aboutdoctor">
                 <div class="text_grayStyle">Телефон:</div>
                 <div class="text_blackStyle">@Model.Doctor.DoctorPhone</div>

@@ -7,7 +7,9 @@
 @import url('DoctorOrderStyle.css');
 @import url('ChoosedDoctorStyle.css');
 @import url('UserProfileStyle.css');
+@import url('DiagnosisByDoctor.css');
 @import url('DoctorProfileStyle.css');
+
 body
 {font-family: "Roboto",sans-serif;
 	font-style: normal;

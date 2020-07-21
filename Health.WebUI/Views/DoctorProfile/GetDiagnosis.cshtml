@@ -1,0 +1,51 @@
+﻿@model Health.WebUI.Models.DoctorProfile.DiagnosisViewModel
+@{
+    ViewBag.Title = "Диагноз";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+
+
+<html lang="en">
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+    <div class="RountedBackgroundRectandle block_background_flex">
+
+        <div class="block_white_diagnosisBackground">
+            <div class="block_theme_gradient block_title_green">
+                <div class=" block_title_white">
+                    <h1>Данные о посещении</h1>
+                </div>
+
+                <a href="@Url.Action("EditDiagnosis",Model)"> <div class="EditDiagnosisIcon "></div></a>
+            </div>
+            <div class="block_diagnosisDescription">
+                <p class="text_diagnosis_gray text_diagnosis">Диагноз:</p>
+                <div class=" text_diagnosis">
+                    @Model.DiseaseTitle
+                    <p class="text_diagnosis_gray text_diagnosis">Комментарий:</p>
+                    <div class=" text_diagnosis">
+                        @Model.DiagnosisComment
+                        <p class="text_diagnosis_gray text_diagnosis">Рекомендации:</p>
+                        <div class=" text_diagnosis">
+                            @Model.DiagnosisRecommendations
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

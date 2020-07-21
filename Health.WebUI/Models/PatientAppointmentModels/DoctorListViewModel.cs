@@ -39,7 +39,10 @@ namespace Health.WebUI.Models.PatientAppointmentModels
 
             if (patientDoctorsSearch.Count != 0 && patientDoctorsFilter.Count != 0)
             {
-                var result= patientDoctorsFilter.Select(x=>x.Id).Intersect(patientDoctorsSearch.Select(x=>x.Id)).Select(y => new PatientAppointmentDoctor(y, unitOfWork)).ToList();
+                var result= patientDoctorsFilter.Select(x=>x.Id)
+                    .Intersect(patientDoctorsSearch.Select(x=>x.Id))
+                    .Select(y => new PatientAppointmentDoctor(y, unitOfWork))
+                    .ToList();
                 PatientAppointmentDoctors = result;
                 return result;
             }
