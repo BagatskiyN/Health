@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
-    [Authorize(Roles = "Administrators")]
+ 
     public class RoleAdminController : Controller
     {
         // GET: RoleAdmin

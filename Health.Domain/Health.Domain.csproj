@@ -100,12 +100,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IGenericRepository.cs" />
+    <Compile Include="Abstract\IPictureManipulator.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Abstract\IWorkWithAppointments.cs" />
     <Compile Include="Concrete\AppointmentManipulator.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGenericRepository.cs" />
+    <Compile Include="Concrete\PictureManipulator.cs" />
     <Compile Include="Entities\Appointment.cs" />
     <Compile Include="Entities\Authorization.cs" />
     <Compile Include="Entities\BloodType.cs" />
@@ -125,6 +127,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

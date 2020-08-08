@@ -67,9 +67,12 @@ namespace Health.WebUI.Controllers
                         Name = model.Name,
                         Surname = model.Surname,
                         Patronymic = model.Patronymic,
-                        PatientBirthdate = model.BirthDate
-                        
+                        PatientBirthdate = model.BirthDate,
+                        BloodTypeId = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "Нет").BloodTypeId,
+                        GenderId = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "Не выбран").GenderId
                     };
+
+                    
                     unitOfWork.Patients.Create(patient);
                     return RedirectToAction("Index","Patient");
                 }

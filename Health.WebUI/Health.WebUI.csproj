@@ -85,6 +85,9 @@
     <Reference Include="Microsoft.AspNetCore.Html.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Html.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Html.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.3.1.6\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.JsonPatch, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.JsonPatch.3.1.6\lib\netstandard2.0\Microsoft.AspNetCore.JsonPatch.dll</HintPath>
     </Reference>
@@ -369,6 +372,7 @@
     <Content Include="Content\icons\MedCardIconActive.png" />
     <Content Include="Content\icons\medicon.ico" />
     <Content Include="Content\icons\medicon.png" />
+    <Content Include="Content\icons\NoPhoto.png" />
     <Content Include="Content\icons\otchet.png" />
     <Content Include="Content\icons\stethoscope.png" />
     <Content Include="Content\icons\stethoscope.svg" />
@@ -391,6 +395,7 @@
     <Content Include="Content\Styles\ChoosedDoctorStyle.css" />
     <Content Include="Content\Styles\DiagnosisByDoctor.css" />
     <Content Include="Content\Styles\DoctorChooserStyle.css" />
+    <Content Include="Content\Styles\DoctorNextAppointments.css" />
     <Content Include="Content\Styles\DoctorOrderStyle.css" />
     <Content Include="Content\Styles\DoctorProfileStyle.css" />
     <Content Include="Content\Styles\EditError.css" />
@@ -467,6 +472,7 @@
     <Content Include="Scripts\i18n\vi.js" />
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="Scripts\imageManipulator.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -496,8 +502,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminDoctorsController.cs" />
+    <Compile Include="Controllers\AdminPatientsController.cs" />
     <Compile Include="Controllers\DoctorProfileController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\MedicalRecordController.cs" />
+    <Compile Include="Controllers\NextPatientsController.cs" />
     <Compile Include="Controllers\PatientAppointmentController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
@@ -512,12 +522,15 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Account\CreatePatientViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
+    <Compile Include="Models\AdminDoctors\EditDoctorViewModel.cs" />
+    <Compile Include="Models\AdminPatients\EditPatientViewModel.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\DoctorProfile\DiagnosisViewModel.cs" />
     <Compile Include="Models\DoctorProfile\DoctorPageViewModel.cs" />
     <Compile Include="Models\DoctorProfile\DoctorProfileAppointment.cs" />
     <Compile Include="Models\MedicalRecord\AppointmentData.cs" />
     <Compile Include="Models\MedicalRecord\SpecializationRecordsListViewModel.cs" />
+    <Compile Include="Models\NewPatients\AboutPatientAppoitmentViewModel.cs" />
     <Compile Include="Models\PatientAppointmentModels\DayOfAppointment.cs" />
     <Compile Include="Models\PatientAppointmentModels\DoctorListViewModel.cs" />
     <Compile Include="Models\PatientAppointmentModels\NewAppointmentViewModel.cs" />
@@ -555,7 +568,7 @@
     <Content Include="Views\Shared\MedicalRecordPartialViews\RecordView.cshtml" />
     <Content Include="Views\Shared\MedicalRecordPartialViews\AppointmentDataView.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\CreateDoctor.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -567,6 +580,16 @@
     <Content Include="Views\Shared\DoctorProfilePartialViews\PreviousAppointmentListView.cshtml" />
     <Content Include="Views\DoctorProfile\GetDiagnosis.cshtml" />
     <Content Include="Views\DoctorProfile\EditDiagnosis.cshtml" />
+    <Content Include="Views\NextPatients\Index.cshtml" />
+    <Content Include="Views\Shared\NextPatientsPartialViews\NextDoctorAppointmetsParialView.cshtml" />
+    <Content Include="Views\Shared\NextPatientsPartialViews\PatientDataPartialView.cshtml" />
+    <Content Include="Views\Admin\ShowDoctorsList.cshtml" />
+    <Content Include="Views\Admin\ShowPatientsList.cshtml" />
+    <Content Include="Views\AdminPatients\Index.cshtml" />
+    <Content Include="Views\AdminPatients\EditPatient.cshtml" />
+    <Content Include="Views\AdminDoctors\CreateDoctor.cshtml" />
+    <Content Include="Views\AdminDoctors\Index.cshtml" />
+    <Content Include="Views\AdminDoctors\EditDoctor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -575,7 +598,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Abstract\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Concrete\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Health.Domain\Health.Domain.csproj">

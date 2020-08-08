@@ -1,6 +1,7 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Entities;
 using Health.WebUI.Models.MedicalRecord;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
+    [Authorize(Roles = "Patients")]
     public class MedicalRecordController : Controller
     {
         // GET: MedicalRecord
@@ -47,10 +49,9 @@ namespace Health.WebUI.Controllers
         }
         public ActionResult SpecializationRecords(int specializationId)
         {
-           specializationRecordsListViewModel= new SpecializationRecordsListViewModel(unitOfWork,specializationId,2);
+            specializationRecordsListViewModel= new SpecializationRecordsListViewModel(unitOfWork,specializationId, User.Identity.GetUserId<int>());
             specializationRecordsListViewModel.GetAppointmentsBySpecialization();
             return View(specializationRecordsListViewModel);
-
         }
         [HttpGet] 
         public ActionResult GetSpecializationRecords(int page)

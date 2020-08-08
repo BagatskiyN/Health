@@ -110,7 +110,9 @@ namespace Health.WebUI.Controllers
             List<Disease> DiseaseList = new List<Disease>();
             if(searchText!=null)
             {
-  DiseaseList = unitOfWork.Diseases.Get().Where(x => x.DiseaseTitle.ToLower().Contains(searchText.ToLower())).ToList();
+                     DiseaseList = unitOfWork.Diseases.Get()
+                    .Where(x => x.DiseaseTitle.ToLower()
+                    .Contains(searchText.ToLower())).ToList();
             }
             else
             {
@@ -195,7 +197,7 @@ namespace Health.WebUI.Controllers
             Dictionary<string, object> dict = new Dictionary<string, object>();
 
             dict.Add("Action", actionName);
-            dict.Add("Пользователь", HttpContext.User.Identity.Name);
+            dict.Add("Пользователь", HttpContext.User.Identity.GetUserId());
             dict.Add("Аутентифицирован?", HttpContext.User.Identity.IsAuthenticated);
             dict.Add("Тип аутентификации", HttpContext.User.Identity.AuthenticationType);
             dict.Add("В роли Doctors?", HttpContext.User.IsInRole("Doctors"));

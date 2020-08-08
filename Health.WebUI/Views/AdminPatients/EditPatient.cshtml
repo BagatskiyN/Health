@@ -1,0 +1,112 @@
+﻿
+@using System.Web.Optimization
+
+@model Health.WebUI.Models.AdminPatients.EditPatientViewModel
+@{
+    ViewBag.Title = "Редактирование пользователя";
+    Layout = null;
+}
+<head>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+@Html.ValidationSummary(false)
+
+<h2>Редактирование пользователя</h2>
+<div class="form-group">
+    <label>Id</label>
+    <p class="form-control-static">@Model.Id</p>
+</div>
+
+@using (Html.BeginForm("EditPatient", "AdminPatients",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        <label>Имя</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Фамилия</label>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Отчество</label>
+        @Html.TextBoxFor(x => x.Patronymic, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Дата рождения(дд.мм.гг)</label>
+        @Html.TextBoxFor(x => x.PatientBirthdate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Группа крови</label>
+        @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", Model.BloodTypeId), new { @id = "BloodType", @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Пол</label>
+        @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", Model.GenderId), new { @id = "Gender", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Пароль</label>
+        <input name="password" type="password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <div>
+            <label>Картинка</label>
+            <input type="file" name="imageInp" class="photo" id="imgInput" />
+
+
+            <span class='label label-info' id="upload-file-info"></span>
+        </div>
+
+
+
+    </div>
+    if (Model.ImageData == null || Model.ImageMimeType == null)
+    {
+        <img class="img-thumbnail" id="image" width="150" height="150"
+             src="~/Content/icons/NoPhoto.png" />
+    }
+   else {
+        <img class="img-thumbnail" id="image" width="150" height="150"
+             src="@Url.Action("GetPatientPhoto", "Image",
+                       new { id = Model.Id })" />
+    }
+    <div class="panel-footer">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new
+        {
+            @class = "btn btn-default"
+        })
+    </div>
+
+}
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript">
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInput").change(function () {
+        readURL(this);
+    });
+</script>

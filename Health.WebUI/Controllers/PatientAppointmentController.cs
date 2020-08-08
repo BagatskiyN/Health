@@ -4,6 +4,7 @@ using Health.Domain.Entities;
 using Health.WebUI.App_Start;
 using Health.WebUI.Models;
 using Health.WebUI.Models.PatientAppointmentModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,13 @@ using System.Web.UI.WebControls;
 
 namespace Health.WebUI.Controllers
 {
+    [Authorize(Roles = "Patients")]
     public class PatientAppointmentController : Controller
     {
         // GET: PatientAppointment
-       public IUnitOfWork unitOfWork;
-      public  DoctorListViewModel DoctorListViewModel;
-       public static NewAppointmentViewModel newAppointmentViewModel;
+        public IUnitOfWork unitOfWork;
+        public DoctorListViewModel DoctorListViewModel;
+        public static NewAppointmentViewModel newAppointmentViewModel;
         public PatientAppointmentController(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
@@ -28,8 +30,8 @@ namespace Health.WebUI.Controllers
         }
         public ActionResult Index()
         {
-           SelectList selectLists=new SelectList(unitOfWork.Specializations.Get().Select(x => x.SpecializationTitle));
-          
+            SelectList selectLists = new SelectList(unitOfWork.Specializations.Get().Select(x => x.SpecializationTitle));
+
             ViewBag.Specializations = selectLists;
             DoctorListViewModel.GetPatientAppointmentDoctors();
             return View(DoctorListViewModel);
@@ -41,13 +43,13 @@ namespace Health.WebUI.Controllers
             {
                 DoctorListViewModel.GetPatientAppointmentDoctors(page);
 
-                return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml",DoctorListViewModel.PatientAppointmentDoctors);
+                return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
             }
             return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
         }
         public ActionResult MakeNewAppointment(int doctorId)
         {
-            int patientId = 2;
+            int patientId = User.Identity.GetUserId<int>();
             newAppointmentViewModel = new NewAppointmentViewModel(doctorId, (int)patientId);
             SelectList days = new SelectList(newAppointmentViewModel.daysOfWeek.ToList(), "Number", "DayTitle", 1);
             ViewBag.Days = days;
@@ -57,38 +59,38 @@ namespace Health.WebUI.Controllers
 
         }
         private string prevSearchStr;
-      
-        public ActionResult DoctorsSearch(string searchText,string filter)
+
+        public ActionResult DoctorsSearch(string searchText, string filter)
         {
             if (prevSearchStr != searchText)
             {
-            
+
                 prevSearchStr = searchText;
                 if (Request.IsAjaxRequest())
-                {   
-                    if(searchText==""&&(filter=="Выберите специальность"||filter==""))
                 {
-                    DoctorListViewModel.GetPatientAppointmentDoctors(0);
-                    return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
-                }
-                   
+                    if (searchText == "" && (filter == "Выберите специальность" || filter == ""))
+                    {
+                        DoctorListViewModel.GetPatientAppointmentDoctors(0);
+                        return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
+                    }
+
                     DoctorListViewModel.GetPatientAppointmentDoctorsSearch(searchText, filter);
 
                     return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
                 }
                 return PartialView("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", DoctorListViewModel.PatientAppointmentDoctors);
             }
-           
+
             return new EmptyResult();
         }
 
 
         [HttpPost]
-        public ActionResult MakeNewAppointment(string Day,DateTime Hour,string comment)
+        public ActionResult MakeNewAppointment(string Day, DateTime Hour, string comment)
         {
             if (ModelState.IsValid)
             {
-     
+
                 newAppointmentViewModel.Appointment.AppointmentComment = comment;
                 newAppointmentViewModel.Appointment.AppointmentDateTime = Hour;
                 Appointment appointment = newAppointmentViewModel.Appointment;
@@ -102,7 +104,7 @@ namespace Health.WebUI.Controllers
             Doctor doctor = unitOfWork.Doctors.FindById(doctorId);
 
 
-            if (doctor!= null&& doctor.ImageData!=null&&doctor.ImageMimeType!=null)
+            if (doctor != null && doctor.ImageData != null && doctor.ImageMimeType != null)
             {
                 return File(doctor.ImageData, doctor.ImageMimeType);
             }
@@ -112,10 +114,11 @@ namespace Health.WebUI.Controllers
             }
         }
         public ActionResult GetItems(int id)
-        {   List<DateTime> dateTimes = newAppointmentViewModel.daysOfWeek.Where(p => p.Number == id).FirstOrDefault().Times;
+        {
+            List<DateTime> dateTimes = newAppointmentViewModel.daysOfWeek.Where(p => p.Number == id).FirstOrDefault().Times;
             if (Request.IsAjaxRequest())
             {
-             
+
                 return PartialView("~/Views/Shared/PatientAppointmentPartialViews/TimesDropDownPartialView.cshtml", dateTimes);
             }
             return PartialView("~/Views/Shared/PatientAppointmentPartialViews/TimesDropDownPartialView.cshtml", dateTimes);

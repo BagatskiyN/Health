@@ -1,0 +1,100 @@
+﻿@using System.Web.Optimization
+@model List<Health.WebUI.Models.DoctorProfile.DoctorProfileAppointment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<body>
+
+    <div class="RountedBackgroundRectandle">
+
+        <div class="block_theme_gradient block_theme_green ">
+
+            <div class="block_theme_white">
+                <h1 class="headblock_text">Список пациентов</h1>
+            </div>
+        </div>
+        <div id="appointmentHistory" class=" flexbox_background_rectangle">
+            <div id="scrollList" class="flexbox_choosedDoctor_history block_userHistory">
+
+
+                @Html.Partial("~/Views/Shared/NextPatientsPartialViews/NextDoctorAppointmetsParialView.cshtml", Model)
+            </div>
+
+            <div class="block_user_rightSide">
+                <div id="AppointmentData">
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('div#loading').hide();
+
+            var page = 0;
+            var _inCallback = false;
+            function loadItems() {
+
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
+                    page++;
+                    $('div#loading').show();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/DoctorProfile/GetPreviousAppointments/' + page,
+                        success: function (data, textstatus) {
+                            if (data != '') {
+                                $("#scrollList").append(data);
+                            }
+                            else {
+                                page = -1;
+                            }
+                            _inCallback = false;
+                            $("div#loading").hide();
+                        }
+                    });
+                }
+            }
+            // обработка события скроллинга
+            $("#appointmentHistory").scroll(function () {
+                console.log('scrollTopsrab', $("#userHistory").scrollTop())
+                console.log('d-w srab', $("#userHistory").height())
+                console.log('doc h', this.scrollHeight - this.clientHeight)
+                if (this.scrollTop >= this.scrollHeight - this.clientHeight) {
+
+                    loadItems();
+                }
+            });
+        })
+        function GetAppointmentData(patientId, appointmentId) {
+            $.ajax({
+                type: "GET",
+                url: "/NextPatients/GetPatient",
+                data: { patientId: patientId, appointmentId: appointmentId },
+
+                success: function (data) {
+                    $("#AppointmentData").html(data);
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>

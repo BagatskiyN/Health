@@ -28,7 +28,7 @@ namespace Health.WebUI.Infrastructure
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = true,
-                RequireUppercase = true
+                RequireUppercase = false
             };
             manager.UserValidator = new UserValidator<ApplicationUser,int>(manager)
             {

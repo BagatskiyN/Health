@@ -9,7 +9,6 @@ namespace Health.WebUI.Models.PatientModels
     {
         public IEnumerable<PatientAppointment> PatientAppointments { get; set; }
         
-        //public NextAppointmentsBlockInfo NextAppointmentsBlockInfo { get; set; }
 
     }
 }

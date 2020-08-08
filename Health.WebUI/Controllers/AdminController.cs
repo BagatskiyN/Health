@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
-    [Authorize(Roles = "Administrators")]
+    //[Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
        readonly IUnitOfWork unitOfWork;
@@ -22,9 +22,16 @@ namespace Health.WebUI.Controllers
         {
             unitOfWork = _unitOfWork;
 
+        } 
+        public ActionResult Index()
+        {
+          
+            return View();
         }
         // GET: Admin
-        public ActionResult Index()
+      
+       //Методы работы с пациентами
+        public ActionResult ShowPatientsList()
         {
             var users = new List<ApplicationUser>();
             var roles = new List<string>();
@@ -32,7 +39,7 @@ namespace Health.WebUI.Controllers
             {
                 foreach (var role in UserManager.GetRoles(user.Id))
                 {
-                  if(role.ToString()=="Doctors")
+                    if (role.ToString() == "Patients")
                     {
                         users.Add(user);
                     }
@@ -40,20 +47,32 @@ namespace Health.WebUI.Controllers
             }
             return View(users);
         }
-        private AppUserManager UserManager
+        
+        //Методы работы с докторами
+        public ActionResult ShowDoctorsList()
         {
-            get
+            var users = new List<ApplicationUser>();
+            var roles = new List<string>();
+            foreach (var user in UserManager.Users.ToList())
             {
-                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                foreach (var role in UserManager.GetRoles(user.Id))
+                {
+                    if (role.ToString() == "Doctors")
+                    {
+                        users.Add(user);
+                    }
+                }
             }
+            return View(users);
         }
-    
-        public ActionResult Create()
+
+        public ActionResult CreateDoctor()
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<ActionResult> Create(CreateDoctorViewModel model)
+        public async Task<ActionResult> CreateDoctor(CreateDoctorViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -70,11 +89,11 @@ namespace Health.WebUI.Controllers
                 }
                 if (result.Succeeded)
                 {   
-                    result = await UserManager.AddToRoleAsync(applicationUser.Id, "Doctors");
-                    Doctor doctor = new Doctor() {
-                    Id = applicationUser.Id,Name=model.Name,Surname=model.Surname,Patronymic=model.Patronymic
-                };
-                unitOfWork.Doctors.Create(doctor);
+                    result = await UserManager.AddToRoleAsync(applicationUser.Id, "Administrators");
+                //    Doctor doctor = new Doctor() {
+                //    Id = applicationUser.Id,Name=model.Name,Surname=model.Surname,Patronymic=model.Patronymic
+                //};
+                //unitOfWork.Doctors.Create(doctor);
                     return RedirectToAction("Index");
                 }
                 else
@@ -84,6 +103,22 @@ namespace Health.WebUI.Controllers
             }
             return View(model);
         }
+
+
+        //Методы работы со специальностями
+
+
+        //Методы работы с болезнями
+
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+    
+        
         private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)

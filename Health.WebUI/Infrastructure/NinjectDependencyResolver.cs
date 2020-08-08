@@ -34,7 +34,7 @@ namespace Health.WebUI.Infrastructure
         private void AddBindings()
         {
            
-            kernel.Bind<IGenericRepository<Patient>>().To<EFGenericRepository<Patient>>();
+            kernel.Bind<IPictureManipulator>().To<PictureManipulator>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }

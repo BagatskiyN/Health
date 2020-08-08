@@ -1,0 +1,93 @@
+﻿
+@model Health.WebUI.Models.NewPatients.AboutPatientAppoitmentViewModel
+
+<div class="block_doctorInfo default_shadow  block_about_patientAppointment">
+    <div class="flexbox_userInfo_title">
+        <div class="block_userInfo_title block_theme_gradient">Данные профиля</div>
+
+
+    </div>
+    <div class="block_doctorInfo_mainInfo">
+        <img src="@Url.Action("GetPatientPhoto", "NextPatients",
+                new { patientId=Model.Id })" class="block_doctorInfo_image">
+        <div class="block_column_userInfo block_column_doctorInfo">
+
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Имя:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Name </div>
+
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Отчество:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patronymic</div>
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Фамилия:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Surname </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="block_additionalInfo block_additional_width">
+        <div class="block_additionalInfo_element_green  block_theme_gradient">
+            <div class="block_additionalInfo_element_white lower_shadow">
+
+
+                <div class="text_grayStyle text_userInfo_styleGray">Возраст:</div>
+                <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Age</div>
+
+            </div>
+
+        </div>
+        <div class="block_additionalInfo_element_green  block_theme_gradient">
+            <div class="block_additionalInfo_element_white lower_shadow">
+
+
+                <div class="text_grayStyle text_userInfo_styleGray">Рост:</div>
+                <div class="text_blackStyle text_userInfo_styleBlack"> @Model.PatientHeight</div>
+
+            </div>
+
+        </div>
+        <div class="block_additionalInfo_element_green  block_theme_gradient ">
+            <div class="block_additionalInfo_element_white lower_shadow">
+
+
+                <div class="text_grayStyle text_userInfo_styleGray">Вес:</div>
+                <div class="text_blackStyle text_userInfo_styleBlack"> @Model.PatientWeight</div>
+
+            </div>
+
+        </div>
+        <div class="block_additionalInfo_element_green  block_theme_gradient">
+            <div class="block_additionalInfo_element_white lower_shadow">
+
+
+                <div class="text_grayStyle text_userInfo_styleGray">Группа крови:</div>
+                <div class="text_blackStyle text_userInfo_styleBlack"> @Model.BloodTypeTitle</div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div>
+        <div class="block_column_userInfo block_column_additionalInfo">
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Время:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack">  @Convert.ToDateTime(Model.DateTime).ToString("dd MMM yyyy") </div>
+        </div>
+        <div class="block_column_userInfo block_column_additionalInfo">
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Дата:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack"> @Convert.ToDateTime(Model.DateTime).ToString("hh:mm tt")</div>
+        </div>
+        <div class="block_column_userInfo block_column_additionalInfo">
+            <div class="text_grayStyle text_userInfo_styleGray text_gray_doctorInfo">Комментарий:</div>
+            <div class="text_blackStyle text_userInfo_styleBlack block_patient_comment">
+              @Model.Comment
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

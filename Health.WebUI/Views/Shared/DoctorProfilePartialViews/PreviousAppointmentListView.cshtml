@@ -1,11 +1,13 @@
 ﻿@model List<Health.WebUI.Models.DoctorProfile.DoctorProfileAppointment>
-@foreach (var x in Model)
+    @if (Model != null)
+    {
+foreach (var x in Model)
 {
 <div class="block_userHistory_element_green block_theme_gradient">
 
     <div class="block_userHistory_element_white default_shadow   block_appointmentDoctor_white">
         <img src="@Url.Action("GetPatientImage", "DoctorProfile",
-                new { patientId=x.Patient.Id })"  class="block_patient_image">
+               new { patientId = x.Patient.Id })"  class="block_patient_image">
       
         <div class="block_userHistory_textBlock">
 
@@ -26,11 +28,11 @@
 
             </div>
         </div>
-        <a  href="@Url.Action("GetDiagnosis",new { diagnosisId=x.Appointment.AppointmentId})" class="block_userHistory_arrowIcon" value=""></a>
+        <a  href="@Url.Action("GetPatient", new {patientId= x.Patient.Id })" class="block_userHistory_arrowIcon" value=""></a>
 
 
     </div>
 
 
 </div>
-}
+}}

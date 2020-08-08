@@ -21,7 +21,7 @@ namespace Health.WebUI.Infrastructure
             if (!user.Email.ToLower().Contains("@")&& !user.Email.ToLower().EndsWith(".com"))
             {
                 var errors = result.Errors.ToList();
-                errors.Add("Email должен иеть формат someone@example.com");
+                errors.Add("Email должен иметь формат someone@example.com");
                 result = new IdentityResult(errors);
             }
             if ( !user.Email.ToLower().EndsWith(".com"))

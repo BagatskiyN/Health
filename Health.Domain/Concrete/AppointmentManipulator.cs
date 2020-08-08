@@ -1,15 +1,40 @@
-﻿using Health.Domain.Entities;
+﻿using Health.Domain.Abstract;
+using Health.Domain.Entities;
 using Health.WebUI.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+
+using Health.Domain.Concrete;
+
+
+using System.Threading;
+using System.Web;
 
 namespace Health.Domain.Concrete
 {
-    public class AppointmentManipulator : IWorkWithAppointments
+    public class AppointmentManipulator: IWorkWithAppointments
     {
+        IUnitOfWork unitOfWork;
+      public  AppointmentManipulator(IUnitOfWork _unitOfWork)
+        {
+            unitOfWork = _unitOfWork;
+        }
+        public List<Appointment> SkipAppointments(Func<Appointment, bool> predicate,int pageSize,int page=0)
+        {
+
+            List<Appointment> appointments = unitOfWork.Appointments.Get()
+                 .Where(predicate)
+                 .Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+     
+            return appointments;
+        }
+       
+
         public List<Appointment> SkipUsedAppointments(List<Appointment> appointments,int page,int pageSize)
         {
 

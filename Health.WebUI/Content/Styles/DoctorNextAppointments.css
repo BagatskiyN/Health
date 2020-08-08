@@ -1,0 +1,19 @@
+.block_additional_width
+{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.block_about_patientAppointment
+{
+overflow-y: scroll;
+    height: 95%;
+    margin-top: 60px;
+}
+.block_patient_comment
+{
+    word-wrap: break-word;
+   margin-bottom: 10px;
+   
+}
+.block_about_patientAppointment::-webkit-scrollbar { width: 0; }

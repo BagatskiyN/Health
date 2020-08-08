@@ -2,7 +2,7 @@
 using Health.Domain.Entities;
 using Health.WebUI.Models;
 using Health.WebUI.Models.PatientModels;
-
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 
 namespace Health.WebUI.Controllers
 {
+    [Authorize(Roles = "Patients")]
     public class PatientController : Controller
     {
 
@@ -25,13 +26,20 @@ namespace Health.WebUI.Controllers
 
         public PatientController(IUnitOfWork _unitOfWork)
         {
-
-            patientPage = new PatientPage(4);
             unitOfWork =_unitOfWork;
         }
+
+
+        public PatientPage GetPatientPage()
+        {
+           return new PatientPage(User.Identity.GetUserId<int>());
+            
+        }       
+        
+        [Authorize(Roles = "Patients")]
         public ActionResult Index(int? id)
         {
-
+            patientPage = GetPatientPage();
             return View(patientPage);
 
         }

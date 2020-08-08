@@ -33,7 +33,7 @@ namespace Health.Domain.Entities
         public byte[] ImageData { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string ImageMimeType { get; set; }
-        [HiddenInput(DisplayValue = false)]
+   
         public int? GenderId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
@@ -46,7 +46,7 @@ namespace Health.Domain.Entities
         [Display(Name = "Рост")]
         public int PatientHeight { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+       
         public int? BloodTypeId { get; set; }
         
         [HiddenInput(DisplayValue = false)]
