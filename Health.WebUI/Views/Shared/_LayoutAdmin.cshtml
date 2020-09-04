@@ -1,0 +1,56 @@
+﻿
+@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body >
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+             
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Пациенты", "Index", "AdminPatients")</li>
+                    <li>@Html.ActionLink("Доктора", "Index", "AdminDoctors")</li>
+                    <li>@Html.ActionLink("Специализации", "Index", "AdminSpecializations")</li>
+                    <li>@Html.ActionLink("Болезни", "Index", "AdminDiseases")</li>
+                </ul>
+                <div class="logout_block">
+                    <ul class="nav navbar-nav ">
+
+
+                        <li class="nav-item">
+                            <a class="nav-link form-inline text-dark" href="@Url.Action("Logout","Account")">Выйти</a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content admin_block">
+        @RenderBody()
+        <hr />
+        <footer>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

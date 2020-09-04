@@ -392,6 +392,7 @@
     <Content Include="Content\icons\svgIcons\searchIcon.svg" />
     <Content Include="Content\icons\svgIcons\TeethWhiteIcon.svg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Styles\Admin.css" />
     <Content Include="Content\Styles\ChoosedDoctorStyle.css" />
     <Content Include="Content\Styles\DiagnosisByDoctor.css" />
     <Content Include="Content\Styles\DoctorChooserStyle.css" />
@@ -502,8 +503,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminDiseasesController.cs" />
     <Compile Include="Controllers\AdminDoctorsController.cs" />
     <Compile Include="Controllers\AdminPatientsController.cs" />
+    <Compile Include="Controllers\AdminSpecializationsController.cs" />
     <Compile Include="Controllers\DoctorProfileController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\MedicalRecordController.cs" />
@@ -522,8 +525,10 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Account\CreatePatientViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
+    <Compile Include="Models\AdminDisease\CreateDiseaseViewModel.cs" />
     <Compile Include="Models\AdminDoctors\EditDoctorViewModel.cs" />
     <Compile Include="Models\AdminPatients\EditPatientViewModel.cs" />
+    <Compile Include="Models\AdminSpecializations\CreateSpecializationModel.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\DoctorProfile\DiagnosisViewModel.cs" />
     <Compile Include="Models\DoctorProfile\DoctorPageViewModel.cs" />
@@ -583,13 +588,18 @@
     <Content Include="Views\NextPatients\Index.cshtml" />
     <Content Include="Views\Shared\NextPatientsPartialViews\NextDoctorAppointmetsParialView.cshtml" />
     <Content Include="Views\Shared\NextPatientsPartialViews\PatientDataPartialView.cshtml" />
-    <Content Include="Views\Admin\ShowDoctorsList.cshtml" />
-    <Content Include="Views\Admin\ShowPatientsList.cshtml" />
     <Content Include="Views\AdminPatients\Index.cshtml" />
     <Content Include="Views\AdminPatients\EditPatient.cshtml" />
     <Content Include="Views\AdminDoctors\CreateDoctor.cshtml" />
     <Content Include="Views\AdminDoctors\Index.cshtml" />
     <Content Include="Views\AdminDoctors\EditDoctor.cshtml" />
+    <Content Include="Views\AdminSpecializations\Index.cshtml" />
+    <Content Include="Views\AdminSpecializations\EditSpecialization.cshtml" />
+    <Content Include="Views\AdminSpecializations\CreateSpecialization.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\AdminDiseases\Index.cshtml" />
+    <Content Include="Views\AdminDiseases\CreateDisease.cshtml" />
+    <Content Include="Views\AdminDiseases\EditDisease.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

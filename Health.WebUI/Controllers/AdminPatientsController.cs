@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class AdminPatientsController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

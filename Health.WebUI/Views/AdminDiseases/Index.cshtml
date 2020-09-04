@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Health.Domain.Entities.Disease>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DiseaseTitle)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiseaseTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "EditDisease", new { id = item.DiseaseId }) |
+                @Html.ActionLink("Удалить", "Delete","AdminDiseases", new { id = item.DiseaseId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Создать", "CreateDisease", null, new { @class = "btn btn-primary" })

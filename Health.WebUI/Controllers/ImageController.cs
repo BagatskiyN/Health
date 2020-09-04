@@ -49,12 +49,12 @@ namespace Health.WebUI.Controllers
         }
         public FileContentResult GetSpecializationIcon(int id)
         {
-            Patient patient = unitOfWork.Patients.FindById(id);
+            Specialization specialization = unitOfWork.Specializations.FindById(id);
 
 
-            if (patient != null && patient.ImageData != null && patient.ImageMimeType != null)
+            if (specialization != null && specialization.SpecializationImageData != null && specialization.SpecializationImageMimeType != null)
             {
-                return File(patient.ImageData, patient.ImageMimeType);
+                return File(specialization.SpecializationImageData, specialization.SpecializationImageMimeType);
             }
             else
             {

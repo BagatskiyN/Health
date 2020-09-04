@@ -4,49 +4,52 @@
 
 @{
     ViewBag.Title = "ASP.NET Identity";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
 }
 <head>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+<body class="container">
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Учетные записи пациентов
-    </div>
-    <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Имя</th>
-            <th>Email</th>
-            <th></th>
-        </tr>
-        @if (Model.Count() == 0)
-        {
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Учетные записи пациентов
+        </div>
+        <table class="table table-striped">
             <tr>
-                <td colspan="4" class="text-center">Нет ни одной учетной записи</td>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Email</th>
+                <th></th>
             </tr>
-        }
-        else
-        {
-            foreach (ApplicationUser user in Model)
+            @if (Model.Count() == 0)
             {
                 <tr>
-                    <td>@user.Id</td>
-                    <td>@user.UserName</td>
-                    <td>@user.Email</td>
-                    <td>
-                        @using (Html.BeginForm("Delete", "AdminPatients", new { id = user.Id }))
-                        {
-                            @Html.ActionLink("Изменить", "EditPatient", new { id = user.Id },
-                                new { @class = "btn btn-primary btn-xs", style = "float: left; margin-right: 10px" })
-                            <button class="btn btn-danger btn-xs" type="submit">Удалить</button>
-                        }
-                    </td>
+                    <td colspan="4" class="text-center">Нет ни одной учетной записи</td>
                 </tr>
             }
-        }
-    </table>
-</div>
+            else
+            {
+                foreach (ApplicationUser user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "AdminPatients", new { id = user.Id }))
+                            {
+                                @Html.ActionLink("Изменить", "EditPatient", new { id = user.Id },
+                                    new { @class = "btn btn-primary btn-xs", style = "float: left; margin-right: 10px" })
+                                <button class="btn btn-danger btn-xs" type="submit">Удалить</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>

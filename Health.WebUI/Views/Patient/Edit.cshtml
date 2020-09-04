@@ -29,47 +29,70 @@
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary()
-        @*@Html.EditorForModel(new { htmlAttributes = new { @class = "TextInputLogin" } })*@
-        <div class="AuthorizationFlexContainer">
-            <p class="AuthorizationInputHelper">Фамилия</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientSurname", Model.Surname, new { @class = "TextInputLogin" })
+            <div class="form-group">
+                <div>
+                    <label>Фото</label>
+                    <input type="file" name="image" class="photo" id="imgInput" />
 
-                <span class="bar"></span>
-            </div>
-            <p class="AuthorizationInputHelper">Имя</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientName", Model.Name, new { @class = "TextInputLogin" })
 
-                <span class="bar"></span>
-            </div>
-            <p class="AuthorizationInputHelper">Отчество</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientPatronymic", Model.Patronymic, new { @class = "TextInputLogin" })
+                    <span class='label label-info' id="upload-file-info"></span>
+                </div>
 
-                <span class="bar"></span>
+
+
             </div>
-            <p class="AuthorizationInputHelper">Вес</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientWeight", Model.PatientWeight, new { @class = "TextInputLogin" })
-                <span class="bar"></span>
+            @*@Html.EditorForModel(new { htmlAttributes = new { @class = "TextInputLogin" } })*@
+            if (Model.ImageData == null || Model.ImageMimeType == null)
+            {
+                <img class="img-thumbnail" id="image" width="150" height="150"
+                     src="~/Content/icons/NoPhoto.png" />
+            }
+            else
+            {
+                <img class="img-thumbnail" id="image" width="150" height="150"
+                     src="@Url.Action("GetDoctorPhoto", "Image",
+                       new { id =Model.Id })" />
+            }
+            <div class="AuthorizationFlexContainer">
+                <p class="AuthorizationInputHelper">Фамилия</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientSurname", Model.Surname, new { @class = "TextInputLogin" })
+
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Имя</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientName", Model.Name, new { @class = "TextInputLogin" })
+
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Отчество</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientPatronymic", Model.Patronymic, new { @class = "TextInputLogin" })
+
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Вес</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientWeight", Model.PatientWeight, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Рост</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientHeight", Model.PatientHeight, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
+                <p class="AuthorizationInputHelper">Дата рождения</p>
+                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                    @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, new { @class = "TextInputLogin" })
+                    <span class="bar"></span>
+                </div>
             </div>
-            <p class="AuthorizationInputHelper">Рост</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientHeight", Model.PatientHeight, new { @class = "TextInputLogin" })
-                <span class="bar"></span>
+            <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister" />
+            <div class="ToRegisterRef">
+                @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.Id })
             </div>
-            <p class="AuthorizationInputHelper">Дата рождения</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, new { @class = "TextInputLogin" })
-                <span class="bar"></span>
-            </div>
-        </div>
-        <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister" />
-        <div class="ToRegisterRef">
-            @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.Id })
-        </div>
-    }
+        }
 
     </div>
 </body>

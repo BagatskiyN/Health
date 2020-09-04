@@ -120,7 +120,7 @@ namespace Health.WebUI.Controllers
 
         }
         [HttpPost]
-        public ActionResult Edit(Patient patient)
+        public ActionResult Edit(Patient patient, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {

@@ -10,6 +10,7 @@
 @import url('DiagnosisByDoctor.css');
 @import url('DoctorProfileStyle.css');
 @import url('DoctorNextAppointments.css');
+@import url('Admin.css');
 body
 {font-family: "Roboto",sans-serif;
 	font-style: normal;
@@ -236,3 +237,4 @@ margin-left: 85px;
 {
 	color: #00963C;
 }
+ 

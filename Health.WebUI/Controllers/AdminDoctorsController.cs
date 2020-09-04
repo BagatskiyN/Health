@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
+    [Authorize(Roles = "Administrators")] 
     public class AdminDoctorsController : Controller
     {
         IUnitOfWork unitOfWork;
@@ -189,7 +190,7 @@ namespace Health.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email,EmailConfirmed=true };
                 IdentityResult result =
                     await UserManager.CreateAsync(user, model.Password);
                 ApplicationUser applicationUser = UserManager.FindByEmail(user.Email);
