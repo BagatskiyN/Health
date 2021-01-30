@@ -17,8 +17,15 @@
     <div class="RountedBackgroundRectandle flexbox_background_rectangle" id="scrollRect">
         <div class="flexbox_choosedDoctor_history">
             <div class="block_theme_gradient block_choosed_doctorIcon">
-                <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
-                new { Model.Specialization.SpecializationId })">
+                @if (Model.Specialization.SpecializationImageData == null || Model.Specialization.SpecializationImageMimeType == null)
+                {
+                    <img src="~/Content/icons/svgIcons/NoDoctorIcon.svg">
+                }
+                else
+                {
+                    <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
+           new { Model.Specialization.SpecializationId })">
+                }
                 <div class="block_choosed_doctorSpecialization default_shadow">
                     <p>@Model.Specialization.SpecializationTitle</p>
                 </div>
@@ -27,12 +34,22 @@
                 <span class="text_medcardHistory_Title">Список посещений</span>
                 <div class="block_green_underline block_theme_gradient"></div>
             </div>
-            <div id="scrollList">
-                @Html.Partial("~/Views/Shared/MedicalRecordPartialViews/RecordView.cshtml", Model.Appointments)
-            </div>
+            @if (Model.Appointments == null || Model.Appointments.Count == 0)
+            {
+                <div class="text_NoAppointmentBySpecialization">
+                    Посещений данного специалиста небыло
+                </div>
+            }
+            else
+            {
+                <div id="scrollList">
+                    @Html.Partial("~/Views/Shared/MedicalRecordPartialViews/RecordView.cshtml", Model.Appointments)
+                </div>
+            }
+
         </div>
         <div id="AppointmentData">
-           
+
         </div>
     </div>
 

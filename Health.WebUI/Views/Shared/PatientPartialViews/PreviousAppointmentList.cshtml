@@ -2,11 +2,18 @@
 @using Health.WebUI.Models.PatientModels
 
 @model  PatientPage
-
-@foreach (var p in Model.PreviousAppointments)
+@if (Model.PreviousAppointments.Count == 0)
 {
-    <div>
-        @Html.Partial("~/Views/Shared/PatientPartialViews/PatientPreviousAppointment.cshtml", p)
-
+    <div class="block_NoPreviousAppointments">
+        Нет посещений
     </div>
+}
+else
+{
+    foreach (var p in Model.PreviousAppointments)
+    {
+        <div>
+            @Html.Partial("~/Views/Shared/PatientPartialViews/PatientPreviousAppointment.cshtml", p)
+        </div>
+    }
 }

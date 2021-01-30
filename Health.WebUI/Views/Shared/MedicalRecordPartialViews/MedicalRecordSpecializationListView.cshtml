@@ -7,11 +7,18 @@
     <a href="@Url.Action("SpecializationRecords",new {specializationId=m.SpecializationId})">
         <div class="block_specialize_theme_white">
             <div class="block_theme_gradient block_specialize">
-
-                <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
+                @if (m.SpecializationImageData == null || m.SpecializationImageMimeType == null)
+                {
+                    <img src="~/Content/icons/svgIcons/NoSpecializationIcon.svg"  class="Specialization_Icon">
+                }
+                else
+                {
+                    <img src="@Url.Action("GetSpecializationIcon", "MedicalRecord",
                 new { m.SpecializationId })" class="Specialization_Icon">
+                }
 
-                <p class="Specialization_Text">@m.SpecializationTitle</p>
+
+                <div class="Specialization_Text">@m.SpecializationTitle</div>
             </div>
         </div>
     </a>

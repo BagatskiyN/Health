@@ -2,11 +2,21 @@
 @using Health.WebUI.Models.PatientModels
 
 @model PatientPage
-
-@foreach (var p in Model.NextAppointments)
+@if (Model.NextAppointments.Count > 0)
 {
-    <div>
-        @Html.Partial("~/Views/Shared/PatientPartialViews/PatientNextAppointment.cshtml", p)
+    foreach (var p in Model.NextAppointments)
+    {
+        <div>
+            @Html.Partial("~/Views/Shared/PatientPartialViews/PatientNextAppointment.cshtml", p)
 
-    </div>
+        </div>
+    }
 }
+else
+{ <a style="text-decoration:none" href="@Url.Action("Index","PatientAppointment")">
+        <div class="block_NoAppointments">
+            <p class="block_text_NoAppointments">Предстоящих посещений нет</p>
+            <div class="block_button_AddAppointment block_theme_gradient"> Записаться</div>
+        </div>
+    </a>
+ }

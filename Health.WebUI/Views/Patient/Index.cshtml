@@ -41,9 +41,18 @@
 
                     </div>
                     <div class="block_userInfo_mainInfo">
-                        <img  width="75" height="75" class="doctorsearch_image"
-                     src="@Url.Action("GetPatientImage", "Patient",
-                new { Model.Patient.Id})" >
+                        @if (Model.Patient.ImageData == null || Model.Patient.ImageMimeType == null)
+                        {
+                            <img width="75" height="75" class="doctorsearch_image"
+                                 src="~/Content/icons/svgIcons/UserHaveNoPhoto.svg">
+                        }
+                        else
+                        {
+                            <img width="75" height="75" class="doctorsearch_image"
+                                 src="@Url.Action("GetPatientPhoto", "Image",
+                new { Model.Patient.Id})">
+                        }
+
                         <div class="block_column_userInfo">
 
                             <div class="text_grayStyle text_userInfo_styleGray">Имя:</div>
@@ -53,7 +62,7 @@
                             <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.Patronymic</div>
                             <div class="text_grayStyle text_userInfo_styleGray">Фамилия:</div>
                             <div class="text_blackStyle text_userInfo_styleBlack"> @Model.Patient.Surname</div>
-                         
+
 
                         </div>
 

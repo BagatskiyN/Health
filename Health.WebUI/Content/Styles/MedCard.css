@@ -76,10 +76,20 @@
     outline: none;
 
 }
+.text_search
+{
+   display:flex;
+   flex-direction:column;
+   justify-content:center;
+   color:white;
+   font-size:18px;
+   margin-left:30px;
+   font-weight:600;
 
+}
 .searchblock_theme_white {
 
-    margin-left: 10px;
+    margin-left: 20px;
     border-radius: 55px;
     width: 850px;
     height: 59px;
@@ -123,18 +133,26 @@
 
 .block_specialize {
     width: 280px;
-    height: 280px;
+    height: 240px;
+    padding-top: 40px;
     position: absolute;
     top: -30px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
 }
-
+.text_NoAppointmentBySpecialization {
+    margin-top: 10%;
+    color: #8a8a8a;
+    font-size: 30px;
+    font-weight: 700;
+}
 .block_specialize_theme_white {
     width: 280px;
     height: 280px;
+
     background-color: white;
     position: relative;
     border-radius: 55px;
@@ -151,7 +169,7 @@
     background-repeat: no-repeat;
     background-size: cover;
    transform:scale(1.3);
-   margin-bottom:30px;
+ 
    
 }
 
@@ -162,13 +180,14 @@
 }
 
 .Specialization_Text {
-    position: absolute;
+   
     bottom: 0%;
     text-align: center;
     width: 100%;
     font-weight: 700;
     color: white;
     font-size: 26px;
+    margin-bottom:20px;
 }
 .order_button
 {

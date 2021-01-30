@@ -30,7 +30,7 @@ namespace Health.WebUI.Controllers
         [Authorize(Roles = "Doctors")]
         public void CreateDoctorProfilePage()
         {
-  DoctorPageViewModel = new DoctorPageViewModel(unitOfWork, User.Identity.GetUserId<int>());
+          DoctorPageViewModel = new DoctorPageViewModel(unitOfWork, User.Identity.GetUserId<int>());
         }
 
         public FileContentResult GetPatientImage(int patientId)
@@ -59,7 +59,7 @@ namespace Health.WebUI.Controllers
             }
             else
             {
-                return null;
+                throw new Exception("Картинка не найдена"); 
             }
         }
         public ActionResult EditDiagnosis(DiagnosisViewModel diagnosisViewModel)

@@ -63,7 +63,7 @@ namespace Health.WebUI.Controllers
                     }
                 }
             }
-            return View(users);
+            return View("Index","AdminDoctors",users);
         }
 
         public ActionResult CreateDoctor()
@@ -90,10 +90,7 @@ namespace Health.WebUI.Controllers
                 if (result.Succeeded)
                 {   
                     result = await UserManager.AddToRoleAsync(applicationUser.Id, "Administrators");
-                //    Doctor doctor = new Doctor() {
-                //    Id = applicationUser.Id,Name=model.Name,Surname=model.Surname,Patronymic=model.Patronymic
-                //};
-                //unitOfWork.Doctors.Create(doctor);
+              
                     return RedirectToAction("Index");
                 }
                 else
@@ -105,11 +102,7 @@ namespace Health.WebUI.Controllers
         }
 
 
-        //Методы работы со специальностями
-
-
-        //Методы работы с болезнями
-
+ 
         private AppUserManager UserManager
         {
             get

@@ -22,20 +22,20 @@ namespace Health.WebUI.Controllers
 
         IUnitOfWork unitOfWork;
         PatientPage patientPage;
-        private int pageNex=0;
+        private int pageNex = 0;
 
         public PatientController(IUnitOfWork _unitOfWork)
         {
-            unitOfWork =_unitOfWork;
+            unitOfWork = _unitOfWork;
         }
 
 
         public PatientPage GetPatientPage()
         {
-           return new PatientPage(User.Identity.GetUserId<int>());
-            
-        }       
-        
+            return new PatientPage(User.Identity.GetUserId<int>());
+
+        }
+
         [Authorize(Roles = "Patients")]
         public ActionResult Index(int? id)
         {
@@ -103,7 +103,7 @@ namespace Health.WebUI.Controllers
             Patient patient = unitOfWork.Patients.FindById(patientId);
 
 
-            if (patient != null && patient.ImageData!=null&&patient.ImageMimeType!=null)
+            if (patient != null && patient.ImageData != null && patient.ImageMimeType != null)
             {
                 return File(patient.ImageData, patient.ImageMimeType);
             }
@@ -113,34 +113,58 @@ namespace Health.WebUI.Controllers
             }
         }
 
-            public ViewResult Edit(int patientId)
+        public ViewResult Edit(int patientId)
         {
             Patient patient = unitOfWork.Patients.FindById(patientId);
-            return View(patient);
+            if (patient == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else
+            {
+                return View(patient);
+            }
+
 
         }
         [HttpPost]
-        public ActionResult Edit(Patient patient, HttpPostedFileBase image)
+        public ActionResult Edit(Patient patient, HttpPostedFileBase imageInp)
         {
             if (ModelState.IsValid)
             {
-                patientPage.Patient.Name = patient.Name;
-                patientPage.Patient.Surname = patient.Surname;
-                patientPage.Patient.Patronymic = patient.Patronymic;
-                patientPage.Patient.PatientWeight = patient.PatientWeight;
-                patientPage.Patient.PatientHeight = patient.PatientHeight;
-                patientPage.Patient.PatientBirthdate = patient.PatientBirthdate;
-                unitOfWork.Patients.Update(patientPage.Patient);
-                unitOfWork.Save();
-                TempData["message"] = string.Format("Изменения в пациенте\"{0}\" были сохранены", patient.Name);
-                return RedirectToAction("Index");
+                Patient FormerPatient = unitOfWork.Patients.FindById(patient.Id);
+                if (FormerPatient == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                {
+                    FormerPatient.Name = patient.Name;
+                    FormerPatient.Surname = patient.Surname;
+                    FormerPatient.Patronymic = patient.Patronymic;
+                    FormerPatient.PatientWeight = patient.PatientWeight;
+                    FormerPatient.PatientHeight = patient.PatientHeight;
+                    FormerPatient.PatientBirthdate = patient.PatientBirthdate;
+                    if (imageInp != null)
+                    {
+                        FormerPatient.ImageMimeType = imageInp.ContentType;
+                        FormerPatient.ImageData = new byte[imageInp.ContentLength];
+                        imageInp.InputStream.Read(FormerPatient.ImageData, 0, imageInp.ContentLength);
+                    }
+                    unitOfWork.Patients.Update(FormerPatient);
+                    unitOfWork.Save();
+
+                    return RedirectToAction("Index");
+                }
+
+
             }
             else
             {
                 return View(patient);
             }
         }
-     
-        
+
+
     }
 }

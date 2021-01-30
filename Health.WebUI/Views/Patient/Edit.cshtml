@@ -1,21 +1,23 @@
 ﻿@model Health.Domain.Entities.Patient
+@using System.Web.Optimization
+
 @{
     Layout = null;
 
 }
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
-        <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/bootstrap.css" rel="stylesheet" />
-        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-       
-        <link href="~/Content/EditError.css" rel="stylesheet" />
-    </head>
+    <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+    <link href="~/Content/EditError.css" rel="stylesheet" />
+</head>
 
 <body>
     <p class="HealthTextLogo">HEALTH</p>
@@ -26,49 +28,51 @@
     <div class="AuthorizationSection RegisterSection">
         <h1 class="AuthorizationBlockHeadText"> Редактирование</h1>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Patient",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.ValidationSummary()
-            <div class="form-group">
+            <div class="block_ChangeImage form-group">
+                <p class="block_text_photo">Фото</p><br />
+                @Html.HiddenFor(x => x.Id)
+
+                @if (Model.ImageData == null || Model.ImageMimeType == null)
+                {
+                    <img class="img-thumbnail block_EditedImage" id="image"
+                         src="~/Content/icons/svgIcons/UserHaveNoPhoto.svg" />
+                }
+                else
+                {
+                    <img class="img-thumbnail block_EditedImage" name="image" id="image"
+                         src="@Url.Action("GetPatientPhoto", "Image",
+                       new { id =Model.Id })" />
+                }
                 <div>
-                    <label>Фото</label>
-                    <input type="file" name="image" class="photo" id="imgInput" />
+
+                    <input type='file' name="imageInp" onchange="readURL(this);" /><br />
 
 
-                    <span class='label label-info' id="upload-file-info"></span>
+                    <span class='label label-info' id="upload-file-info"></span><br />
                 </div>
-
-
-
             </div>
             @*@Html.EditorForModel(new { htmlAttributes = new { @class = "TextInputLogin" } })*@
-            if (Model.ImageData == null || Model.ImageMimeType == null)
-            {
-                <img class="img-thumbnail" id="image" width="150" height="150"
-                     src="~/Content/icons/NoPhoto.png" />
-            }
-            else
-            {
-                <img class="img-thumbnail" id="image" width="150" height="150"
-                     src="@Url.Action("GetDoctorPhoto", "Image",
-                       new { id =Model.Id })" />
-            }
+
             <div class="AuthorizationFlexContainer">
                 <p class="AuthorizationInputHelper">Фамилия</p>
                 <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientSurname", Model.Surname, new { @class = "TextInputLogin" })
+                    @Html.TextBox("Surname", Model.Surname, new { @class = "TextInputLogin" })
 
                     <span class="bar"></span>
                 </div>
                 <p class="AuthorizationInputHelper">Имя</p>
                 <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientName", Model.Name, new { @class = "TextInputLogin" })
+                    @Html.TextBox("Name", Model.Name, new { @class = "TextInputLogin" })
 
                     <span class="bar"></span>
                 </div>
                 <p class="AuthorizationInputHelper">Отчество</p>
                 <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientPatronymic", Model.Patronymic, new { @class = "TextInputLogin" })
+                    @Html.TextBox("Patronymic", Model.Patronymic, new { @class = "TextInputLogin" })
 
                     <span class="bar"></span>
                 </div>
@@ -95,4 +99,24 @@
         }
 
     </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
 </body>
