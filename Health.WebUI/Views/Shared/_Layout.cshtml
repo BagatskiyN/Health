@@ -38,7 +38,7 @@
                     <p class="@(pageUrl.ToLower().Contains("/patientappointment") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Талончик</p>
                 </a>
         </div>
-        <div class="MenuImage Help_Icon"></div>
+       <a href="@Url.Action("Logout","Account")"><div class="MenuImage Help_Icon"></div></a> 
     </div>
     <div>
         @if (TempData["message"] != null)

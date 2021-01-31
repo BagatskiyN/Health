@@ -59,7 +59,7 @@ namespace Health.WebUI.Controllers
             }
             else
             {
-                throw new Exception("Картинка не найдена"); 
+               return null; 
             }
         }
         public ActionResult EditDiagnosis(DiagnosisViewModel diagnosisViewModel)

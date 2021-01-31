@@ -30,11 +30,17 @@
                      <button id="filterBtn" class="search_input">Применить</button>
                  </div>
              </div>
-             <div id="doctorsList" class="flexblock_doctors">
-                 <div id="scrolListDoctors" class="flexblock_doctors">@Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml",Model.PatientAppointmentDoctors)</div>
+                     <div id="doctorsList" class="flexblock_doctors">
+                         @if (Model!= null && Model.PatientAppointmentDoctors.Count != 0)
+                         {
+                             <div id="scrolListDoctors" class="flexblock_doctors">@Html.Partial("~/Views/Shared/PatientAppointmentPartialViews/DoctorListView.cshtml", Model.PatientAppointmentDoctors)</div>
+                             <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
+                         }
+                         
 
-                 <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
-             </div>
+
+
+                     </div>
          </div>
     @Scripts.Render("~/bundles/jquery")
 

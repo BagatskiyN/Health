@@ -11,15 +11,23 @@ namespace Health.WebUI.Models.PatientAppointmentModels
     {
         public Doctor Doctor { get; set; }
         public Specialization Specialization { get; set; }
-       public IUnitOfWork unitOfWork;
-        public PatientAppointmentDoctor(int doctorId,IUnitOfWork _unitOfWork)
+      
+        public PatientAppointmentDoctor(int doctorId, IUnitOfWork _unitOfWork)
         {
-            unitOfWork = _unitOfWork;
-            Doctor = unitOfWork.Doctors.FindById(doctorId);
-            Specialization = unitOfWork.Specializations.FindById(Doctor.Id);
+          
+            Doctor = _unitOfWork.Doctors.FindById(doctorId);
+            if (Doctor != null)
+            {
+                Specialization = _unitOfWork.Specializations.FindById((int)Doctor.SpecializationId);
+            }
+            else
+            {
+                throw new Exception("Доктор не найден!");
+            }
+
 
         }
-       
+
 
     }
 }

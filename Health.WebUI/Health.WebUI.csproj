@@ -387,6 +387,7 @@
     <Content Include="Content\icons\svgIcons\EditDiagnosis.svg" />
     <Content Include="Content\icons\svgIcons\EditUser.svg" />
     <Content Include="Content\icons\svgIcons\HelpIcon.svg" />
+    <Content Include="Content\icons\svgIcons\LogoutIcon.svg" />
     <Content Include="Content\icons\svgIcons\MedCardIcon.svg" />
     <Content Include="Content\icons\svgIcons\MedCardIconActive.svg" />
     <Content Include="Content\icons\svgIcons\NoDoctorIcon.svg" />

@@ -4,8 +4,16 @@
     <div class="block_doctor_greenstyle block_theme_gradient">
 
         <div class="block_doctor ">
-            <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
+            @if (Model.Doctor.ImageData == null || Model.Doctor.ImageMimeType == null)
+            {
+                <img src="~/Content/icons/svgIcons/UserHaveNoPhoto.svg" class="doctorsearch_image">
+            }
+            else
+            {
+                <img src="@Url.Action("GetDoctorPhoto", "Image",
                 new { Model.Doctor.Id})" class="doctorsearch_image">
+            }
+
             <p class="text_blackStyle">@Model.Doctor.Surname @Model.Doctor.Name @Model.Doctor.Patronymic</p>
             <div class="block_text_aboutdoctor">
                 <div class="text_grayStyle">Телефон:</div>
@@ -13,8 +21,8 @@
             </div>
 
 
-            <div class="block_specialization_name block_theme_gradient">
-                <p class="text_specializatNeion">@Model.Specialization.SpecializationTitle</p>
+            <div class="block_specialization_name block_theme_gradient ">
+                <p class="text_specialization">@Model.Specialization.SpecializationTitle</p>
             </div>
 
         </div>

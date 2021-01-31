@@ -99,21 +99,8 @@ namespace Health.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
-        public FileContentResult GetDoctorImage(int doctorId)
-        {
-            Doctor doctor = unitOfWork.Doctors.FindById(doctorId);
-
-
-            if (doctor != null && doctor.ImageData != null && doctor.ImageMimeType != null)
-            {
-                return File(doctor.ImageData, doctor.ImageMimeType);
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public ActionResult GetItems(int id)
+        
+        public ActionResult GetPermissibleTimes(int id)
         {
             List<DateTime> dateTimes = newAppointmentViewModel.daysOfWeek.Where(p => p.Number == id).FirstOrDefault().Times;
             if (Request.IsAjaxRequest())

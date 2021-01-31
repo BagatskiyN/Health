@@ -75,7 +75,7 @@
             var id = $(this).val();
             $.ajax({
                 type: 'GET',
-                url: '@Url.Action("GetItems")/' + id,
+                url: '@Url.Action("GetPermissibleTimes")/' + id,
                 success: function (data) {
 
                  
