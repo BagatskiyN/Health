@@ -393,7 +393,9 @@
     <Content Include="Content\icons\svgIcons\NoDoctorIcon.svg" />
     <Content Include="Content\icons\svgIcons\NoSpecializationIcon.svg" />
     <Content Include="Content\icons\svgIcons\searchIcon.svg" />
+    <Content Include="Content\icons\svgIcons\SpecializationNoIcon.png" />
     <Content Include="Content\icons\svgIcons\TeethWhiteIcon.svg" />
+    <Content Include="Content\icons\svgIcons\UserHaveNoPhoto.jpg" />
     <Content Include="Content\icons\svgIcons\UserHaveNoPhoto.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\Admin.css" />

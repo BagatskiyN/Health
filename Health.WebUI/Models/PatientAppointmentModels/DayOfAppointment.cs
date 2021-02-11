@@ -2,6 +2,7 @@
 using Health.WebUI.App_Start;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -11,45 +12,44 @@ namespace Health.WebUI.Models.PatientAppointmentModels
     {
         UnitOfWork unitOfWork;
         public int Number { get; set; }
-        public DateTime DateOfAppointment { get;set; }
+        public DateTime DateOfAppointment { get; set; }
         public string DayTitle { get; set; }
 
         public List<DateTime> Times { get; set; }
 
-        public DayOfAppointment(int number,int doctorId)
+        public DayOfAppointment(int number, int doctorId)
         {
             Number = number;
             unitOfWork = new UnitOfWork();
-            DayTitle = (DateTime.Now).AddDays(number).DayOfWeek.ToString();
+
+            DayTitle = CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(DateTime.Now.AddDays(number).DayOfWeek);
+            DayTitle = char.ToUpper(DayTitle.First()) + DayTitle.Substring(1).ToLower();
             DateOfAppointment = DateTime.Today.AddDays(number);
             Times = new List<DateTime>();
             Times = FullInDateTimes(doctorId);
-
-
         }
-        public List<DateTime> GetFreeDateTimes(int doctorId) 
+        public List<DateTime> GetFreeDateTimes(int doctorId)
         {
             List<DateTime> appointmentsTime = unitOfWork.Appointments.Get()
-                .Where(p => p.AppointmentDateTime.Date == DateOfAppointment.Date&& p.DoctorId==doctorId)
-                .Select(x=>x.AppointmentDateTime)
+                .Where(p => p.AppointmentDateTime.Date == DateOfAppointment.Date && p.DoctorId == doctorId)
+                .Select(x => x.AppointmentDateTime)
                 .ToList();
             return appointmentsTime;
         }
         public List<DateTime> FullInDateTimes(int doctorId)
-        { DateTime date =DateOfAppointment;
-          date= date.AddHours(10);
-                for (int i = 0; i < 16; i++)
-                {
-                    Times.Add(date);
+        {
+            DateTime date = DateOfAppointment;
+            date = date.AddHours(10);
+            for (int i = 0; i < 16; i++)
+            {
+                Times.Add(date);
                 date = date.AddMinutes(30);
-                 }
-            
-              
-             return Times.Except(GetFreeDateTimes(doctorId)).ToList();
             }
-           
-        
-        
+
+
+            return Times.Except(GetFreeDateTimes(doctorId)).ToList();
         }
 
     }
+
+}

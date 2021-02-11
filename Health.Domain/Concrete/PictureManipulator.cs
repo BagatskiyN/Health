@@ -3,13 +3,13 @@ using Health.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
-
-namespace Health.WebUI.Infrastructure
+namespace Health.Domain.Concrete
 {
-    public class PictureManipulator: Controller, IPictureManipulator
+    public class PictureManipulator : Controller, IPictureManipulator
     {
         IUnitOfWork unitOfWork;
         public PictureManipulator(IUnitOfWork _unitOfWork)
@@ -17,8 +17,8 @@ namespace Health.WebUI.Infrastructure
             unitOfWork = _unitOfWork;
 
         }
-      
-        public FileContentResult GetDoctorPhoto(int id)
+
+        public ActionResult GetDoctorPhoto(int id)
         {
 
             Doctor doctor = unitOfWork.Doctors.FindById(id);
@@ -33,7 +33,7 @@ namespace Health.WebUI.Infrastructure
                 return null;
             }
         }
-        public FileContentResult GetPatientPhoto(int id)
+        public ActionResult GetPatientPhoto(int id)
         {
 
             Patient patient = unitOfWork.Patients.FindById(id);
@@ -48,7 +48,7 @@ namespace Health.WebUI.Infrastructure
                 return null;
             }
         }
-        public FileContentResult GetSpecializationIcon(int id)
+        public ActionResult GetSpecializationIcon(int id)
         {
             Patient patient = unitOfWork.Patients.FindById(id);
 
@@ -62,7 +62,7 @@ namespace Health.WebUI.Infrastructure
                 return null;
             }
         }
-     
-    }  
-   
+
+    }
+
 }

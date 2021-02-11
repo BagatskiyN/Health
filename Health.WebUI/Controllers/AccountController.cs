@@ -20,7 +20,7 @@ namespace Health.WebUI.Controllers
     public class AccountController : Controller
     {
         IUnitOfWork unitOfWork;
-      public AccountController(IUnitOfWork _unitOfWork)
+        public AccountController(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
         }
@@ -33,18 +33,52 @@ namespace Health.WebUI.Controllers
                 return View("Error", new string[] { "В доступе отказано" });
             }
 
+
             ViewBag.returnUrl = returnUrl;
             return View();
         }
+
+        private string GetUrlByRole(ApplicationUser user)
+        {
+            var role = UserManager.GetRoles(user.Id);
+
+
+            if (role[0] == "Administrators")
+            {
+                return "Admin";
+            }
+            else
+            {
+                if (role[0] == "Patients")
+                {
+                    return "Patient";
+                }
+                else
+                {
+                    if (role[0] == "Doctors")
+                    {
+                        return "Doctor";
+                    }
+                    else
+                    {
+                        throw new Exception("Такой роли нет!");
+                    }
+                }
+            }
+        }
+
         [AllowAnonymous]
         public ActionResult CreatePatient()
         {
+            ViewBag.BloodTypes = unitOfWork.BloodTypes.Get().ToList();
+            ViewBag.Genders = unitOfWork.Genders.Get().ToList();
             return View();
         }
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> CreatePatient(CreatePatientViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -60,21 +94,34 @@ namespace Health.WebUI.Controllers
                 }
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddToRoleAsync(applicationUser.Id, "Patients");
-                    Patient patient = new Patient()
+                    try
                     {
-                        Id = applicationUser.Id,
-                        Name = model.Name,
-                        Surname = model.Surname,
-                        Patronymic = model.Patronymic,
-                        PatientBirthdate = model.BirthDate,
-                        BloodTypeId = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "Нет").BloodTypeId,
-                        GenderId = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "Не выбран").GenderId
-                    };
+                        result = await UserManager.AddToRoleAsync(applicationUser.Id, "Patients");
+                        BloodType bloodType = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "-");
+                        int bloodTypeId = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "-").BloodTypeId;
+                        int genderId = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "-").GenderId;
+                        Gender gender = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "-");
+                        Patient patient = new Patient()
+                        {
+                            Id = applicationUser.Id,
+                            Name = model.Name,
+                            Surname = model.Surname,
+                            Patronymic = model.Patronymic,
+                            PatientBirthdate = model.BirthDate,
+                            BloodType = bloodType,
+                            BloodTypeId = bloodTypeId,
+                            GenderId = genderId,
+                            Gender = gender
+                        };
 
-                    
-                    unitOfWork.Patients.Create(patient);
-                    return RedirectToAction("Index","Patient");
+                        unitOfWork.Patients.Create(patient);
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        UserManager.Delete(applicationUser);
+                    }
+
+                    return RedirectToAction("Index", "Patient");
                 }
                 else
                 {
@@ -111,7 +158,9 @@ namespace Health.WebUI.Controllers
                 {
                     IsPersistent = false
                 }, ident);
-                return Redirect(returnUrl);
+
+                returnUrl = GetUrlByRole(user);
+                return RedirectToAction("Index", returnUrl);
             }
 
             return View(details);

@@ -29,7 +29,7 @@ body
 .HalfOfScreen
 {
 width: 50%;
-height: 150vh;
+height: 180vh;
 
 
 }
@@ -54,7 +54,7 @@ z-index:-1;
 .delbutton_flex {
 	display: flex;
 	flex-direction: row;
-	margin-left: 30px;
+	margin-left: 60px;
 	justify-content: center;
 }
 .OldSideOfScreen
@@ -81,9 +81,9 @@ border-radius: 55px;
 width: 650px;
 }
 .RegisterSection
-{	margin-top: 300px;
+{	margin-top: 350px;
 	margin-bottom: 100px;
-	
+	padding-bottom:10px;
 width: 1200px;
 }
 
@@ -134,7 +134,7 @@ text-decoration: none;
 	flex-direction: column;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	height: 700px;
+	height: 900px;
 	width: 1200px;
 
 }

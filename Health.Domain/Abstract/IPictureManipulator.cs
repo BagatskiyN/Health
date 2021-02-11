@@ -1,4 +1,4 @@
-﻿using Health.WebUI.Infrastructure;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +11,9 @@ namespace Health.Domain.Abstract
 {
    public interface IPictureManipulator
     {
-        FileContentResult GetPatientPhoto(int id);
-        FileContentResult GetDoctorPhoto(int id);
-        FileContentResult GetSpecializationIcon(int id);
+        ActionResult GetPatientPhoto(int id);
+        ActionResult GetDoctorPhoto(int id);
+        ActionResult GetSpecializationIcon(int id);
 
     }
 }

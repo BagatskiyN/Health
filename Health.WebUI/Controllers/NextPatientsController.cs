@@ -87,7 +87,7 @@ namespace Health.WebUI.Controllers
             if (dateTime > nowDate.AddYears(-age)) age--;
             return age;
         }
-        public FileContentResult GetPatientPhoto(int? id)
+        public ActionResult GetPatientPhoto(int? id)
         {
             if (Request.IsAjaxRequest())
             {
@@ -98,7 +98,7 @@ namespace Health.WebUI.Controllers
                 return null;
             }
         }
-        public FileContentResult GetDoctorPhoto(int? id)
+        public ActionResult GetDoctorPhoto(int? id)
         {
             if (Request.IsAjaxRequest())
             {

@@ -6,8 +6,8 @@
 <div class="block_upcomingSessions_pagination">
     <div class="block_upcomingSessions_element lower_shadow">
         <div class="block_theme_gradient block_upcomingSessions_elementIcon  ">
-            <img src="@Url.Action("GetSpacializationImage", "Patient",
-                new { Model.Specialization.SpecializationId})" alt="">
+            <img src="@Url.Action("GetSpecializationIcon", "Image",
+                new {id= Model.Specialization.SpecializationId})" alt="">
         </div>
 
         <div class="block_text_userSession">

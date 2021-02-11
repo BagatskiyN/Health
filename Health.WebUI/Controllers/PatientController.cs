@@ -32,7 +32,14 @@ namespace Health.WebUI.Controllers
 
         public PatientPage GetPatientPage()
         {
-            return new PatientPage(User.Identity.GetUserId<int>());
+            if(unitOfWork.Patients.FindById(User.Identity.GetUserId<int>())!=null)
+            {
+                return new PatientPage(User.Identity.GetUserId<int>());
+            }
+           else
+            {
+                throw new Exception("Пациент не найден");
+            }
 
         }
 
@@ -84,20 +91,7 @@ namespace Health.WebUI.Controllers
             }
             return PartialView("~/Views/Shared/PatientPartialViews/PreviousAppointmentList.cshtml", patientPage);
         }
-        public FileContentResult GetSpacializationImage(int specializationId)
-        {
-            Specialization specialization = unitOfWork.Specializations.FindById(specializationId);
-
-
-            if (specialization != null)
-            {
-                return File(specialization.SpecializationImageData, specialization.SpecializationImageMimeType);
-            }
-            else
-            {
-                return null;
-            }
-        }
+      
         public FileContentResult GetPatientImage(int patientId)
         {
             Patient patient = unitOfWork.Patients.FindById(patientId);
@@ -122,6 +116,8 @@ namespace Health.WebUI.Controllers
             }
             else
             {
+                ViewBag.BloodTypes = unitOfWork.BloodTypes.Get().ToList();
+                ViewBag.Genders = unitOfWork.Genders.Get().ToList();
                 return View(patient);
             }
 
@@ -130,28 +126,29 @@ namespace Health.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Patient patient, HttpPostedFileBase imageInp)
         {
+        
             if (ModelState.IsValid)
             {
-                Patient FormerPatient = unitOfWork.Patients.FindById(patient.Id);
-                if (FormerPatient == null)
+                Patient OldPatient = unitOfWork.Patients.FindById(patient.Id);
+                if (OldPatient == null)
                 {
                     throw new ArgumentNullException();
                 }
                 else
                 {
-                    FormerPatient.Name = patient.Name;
-                    FormerPatient.Surname = patient.Surname;
-                    FormerPatient.Patronymic = patient.Patronymic;
-                    FormerPatient.PatientWeight = patient.PatientWeight;
-                    FormerPatient.PatientHeight = patient.PatientHeight;
-                    FormerPatient.PatientBirthdate = patient.PatientBirthdate;
+                    OldPatient.Name = patient.Name;
+                    OldPatient.Surname = patient.Surname;
+                    OldPatient.Patronymic = patient.Patronymic;
+                    OldPatient.PatientWeight = patient.PatientWeight;
+                    OldPatient.PatientHeight = patient.PatientHeight;
+                    OldPatient.PatientBirthdate = patient.PatientBirthdate;
                     if (imageInp != null)
                     {
-                        FormerPatient.ImageMimeType = imageInp.ContentType;
-                        FormerPatient.ImageData = new byte[imageInp.ContentLength];
-                        imageInp.InputStream.Read(FormerPatient.ImageData, 0, imageInp.ContentLength);
+                        OldPatient.ImageMimeType = imageInp.ContentType;
+                        OldPatient.ImageData = new byte[imageInp.ContentLength];
+                        imageInp.InputStream.Read(OldPatient.ImageData, 0, imageInp.ContentLength);
                     }
-                    unitOfWork.Patients.Update(FormerPatient);
+                    unitOfWork.Patients.Update(OldPatient);
                     unitOfWork.Save();
 
                     return RedirectToAction("Index");

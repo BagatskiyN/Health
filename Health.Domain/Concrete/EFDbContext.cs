@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 using Microsoft.AspNet.Identity;
 using Health.WebUI.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 //using Health.WebUI.Infrastructure;
 
 namespace Health.Domain.Concrete
@@ -18,8 +20,8 @@ namespace Health.Domain.Concrete
     {
         public EFDbContext() : base("EFDbContext")
         {
-            //Database.SetInitializer<EFDbContext>(new DropCreateDatabaseIfModelChanges<EFDbContext>());
-            //Database.SetInitializer<EFDbContext>(new IdentityDbInit());
+            Database.SetInitializer<EFDbContext>(new DropCreateDatabaseIfModelChanges<EFDbContext>());
+            Database.SetInitializer<EFDbContext>(new IdentityDbInit());
         }
         public static EFDbContext Create()
         {
@@ -36,7 +38,7 @@ namespace Health.Domain.Concrete
         public DbSet<Disease> Diseases { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<ApplicationUser>()
                   .HasOptional(c => c.Patient)
@@ -50,43 +52,88 @@ namespace Health.Domain.Concrete
         }
     }
 
-    //public class IdentityDbInit : DropCreateDatabaseIfModelChanges<EFDbContext>
-    //{
-    //    protected override void Seed(EFDbContext context)
-    //    {
-    //        PerformInitialSetup(context);
-    //        base.Seed(context);
-    //    }
-    //    public void PerformInitialSetup(EFDbContext context)
-    //    {
+    public class IdentityDbInit : DropCreateDatabaseIfModelChanges<EFDbContext>
+    {
+        protected override void Seed(EFDbContext context)
+        {
+            PerformInitialSetupAsync(context);
+            base.Seed(context);
+        }
+        public async Task PerformInitialSetupAsync(EFDbContext context)
+        {
 
-    //        AppUserManager userMgr = new AppUserManager(new UserStore<ApplicationUser, CustomRole, int,
-    //    CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
-    //        AppRoleManager roleMgr = new AppRoleManager(new RoleStore<CustomRole, int, CustomUserRole>(context));
+            AppUserManager userMgr = new AppUserManager(new UserStore<ApplicationUser, CustomRole, int,
+        CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
+            AppRoleManager roleMgr = new AppRoleManager(new RoleStore<CustomRole, int, CustomUserRole>(context));
 
-    //        string roleName = "Administrators";
-    //        string userName = "Admin";
-    //        string password = "Password";
-    //        string email = "admin@gmail.com";
+            string roleAdmin= "Administrators";
+            string rolePatient = "Patients";
+            string userName = "Admin";
+            string password = "Password1234";
+            string email = "admin@gmail.com";
 
-    //        if (!roleMgr.RoleExists(roleName))
-    //        {
-    //            IdentityResult identityResult = roleMgr.Create(new CustomRole() { Name = roleName });
-    //        }
+            if (!roleMgr.RoleExists(roleAdmin))
+            {
+                IdentityResult identityResult = roleMgr.Create(new CustomRole() { Name = roleAdmin });
+            }
+            if (!roleMgr.RoleExists(rolePatient))
+            {
+                IdentityResult identityResult = roleMgr.Create(new CustomRole() { Name = rolePatient });
+            }
 
-    //        ApplicationUser user = userMgr.FindByName(userName);
-    //        if (user == null)
-    //        {
-    //            userMgr.Create(new ApplicationUser { UserName = userName, Email = email },
-    //                password);
-    //            user = userMgr.FindByName(userName);
-    //        }
+            ApplicationUser user = new ApplicationUser { UserName = email, Email = email };
+            IdentityResult result =
+                await userMgr.CreateAsync(user, password);
+            ApplicationUser applicationUser = userMgr.FindByEmail(user.Email);
 
-    //        if (!userMgr.IsInRole(user.Id, roleName))
-    //        {
-    //            userMgr.AddToRole(user.Id, roleName);
-    //        }
-    //    }
 
-    //}
+
+            if (result.Succeeded)
+            {
+                result = await userMgr.AddToRoleAsync(applicationUser.Id, "Administrators");
+            }
+        }
+        public class AppUserManager : UserManager<ApplicationUser, int>
+        {
+            public AppUserManager(IUserStore<ApplicationUser, int> store)
+                : base(store)
+            { }
+
+            public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options,
+                IOwinContext context)
+            {
+                EFDbContext db = context.Get<EFDbContext>();
+                AppUserManager manager = new AppUserManager(new CustomUserStore(db));
+                manager.PasswordValidator = new PasswordValidator
+                {
+                    RequiredLength = 6,
+                    RequireNonLetterOrDigit = false,
+                    RequireDigit = false,
+                    RequireLowercase = true,
+                    RequireUppercase = false
+                };
+                manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = true
+                };
+                return manager;
+            }
+        }
+        public class AppRoleManager : RoleManager<CustomRole, int>, IDisposable
+        {
+            public AppRoleManager(RoleStore<CustomRole, int, CustomUserRole> store)
+                : base(store)
+            { }
+
+            public static AppRoleManager Create(
+                IdentityFactoryOptions<AppRoleManager> options,
+                IOwinContext context)
+            {
+                return new AppRoleManager(new
+                    RoleStore<CustomRole, int, CustomUserRole>(context.Get<EFDbContext>()));
+            }
+        }
+
+    }
 }

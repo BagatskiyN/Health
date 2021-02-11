@@ -57,45 +57,57 @@
             </div>
             @*@Html.EditorForModel(new { htmlAttributes = new { @class = "TextInputLogin" } })*@
 
-            <div class="AuthorizationFlexContainer">
-                <p class="AuthorizationInputHelper">Фамилия</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("Surname", Model.Surname, new { @class = "TextInputLogin" })
+    <div class="AuthorizationFlexContainer">
+        <p class="AuthorizationInputHelper">Фамилия</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("Surname", Model.Surname, new { @class = "TextInputLogin" })
 
-                    <span class="bar"></span>
-                </div>
-                <p class="AuthorizationInputHelper">Имя</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("Name", Model.Name, new { @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Имя</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("Name", Model.Name, new { @class = "TextInputLogin" })
 
-                    <span class="bar"></span>
-                </div>
-                <p class="AuthorizationInputHelper">Отчество</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("Patronymic", Model.Patronymic, new { @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Отчество</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("Patronymic", Model.Patronymic, new { @class = "TextInputLogin" })
 
-                    <span class="bar"></span>
-                </div>
-                <p class="AuthorizationInputHelper">Вес</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientWeight", Model.PatientWeight, new { @class = "TextInputLogin" })
-                    <span class="bar"></span>
-                </div>
-                <p class="AuthorizationInputHelper">Рост</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientHeight", Model.PatientHeight, new { @class = "TextInputLogin" })
-                    <span class="bar"></span>
-                </div>
-                <p class="AuthorizationInputHelper">Дата рождения</p>
-                <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-                    @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, new { @class = "TextInputLogin" })
-                    <span class="bar"></span>
-                </div>
-            </div>
-            <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister button_MouseOn" />
-            <div class="ToRegisterRef">
-                @Html.ActionLink("Отменить изменения", "Index", new { patientId = Model.Id })
-            </div>
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Вес</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("PatientWeight", Model.PatientWeight, new { @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Рост</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("PatientHeight", Model.PatientHeight, new { @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Дата рождения</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+            @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, "{0:dd.MM.yyyy}", new { @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+        <p class="AuthorizationInputHelper">Группа крови</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+
+            @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", Model.BloodTypeId), new { @id = "BloodType", @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div> 
+        <p class="AuthorizationInputHelper">Пол</p>
+        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+
+            @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", Model.GenderId), new { @id = "Gender", @class = "TextInputLogin" })
+            <span class="bar"></span>
+        </div>
+    </div>
+        <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister button_MouseOn" />
+        <div class="ToRegisterRef">
+            @Html.ActionLink("Отменить изменения", "Index")
+        </div>
         }
 
     </div>

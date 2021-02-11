@@ -15,7 +15,7 @@
     </div>
     <div class="block_white_style">
         <div class="block_doctor  block_aboutdoctor_border">
-            <img src="@Url.Action("GetDoctorImage", "PatientAppointment",
+            <img src="@Url.Action("GetDoctorPhoto", "Image",
                 new { Model.Doctor.Id})" class="doctorsearch_image  doctor_image_order">
            
             <p class="text_blackStyle text_Order_DoctorName">@Model.Doctor.Surname @Model.Doctor.Name @Model.Doctor.Patronymic</p>
@@ -53,7 +53,7 @@
         @*<textarea placeholder="Комментарий:" name="comment" cols="40" rows="3"
                   class="block_comment_input"></textarea>*@
         <div class="flexbox_order_button">
-            <input class="block_theme_gradient order_button" type="submit" value="Записаться">
+            <input class="block_theme_gradient order_button  button_MouseOn" type="submit" value="Записаться">
         </div>
 
     </div>

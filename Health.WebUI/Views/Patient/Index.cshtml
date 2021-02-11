@@ -41,17 +41,11 @@
 
                     </div>
                     <div class="block_userInfo_mainInfo">
-                        @if (Model.Patient.ImageData == null || Model.Patient.ImageMimeType == null)
-                        {
-                            <img width="75" height="75" class="doctorsearch_image"
-                                 src="~/Content/icons/svgIcons/UserHaveNoPhoto.svg">
-                        }
-                        else
-                        {
+                  
                             <img width="75" height="75" class="doctorsearch_image"
                                  src="@Url.Action("GetPatientPhoto", "Image",
                 new { Model.Patient.Id})">
-                        }
+                        
 
                         <div class="block_column_userInfo">
 

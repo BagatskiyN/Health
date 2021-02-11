@@ -2,6 +2,7 @@
 using Health.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +18,7 @@ namespace Health.WebUI.Controllers
             unitOfWork = _unitOfWork;
         }
 
-        public FileContentResult GetDoctorPhoto(int id)
+        public ActionResult GetDoctorPhoto(int id)
         {
 
             Doctor doctor = unitOfWork.Doctors.FindById(id);
@@ -29,10 +30,12 @@ namespace Health.WebUI.Controllers
             }
             else
             {
-                return null;
+                var dir = Server.MapPath("~/Content/icons/svgIcons");
+                var path = Path.Combine(dir, "UserHaveNoPhoto.jpg"); 
+                return File(path, "image/jpeg");
             }
-        }
-        public FileContentResult GetPatientPhoto(int id)
+            }
+        public ActionResult GetPatientPhoto(int id)
         {
 
             Patient patient = unitOfWork.Patients.FindById(id);
@@ -44,10 +47,12 @@ namespace Health.WebUI.Controllers
             }
             else
             {
-                return null;
+                var dir = Server.MapPath("~/Content/icons/svgIcons");
+                var path = Path.Combine(dir, "UserHaveNoPhoto.jpg");
+                return File(path, "image/jpeg");
             }
         }
-        public FileContentResult GetSpecializationIcon(int id)
+        public ActionResult GetSpecializationIcon(int id)
         {
             Specialization specialization = unitOfWork.Specializations.FindById(id);
 
@@ -58,7 +63,9 @@ namespace Health.WebUI.Controllers
             }
             else
             {
-                return null;
+                var dir = Server.MapPath("~/Content/icons/svgIcons");
+                var path = Path.Combine(dir, "SpecializationNoIcon.png");
+                return File(path, "image/png");
             }
         }
 

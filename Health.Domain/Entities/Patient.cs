@@ -36,20 +36,22 @@ namespace Health.Domain.Entities
    
         public int? GenderId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        
         public virtual Gender Gender { get; set; }
+
+
         public DateTime PatientBirthdate { get; set; }
         [Required]
-        [Display(Name = "Вес")]
+        [Display(Name = "Weight")]
         public int PatientWeight { get; set; }
         [Required]
-        [Display(Name = "Рост")]
+        [Display(Name = "Height")]
         public int PatientHeight { get; set; }
 
        
         public int? BloodTypeId { get; set; }
-        
-        [HiddenInput(DisplayValue = false)]
+
+      
         public virtual BloodType BloodType { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; }

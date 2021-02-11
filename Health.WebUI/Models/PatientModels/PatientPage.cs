@@ -31,6 +31,8 @@ namespace Health.WebUI.Models.PatientModels
             unitOfWork = new UnitOfWork();
             PatientId = patientId;
            Patient= unitOfWork.Patients.FindById(PatientId);
+            if (Patient!=null)
+            {
             if (Patient.GenderId.HasValue)
                 PatientGender = unitOfWork.Genders.FindById((int)Patient.GenderId);
             if (Patient.BloodTypeId.HasValue)
@@ -45,7 +47,11 @@ namespace Health.WebUI.Models.PatientModels
             int age = nowDate.Year - Patient.PatientBirthdate.Year;
             if (Patient.PatientBirthdate > nowDate.AddYears(-age)) age--;
             PatientAge = age;
-           
+           }
+            else
+            {
+                throw new Exception("Пациент не найден");
+            }
 
         }
         public List<PatientAppointment> GetPreviousPatientAppointmentsList(int page = 0)

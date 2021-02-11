@@ -4,15 +4,10 @@
     <div class="block_doctor_greenstyle block_theme_gradient">
 
         <div class="block_doctor ">
-            @if (Model.Doctor.ImageData == null || Model.Doctor.ImageMimeType == null)
-            {
-                <img src="~/Content/icons/svgIcons/UserHaveNoPhoto.svg" class="doctorsearch_image">
-            }
-            else
-            {
+          
                 <img src="@Url.Action("GetDoctorPhoto", "Image",
                 new { Model.Doctor.Id})" class="doctorsearch_image">
-            }
+            
 
             <p class="text_blackStyle">@Model.Doctor.Surname @Model.Doctor.Name @Model.Doctor.Patronymic</p>
             <div class="block_text_aboutdoctor">

@@ -24,18 +24,18 @@
                 <div class="@((pageUrl.ToLower().Contains("/patient/")||(pageUrl.ToLower()=="/patient" ))? "AccountIconActive" : "AccountIcon") MenuImage">
                 </div>
 
-                <p class="@((pageUrl.ToLower().Contains("/patient/")||(pageUrl.ToLower()=="/patient" ))? " ActiveMenuText" : string.Empty) NavigationMenuText">Аккаунт</p>
+                <div class="@((pageUrl.ToLower().Contains("/patient/")||(pageUrl.ToLower()=="/patient" ))? " ActiveMenuText" : string.Empty) NavigationMenuText">Аккаунт</div>
             </a>
             <a style="text-decoration:none" href="@Url.Action("Index","MedicalRecord")">
                 <div class="@(pageUrl.ToLower().Contains("/medicalrecord") ? "MedCardIconActive" : "MedCardIcon") MenuImage">
 
                 </div>
-                <p class="@(pageUrl.ToLower().Contains("/medicalrecord") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Медкарта</p>
+                <div class="@(pageUrl.ToLower().Contains("/medicalrecord") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Медкарта</div>
             </a>
                 <a style="text-decoration:none" href="@Url.Action("Index","PatientAppointment")">
                     <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? "СouponIconActive" : "СouponIcon")  MenuImage">
                     </div>
-                    <p class="@(pageUrl.ToLower().Contains("/patientappointment") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Талончик</p>
+                    <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Талончик</div>
                 </a>
         </div>
        <a href="@Url.Action("Logout","Account")"><div class="MenuImage Help_Icon"></div></a> 
