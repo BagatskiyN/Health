@@ -20,7 +20,7 @@ namespace Health.WebUI.Controllers
     public class PatientController : Controller
     {
 
-        IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         PatientPage patientPage;
         private int pageNex = 0;
 

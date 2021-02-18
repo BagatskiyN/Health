@@ -1,6 +1,6 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Entities;
-using Health.WebUI.Models.Abstract;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +16,9 @@ using System.Web;
 
 namespace Health.Domain.Concrete
 {
-    public class AppointmentManipulator: IWorkWithAppointments
+    public class AppointmentManipulator
     {
-        IUnitOfWork unitOfWork;
+      private readonly IUnitOfWork unitOfWork;
       public  AppointmentManipulator(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;

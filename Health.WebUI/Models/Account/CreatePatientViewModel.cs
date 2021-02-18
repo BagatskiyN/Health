@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Health.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,6 +20,14 @@ namespace Health.WebUI.Models.Account
         
         [Required]
         public DateTime BirthDate { get; set; }
+
+        [Required]
+
+        public int?  BloodTypeId { get; set; }
+
+        [Required]
+
+        public int? GenderId { get; set; }
 
         [Required]
         public string Email { get; set; }

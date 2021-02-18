@@ -8,7 +8,7 @@ using Health.Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using Microsoft.AspNet.Identity;
-using Health.WebUI.Models;
+
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 //using Health.WebUI.Infrastructure;
@@ -54,12 +54,8 @@ namespace Health.Domain.Concrete
 
     public class IdentityDbInit : DropCreateDatabaseIfModelChanges<EFDbContext>
     {
+    
         protected override void Seed(EFDbContext context)
-        {
-            PerformInitialSetupAsync(context);
-            base.Seed(context);
-        }
-        public async Task PerformInitialSetupAsync(EFDbContext context)
         {
 
             AppUserManager userMgr = new AppUserManager(new UserStore<ApplicationUser, CustomRole, int,
@@ -68,29 +64,58 @@ namespace Health.Domain.Concrete
 
             string roleAdmin= "Administrators";
             string rolePatient = "Patients";
-            string userName = "Admin";
+            string roleDoctor = "Doctors";
             string password = "Password1234";
             string email = "admin@gmail.com";
 
             if (!roleMgr.RoleExists(roleAdmin))
             {
-                IdentityResult identityResult = roleMgr.Create(new CustomRole() { Name = roleAdmin });
+                roleMgr.Create(new CustomRole() { Name = roleAdmin });
             }
             if (!roleMgr.RoleExists(rolePatient))
             {
-                IdentityResult identityResult = roleMgr.Create(new CustomRole() { Name = rolePatient });
+                roleMgr.Create(new CustomRole() { Name = rolePatient });
             }
+            if (!roleMgr.RoleExists(roleDoctor))
+            {
+                roleMgr.Create(new CustomRole() { Name = roleDoctor});
 
+            }
+            List<BloodType> bloodTypes = new List<BloodType>()
+            {
+                new BloodType(){BloodTypeTitle="O-"},
+                new BloodType(){BloodTypeTitle="O+"},
+                new BloodType(){BloodTypeTitle="A-"},
+                new BloodType(){BloodTypeTitle="A+"},
+                new BloodType(){BloodTypeTitle="B-"},
+                new BloodType(){BloodTypeTitle="B+"},
+                new BloodType(){BloodTypeTitle="A-"},
+                new BloodType(){BloodTypeTitle="AB+"},
+                new BloodType(){BloodTypeTitle="AB-"},
+                 new BloodType(){BloodTypeTitle="-"}
+            };
+            foreach (var item in bloodTypes)
+            {
+                context.BloodTypes.Add(item);
+            }
+            List<Gender> genders = new List<Gender>()
+            {
+                new Gender(){GenderTitle="Man"},
+                new Gender(){GenderTitle="Woman"},
+                 new Gender(){GenderTitle="-"}
+            };
+            foreach (var item in genders)
+            {
+                context.Genders.Add(item);
+            }
             ApplicationUser user = new ApplicationUser { UserName = email, Email = email };
             IdentityResult result =
-                await userMgr.CreateAsync(user, password);
+                userMgr.Create(user, password);
             ApplicationUser applicationUser = userMgr.FindByEmail(user.Email);
-
-
 
             if (result.Succeeded)
             {
-                result = await userMgr.AddToRoleAsync(applicationUser.Id, "Administrators");
+                 userMgr.AddToRole(applicationUser.Id, "Administrators");
             }
         }
         public class AppUserManager : UserManager<ApplicationUser, int>

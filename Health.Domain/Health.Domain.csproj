@@ -100,10 +100,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IGenericRepository.cs" />
-    <Compile Include="Abstract\IPictureManipulator.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUnitOfWork.cs" />
-    <Compile Include="Abstract\IWorkWithAppointments.cs" />
     <Compile Include="Concrete\AppointmentManipulator.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGenericRepository.cs" />

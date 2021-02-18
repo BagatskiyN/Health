@@ -1,5 +1,6 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Entities;
+using Health.WebUI.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,10 +10,10 @@ using System.Web.Mvc;
 
 namespace Health.WebUI.Controllers
 {
-    public class ImageController : Controller,IPictureManipulator
+    public class ImageController : Controller, IPictureManipulator
     {
         // GET: Image
-        IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         public ImageController(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;

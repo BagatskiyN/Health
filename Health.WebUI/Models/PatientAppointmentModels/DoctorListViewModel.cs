@@ -10,7 +10,7 @@ namespace Health.WebUI.Models.PatientAppointmentModels
 {
     public class DoctorListViewModel
     {
-        int pageSize = 9;
+        private readonly int pageSize = 9;
         public List<PatientAppointmentDoctor> PatientAppointmentDoctors { get; set; }
         public IUnitOfWork unitOfWork;
         public DoctorListViewModel(IUnitOfWork _unitOfWork)

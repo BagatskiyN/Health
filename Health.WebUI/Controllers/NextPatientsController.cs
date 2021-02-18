@@ -1,6 +1,7 @@
 ﻿using Health.Domain.Abstract;
 using Health.Domain.Concrete;
 using Health.Domain.Entities;
+using Health.WebUI.Abstract;
 using Health.WebUI.Infrastructure;
 using Health.WebUI.Models.DoctorProfile;
 using Health.WebUI.Models.NewPatients;

@@ -19,7 +19,7 @@ namespace Health.WebUI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         public AccountController(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
@@ -70,8 +70,9 @@ namespace Health.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult CreatePatient()
         {
-            ViewBag.BloodTypes = unitOfWork.BloodTypes.Get().ToList();
-            ViewBag.Genders = unitOfWork.Genders.Get().ToList();
+            ViewBag.BloodTypes = new SelectList(unitOfWork.BloodTypes.Get().ToList(), "BloodTypeId", "BloodTypeTitle");
+            ViewBag.Genders = new SelectList(unitOfWork.Genders.Get().ToList(), "GenderId", "GenderTitle");
+
             return View();
         }
         [HttpPost]
@@ -97,10 +98,28 @@ namespace Health.WebUI.Controllers
                     try
                     {
                         result = await UserManager.AddToRoleAsync(applicationUser.Id, "Patients");
-                        BloodType bloodType = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "-");
-                        int bloodTypeId = unitOfWork.BloodTypes.Get().FirstOrDefault(x => x.BloodTypeTitle == "-").BloodTypeId;
-                        int genderId = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "-").GenderId;
-                        Gender gender = unitOfWork.Genders.Get().FirstOrDefault(x => x.GenderTitle == "-");
+                        BloodType bloodType;
+                        if (model.BloodTypeId != null)
+                        {
+                           bloodType = unitOfWork.BloodTypes.FindById((int)model.BloodTypeId);
+                        }
+                        else
+                        {
+                          bloodType = unitOfWork.BloodTypes.Get(x=>x.BloodTypeTitle=="-").FirstOrDefault();
+
+                        }
+                        Gender gender;
+                        if (model.GenderId != null)
+                        {
+                           gender = unitOfWork.Genders.FindById((int)model.GenderId);
+                        }
+                        else
+                        {
+                           gender = unitOfWork.Genders.Get(x => x.GenderTitle == "-").FirstOrDefault();
+
+                        }
+
+                      
                         Patient patient = new Patient()
                         {
                             Id = applicationUser.Id,
@@ -108,15 +127,15 @@ namespace Health.WebUI.Controllers
                             Surname = model.Surname,
                             Patronymic = model.Patronymic,
                             PatientBirthdate = model.BirthDate,
-                            BloodType = bloodType,
-                            BloodTypeId = bloodTypeId,
-                            GenderId = genderId,
+                            BloodType =bloodType,
+                            BloodTypeId = bloodType.BloodTypeId,
+                            GenderId = gender.GenderId,
                             Gender = gender
                         };
 
                         unitOfWork.Patients.Create(patient);
                     }
-                    catch(NullReferenceException e)
+                    catch (NullReferenceException e)
                     {
                         UserManager.Delete(applicationUser);
                     }

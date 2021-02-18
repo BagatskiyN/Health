@@ -503,6 +503,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IPictureManipulator.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -614,7 +615,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstract\" />
     <Folder Include="App_Data\" />
     <Folder Include="Concrete\" />
     <Folder Include="Views\Image\" />

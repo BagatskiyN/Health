@@ -13,10 +13,10 @@ namespace Health.WebUI.Models.PatientModels
 {
     public class PatientPage 
     {
-        UnitOfWork unitOfWork;
+        private readonly UnitOfWork unitOfWork;
         const int pageSize = 6;
         const int nextPageSize = 4;
-        private int PatientId;
+        private readonly int PatientId;
         public Patient Patient { get; set; }
         public int PatientAge { get; set; }
 

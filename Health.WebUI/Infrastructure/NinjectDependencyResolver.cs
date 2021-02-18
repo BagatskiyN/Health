@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Ninject.Web.Common;
 using Health.WebUI.Models;
+using Health.WebUI.Controllers;
+using Health.WebUI.Abstract;
 
 namespace Health.WebUI.Infrastructure
 {
@@ -34,7 +36,7 @@ namespace Health.WebUI.Infrastructure
         private void AddBindings()
         {
            
-            kernel.Bind<IPictureManipulator>().To<PictureManipulator>();
+            kernel.Bind<IPictureManipulator>().To<ImageController>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }

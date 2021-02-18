@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace Health.Domain.Concrete
 {
-    public class PictureManipulator : Controller, IPictureManipulator
+    public class PictureManipulator : Controller
     {
-        IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         public PictureManipulator(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
