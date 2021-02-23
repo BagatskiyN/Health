@@ -5,17 +5,17 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Diseases list</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create", "Create")
 </p>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DiseaseTitle)
-        </th>
+        
+        <th>Disease title</th>
+        
         <th></th>
     </tr>
 
@@ -33,4 +33,3 @@
     }
 
 </table>
-@Html.ActionLink("Создать", "CreateDisease", null, new { @class = "btn btn-primary" })

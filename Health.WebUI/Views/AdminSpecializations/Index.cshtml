@@ -11,12 +11,15 @@
     @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="container">
-    <div class="panel panel-primary admin_block">
-        <div class="panel-heading">
-            Учетные записи пациентов
-        </div>
-        <table class="table table-striped">
+<body >
+        <h2>
+            Specializations list
+        </h2>
+        <p>
+            @Html.ActionLink("Create", "CreateSpecialization")
+        </p>
+
+        <table class="table">
             <tr>
                 <th>Id</th>
                 <th>Иконка</th>
@@ -26,43 +29,38 @@
             </tr>
             @if (Model.Count() == 0)
             {
-                <tr>
-                    <td colspan="4" class="text-center">Нет ни одной учетной записи</td>
-                </tr>
-            }
-            else
-            {
-                foreach (Specialization specialization in Model)
+    <tr>
+        <td colspan="4" class="text-center">No specializations</td>
+    </tr> }
+                else
                 {
-                    <tr>
-                        <td>@specialization.SpecializationId</td>
-                        <td>
-                            @if (specialization.SpecializationImageData == null || specialization.SpecializationImageMimeType == null)
-                            {
-                                <img class="img-thumbnail" id="image" width="150" height="150"
-                                     src="~/Content/icons/NoPhoto.png" />
-                            }
-                            else
-                            {
-                                <img class="img-thumbnail" id="image" width="150" height="150"
-                                     src="@Url.Action("GetSpecializationIcon", "Image",
-                       new { id =specialization.SpecializationId })" />
-                            }
-                        </td>
-                        <td>@specialization.SpecializationTitle</td>
+                    foreach (Specialization specialization in Model)
+                    {
+    <tr>
+        <td>@specialization.SpecializationId</td>
+        <td>
+            @if (specialization.SpecializationImageData == null || specialization.SpecializationImageMimeType == null)
+            {
+    <img class="img-thumbnail" id="image" width="150" height="150"
+         src="~/Content/icons/NoPhoto.png" /> }
+                        else
+                        {
+    <img class="img-thumbnail" id="image" width="150" height="150"
+         src="@Url.Action("GetSpecializationIcon", "Image",
+                       new { id =specialization.SpecializationId })" />}
+        </td>
+        <td>@specialization.SpecializationTitle</td>
 
-                        <td>
-                            @using (Html.BeginForm("Delete", "AdminSpecializations", new { id = specialization.SpecializationId }))
-                            {
-                                @Html.ActionLink("Изменить", "EditSpecialization", new { id = specialization.SpecializationId },
-                                    new { @class = "btn btn-primary btn-xs", style = "float: left; margin-right: 10px" })
-                                <button class="btn btn-danger btn-xs" type="submit">Удалить</button>
-                            }
-                        </td>
-                    </tr>
+        <td>
+            @using (Html.BeginForm("Delete", "AdminSpecializations", new { id = specialization.SpecializationId }))
+            {
+    @Html.ActionLink("Изменить", "EditSpecialization", new { id = specialization.SpecializationId },
+             new { @class = "btn btn-primary btn-xs", style = "float: left; margin-right: 10px" })
+                            <button class="btn btn-danger btn-xs" type="submit">Delete</button>}
+        </td>
+    </tr>                }
                 }
-            }
         </table>
-        @Html.ActionLink("Создать", "CreateSpecialization", null, new { @class = "btn btn-primary" })
+
     </div>
     </body>

@@ -4,6 +4,8 @@ using Health.WebUI.Infrastructure;
 using Health.WebUI.Models.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -45,7 +47,7 @@ namespace Health.WebUI.Controllers
 
             if (role[0] == "Administrators")
             {
-                return "Admin";
+                return "AdminDoctors";
             }
             else
             {
