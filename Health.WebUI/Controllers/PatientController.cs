@@ -126,7 +126,8 @@ namespace Health.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Patient patient, HttpPostedFileBase imageInp)
         {
-        
+            ViewBag.BloodTypes = unitOfWork.BloodTypes.Get().ToList();
+            ViewBag.Genders = unitOfWork.Genders.Get().ToList();
             if (ModelState.IsValid)
             {
                 Patient OldPatient = unitOfWork.Patients.FindById(patient.Id);

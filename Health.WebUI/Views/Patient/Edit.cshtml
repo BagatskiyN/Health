@@ -91,44 +91,48 @@
             @Html.TextBox("PatientBirthdate", Model.PatientBirthdate, "{0:dd.MM.yyyy}", new { @class = "TextInputLogin" })
             <span class="bar"></span>
         </div>
-        <p class="AuthorizationInputHelper">Группа крови</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+    
+            <p class="AuthorizationInputHelper">Группа крови</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
 
-            @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", Model.BloodTypeId), new { @id = "BloodType", @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div> 
-        <p class="AuthorizationInputHelper">Пол</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+                @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", Model.BloodTypeId), new { @id = "BloodType", @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
+      
+        
+            <p class="AuthorizationInputHelper">Пол</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
 
-            @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", Model.GenderId), new { @id = "Gender", @class = "TextInputLogin" })
-            <span class="bar"></span>
+                @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", Model.GenderId), new { @id = "Gender", @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
         </div>
-    </div>
-        <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister button_MouseOn" />
-        <div class="ToRegisterRef">
-            @Html.ActionLink("Отменить изменения", "Index")
-        </div>
-        }
-
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-
-    <script type="text/javascript">
-
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#image')
-                        .attr('src', e.target.result)
-
-                };
-
-                reader.readAsDataURL(input.files[0]);
+   
+            <input type="submit" value="Сохранить" class="ButtonInput ButtonInputRegister button_MouseOn" />
+            <div class="ToRegisterRef">
+                @Html.ActionLink("Отменить изменения", "Index")
+            </div>
             }
-        }
 
-    </script>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+
+        <script type="text/javascript">
+
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#image')
+                            .attr('src', e.target.result)
+
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        </script>
 </body>

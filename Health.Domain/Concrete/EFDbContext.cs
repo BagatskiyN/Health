@@ -21,8 +21,8 @@ namespace Health.Domain.Concrete
     {
         public EFDbContext() : base("EFDbContext")
         {
-            Database.SetInitializer<EFDbContext>(new DropCreateDatabaseIfModelChanges<EFDbContext>());
-            Database.SetInitializer<EFDbContext>(new IdentityDbInit());
+            //Database.SetInitializer<EFDbContext>(new DropCreateDatabaseIfModelChanges<EFDbContext>());
+            //Database.SetInitializer<EFDbContext>(new IdentityDbInit());
         }
         public static EFDbContext Create()
         {
@@ -53,113 +53,113 @@ namespace Health.Domain.Concrete
         }
     }
 
-    public class IdentityDbInit : DropCreateDatabaseIfModelChanges<EFDbContext>
-    {
+    //public class IdentityDbInit : DropCreateDatabaseIfModelChanges<EFDbContext>
+    //{
     
-        protected override void Seed(EFDbContext context)
-        {
+    //    protected override void Seed(EFDbContext context)
+    //    {
 
-            AppUserManager userMgr = new AppUserManager(new UserStore<ApplicationUser, CustomRole, int,
-        CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
-            AppRoleManager roleMgr = new AppRoleManager(new RoleStore<CustomRole, int, CustomUserRole>(context));
+    //        AppUserManager userMgr = new AppUserManager(new UserStore<ApplicationUser, CustomRole, int,
+    //    CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
+    //        AppRoleManager roleMgr = new AppRoleManager(new RoleStore<CustomRole, int, CustomUserRole>(context));
 
-            string roleAdmin= "Administrators";
-            string rolePatient = "Patients";
-            string roleDoctor = "Doctors";
-            string password = "Password1234";
-            string email = "admin@gmail.com";
+    //        string roleAdmin= "Administrators";
+    //        string rolePatient = "Patients";
+    //        string roleDoctor = "Doctors";
+    //        string password = "Password1234";
+    //        string email = "admin@gmail.com";
 
-            if (!roleMgr.RoleExists(roleAdmin))
-            {
-                roleMgr.Create(new CustomRole() { Name = roleAdmin });
-            }
-            if (!roleMgr.RoleExists(rolePatient))
-            {
-                roleMgr.Create(new CustomRole() { Name = rolePatient });
-            }
-            if (!roleMgr.RoleExists(roleDoctor))
-            {
-                roleMgr.Create(new CustomRole() { Name = roleDoctor});
+    //        if (!roleMgr.RoleExists(roleAdmin))
+    //        {
+    //            roleMgr.Create(new CustomRole() { Name = roleAdmin });
+    //        }
+    //        if (!roleMgr.RoleExists(rolePatient))
+    //        {
+    //            roleMgr.Create(new CustomRole() { Name = rolePatient });
+    //        }
+    //        if (!roleMgr.RoleExists(roleDoctor))
+    //        {
+    //            roleMgr.Create(new CustomRole() { Name = roleDoctor});
 
-            }
-            List<BloodType> bloodTypes = new List<BloodType>()
-            {
-                new BloodType(){BloodTypeTitle="O-"},
-                new BloodType(){BloodTypeTitle="O+"},
-                new BloodType(){BloodTypeTitle="A-"},
-                new BloodType(){BloodTypeTitle="A+"},
-                new BloodType(){BloodTypeTitle="B-"},
-                new BloodType(){BloodTypeTitle="B+"},
-                new BloodType(){BloodTypeTitle="A-"},
-                new BloodType(){BloodTypeTitle="AB+"},
-                new BloodType(){BloodTypeTitle="AB-"},
-                 new BloodType(){BloodTypeTitle="-"}
-            };
-            foreach (var item in bloodTypes)
-            {
-                context.BloodTypes.Add(item);
-            }
-            List<Gender> genders = new List<Gender>()
-            {
-                new Gender(){GenderTitle="Man"},
-                new Gender(){GenderTitle="Woman"},
-                 new Gender(){GenderTitle="-"}
-            };
-            foreach (var item in genders)
-            {
-                context.Genders.Add(item);
-            }
-            ApplicationUser user = new ApplicationUser { UserName = email, Email = email };
-            IdentityResult result =
-                userMgr.Create(user, password);
-            ApplicationUser applicationUser = userMgr.FindByEmail(user.Email);
+    //        }
+    //        List<BloodType> bloodTypes = new List<BloodType>()
+    //        {
+    //            new BloodType(){BloodTypeTitle="O-"},
+    //            new BloodType(){BloodTypeTitle="O+"},
+    //            new BloodType(){BloodTypeTitle="A-"},
+    //            new BloodType(){BloodTypeTitle="A+"},
+    //            new BloodType(){BloodTypeTitle="B-"},
+    //            new BloodType(){BloodTypeTitle="B+"},
+    //            new BloodType(){BloodTypeTitle="A-"},
+    //            new BloodType(){BloodTypeTitle="AB+"},
+    //            new BloodType(){BloodTypeTitle="AB-"},
+    //             new BloodType(){BloodTypeTitle="-"}
+    //        };
+    //        foreach (var item in bloodTypes)
+    //        {
+    //            context.BloodTypes.Add(item);
+    //        }
+    //        List<Gender> genders = new List<Gender>()
+    //        {
+    //            new Gender(){GenderTitle="Man"},
+    //            new Gender(){GenderTitle="Woman"},
+    //             new Gender(){GenderTitle="-"}
+    //        };
+    //        foreach (var item in genders)
+    //        {
+    //            context.Genders.Add(item);
+    //        }
+    //        ApplicationUser user = new ApplicationUser { UserName = email, Email = email };
+    //        IdentityResult result =
+    //            userMgr.Create(user, password);
+    //        ApplicationUser applicationUser = userMgr.FindByEmail(user.Email);
 
-            if (result.Succeeded)
-            {
-                 userMgr.AddToRole(applicationUser.Id, "Administrators");
-            }
-        }
-        public class AppUserManager : UserManager<ApplicationUser, int>
-        {
-            public AppUserManager(IUserStore<ApplicationUser, int> store)
-                : base(store)
-            { }
+    //        if (result.Succeeded)
+    //        {
+    //             userMgr.AddToRole(applicationUser.Id, "Administrators");
+    //        }
+    //    }
+    //    public class AppUserManager : UserManager<ApplicationUser, int>
+    //    {
+    //        public AppUserManager(IUserStore<ApplicationUser, int> store)
+    //            : base(store)
+    //        { }
 
-            public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options,
-                IOwinContext context)
-            {
-                EFDbContext db = context.Get<EFDbContext>();
-                AppUserManager manager = new AppUserManager(new CustomUserStore(db));
-                manager.PasswordValidator = new PasswordValidator
-                {
-                    RequiredLength = 6,
-                    RequireNonLetterOrDigit = false,
-                    RequireDigit = false,
-                    RequireLowercase = true,
-                    RequireUppercase = false
-                };
-                manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
-                {
-                    AllowOnlyAlphanumericUserNames = false,
-                    RequireUniqueEmail = true
-                };
-                return manager;
-            }
-        }
-        public class AppRoleManager : RoleManager<CustomRole, int>, IDisposable
-        {
-            public AppRoleManager(RoleStore<CustomRole, int, CustomUserRole> store)
-                : base(store)
-            { }
+    //        public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options,
+    //            IOwinContext context)
+    //        {
+    //            EFDbContext db = context.Get<EFDbContext>();
+    //            AppUserManager manager = new AppUserManager(new CustomUserStore(db));
+    //            manager.PasswordValidator = new PasswordValidator
+    //            {
+    //                RequiredLength = 6,
+    //                RequireNonLetterOrDigit = false,
+    //                RequireDigit = false,
+    //                RequireLowercase = true,
+    //                RequireUppercase = false
+    //            };
+    //            manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
+    //            {
+    //                AllowOnlyAlphanumericUserNames = false,
+    //                RequireUniqueEmail = true
+    //            };
+    //            return manager;
+    //        }
+    //    }
+    //    public class AppRoleManager : RoleManager<CustomRole, int>, IDisposable
+    //    {
+    //        public AppRoleManager(RoleStore<CustomRole, int, CustomUserRole> store)
+    //            : base(store)
+    //        { }
 
-            public static AppRoleManager Create(
-                IdentityFactoryOptions<AppRoleManager> options,
-                IOwinContext context)
-            {
-                return new AppRoleManager(new
-                    RoleStore<CustomRole, int, CustomUserRole>(context.Get<EFDbContext>()));
-            }
-        }
+    //        public static AppRoleManager Create(
+    //            IdentityFactoryOptions<AppRoleManager> options,
+    //            IOwinContext context)
+    //        {
+    //            return new AppRoleManager(new
+    //                RoleStore<CustomRole, int, CustomUserRole>(context.Get<EFDbContext>()));
+    //        }
+    //    }
 
-    }
+    //}
 }

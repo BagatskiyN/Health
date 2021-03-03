@@ -297,7 +297,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.min.css" />
-    <Content Include="Content\icons\403cb6226d1e747ae189dd2324a023d3.jpg" />
     <Content Include="Content\icons\accountIcon.png" />
     <Content Include="Content\icons\accountIconActive.png" />
     <Content Include="Content\icons\arr.png" />

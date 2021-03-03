@@ -1,10 +1,9 @@
 ﻿@using System.Web.Optimization
+@using System.Linq;
 
 @model Health.WebUI.Models.Account.CreatePatientViewModel
-@{
-    ViewBag.Title = "Создание пользователя";
-    Layout = null;
-}
+@{ ViewBag.Title = "Создание пользователя";
+    Layout = null; }
 
 <head>
     @Styles.Render("~/Content/css")
@@ -67,21 +66,25 @@
             @Html.TextBoxFor(x => x.Password, new { @class = "TextInputLogin" })
             <span class="bar"></span>
         </div>
-        <p class="AuthorizationInputHelper">Группа крови</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        <div class="form-group">
+            <p class="AuthorizationInputHelper">Пол</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
 
-            @Html.DropDownListFor(m => m.BloodTypeId, (IEnumerable<SelectListItem>)ViewBag.BloodTypes, "Select Blood Type...", new { @id = "BloodType", @class = "TextInputLogin" })
-            <span class="bar"></span>
+                @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", "Select Gender..."), new { @id = "Gender", @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
         </div>
-        <p class="AuthorizationInputHelper">Пол</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        <div class="form-group">
+            <p class="AuthorizationInputHelper">Группа крови</p>
+            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
 
-            @Html.DropDownListFor(m => m.GenderId, (IEnumerable<SelectListItem>)ViewBag.Genders, "Select Gender...", new { @id = "Gender", @class = "TextInputLogin" })
-            <span class="bar"></span>
+                @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", "Select Blood Type..."), new { @id = "BloodType", @class = "TextInputLogin" })
+                <span class="bar"></span>
+            </div>
         </div>
+
     </div>
-            <input class="ButtonInput ButtonInputRegister" type="submit" value="Зарегестрироваться">
-            <div class="ToRegisterRef"><a href="">Уже зарегестрированны?</a></div>
-        }
-        </div>
+                <input class="ButtonInput ButtonInputRegister" type="submit" value="Зарегестрироваться">
+                                <div class="ToRegisterRef"><a href="">Уже зарегестрированны?</a></div>}
+    </div>
 </body>

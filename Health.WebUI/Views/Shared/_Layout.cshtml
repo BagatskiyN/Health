@@ -12,7 +12,7 @@
     <link href="~/Content/Styles/MainLeftMenuStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Styles/main.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/EditError.css" rel="stylesheet" />
-
+   \
 </head>
 <body>
     <div class="MainLeftMenu">
@@ -32,20 +32,20 @@
                 </div>
                 <div class="@(pageUrl.ToLower().Contains("/medicalrecord") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Медкарта</div>
             </a>
-                <a style="text-decoration:none" href="@Url.Action("Index","PatientAppointment")">
-                    <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? "СouponIconActive" : "СouponIcon")  MenuImage">
-                    </div>
-                    <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Талончик</div>
-                </a>
+            <a style="text-decoration:none" href="@Url.Action("Index","PatientAppointment")">
+                <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? "СouponIconActive" : "СouponIcon")  MenuImage">
+                </div>
+                <div class="@(pageUrl.ToLower().Contains("/patientappointment") ? " ActiveMenuText" : string.Empty) NavigationMenuText">Талончик</div>
+            </a>
         </div>
-       <a href="@Url.Action("Logout","Account")"><div class="MenuImage Help_Icon"></div></a> 
+        <a href="@Url.Action("Logout","Account")"><div class="MenuImage Help_Icon"></div></a>
     </div>
     <div>
         @if (TempData["message"] != null)
         {
-            <div class="alert alert-success">@TempData["message"]</div>
-        }
+    <div class="alert alert-success">@TempData["message"]</div>}
         @RenderBody()
+       
     </div>
 
 
@@ -58,4 +58,5 @@
 
 
 </body>
+
 </html>

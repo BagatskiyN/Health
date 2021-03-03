@@ -21,11 +21,11 @@ namespace Health.WebUI.Models.Account
         [Required]
         public DateTime BirthDate { get; set; }
 
-        [Required]
+        
 
         public int?  BloodTypeId { get; set; }
 
-        [Required]
+       
 
         public int? GenderId { get; set; }
 

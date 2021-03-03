@@ -29,6 +29,11 @@ namespace Health.WebUI.App_Start
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                  "~/Content/css/blank.css",
+                  "~/Content/css/style.supplier.css",
+                  "~/Content/css/bootstrap.css"));
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

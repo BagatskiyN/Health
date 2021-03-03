@@ -72,8 +72,8 @@ namespace Health.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult CreatePatient()
         {
-            ViewBag.BloodTypes = new SelectList(unitOfWork.BloodTypes.Get().ToList(), "BloodTypeId", "BloodTypeTitle");
-            ViewBag.Genders = new SelectList(unitOfWork.Genders.Get().ToList(), "GenderId", "GenderTitle");
+            ViewBag.BloodTypes =unitOfWork.BloodTypes.Get().ToList();
+            ViewBag.Genders = unitOfWork.Genders.Get().ToList();
 
             return View();
         }
@@ -81,7 +81,8 @@ namespace Health.WebUI.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> CreatePatient(CreatePatientViewModel model)
         {
-
+            ViewBag.BloodTypes = unitOfWork.BloodTypes.Get().ToList();
+            ViewBag.Genders = unitOfWork.Genders.Get().ToList();
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };

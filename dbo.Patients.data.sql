@@ -1,0 +1,1 @@
+﻿INSERT INTO [dbo].[Patients] ([Id], [Name], [Surname], [Patronymic], [ImageData], [ImageMimeType], [GenderId], [PatientBirthdate], [PatientWeight], [PatientHeight], [BloodTypeId]) VALUES (2, N'wefwefw', N'dfdf', N'wefwef', Null, NULL, 1, N'2001-01-22 00:00:00', 0, 0, 3)
