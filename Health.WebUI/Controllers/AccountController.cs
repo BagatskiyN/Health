@@ -59,7 +59,7 @@ namespace Health.WebUI.Controllers
                 {
                     if (role[0] == "Doctors")
                     {
-                        return "Doctor";
+                        return "DoctorProfile";
                     }
                     else
                     {
