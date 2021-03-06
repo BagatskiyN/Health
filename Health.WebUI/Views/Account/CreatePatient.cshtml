@@ -31,59 +31,59 @@
     </div>
     <div class="AuthorizationSection RegisterSection">
         <h1 class="AuthorizationBlockHeadText"> Регистрация</h1>
-        @Html.ValidationSummary(false)
+        @Html.ValidationSummary()
         @using (Html.BeginForm())
         {
-    <div class="AuthorizationFlexContainer">
+<div class="AuthorizationFlexContainer">
 
-        <p class="AuthorizationInputHelper">Фамилия</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.Surname, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <p class="AuthorizationInputHelper">Имя</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.Name, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <p class="AuthorizationInputHelper">Отчество</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.Patronymic, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <p class="AuthorizationInputHelper">E-mail</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.Email, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <p class="AuthorizationInputHelper">Дата рождения</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.BirthDate, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <p class="AuthorizationInputHelper">Пароль</p>
-        <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-            @Html.TextBoxFor(x => x.Password, new { @class = "TextInputLogin" })
-            <span class="bar"></span>
-        </div>
-        <div class="form-group">
-            <p class="AuthorizationInputHelper">Пол</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-
-                @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", "Select Gender..."), new { @id = "Gender", @class = "TextInputLogin" })
-                <span class="bar"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <p class="AuthorizationInputHelper">Группа крови</p>
-            <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
-
-                @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", "Select Blood Type..."), new { @id = "BloodType", @class = "TextInputLogin" })
-                <span class="bar"></span>
-            </div>
-        </div>
-
+    <p class="AuthorizationInputHelper">Фамилия</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.Surname, new { @class = "TextInputLogin" })
+        <span class="bar"></span>
     </div>
+    <p class="AuthorizationInputHelper">Имя</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.Name, new { @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+    <p class="AuthorizationInputHelper">Отчество</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.Patronymic, new { @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+    <p class="AuthorizationInputHelper">E-mail</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.Email, new { @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+    <p class="AuthorizationInputHelper">Дата рождения</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.BirthDate, new { @type = "date", @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+    <p class="AuthorizationInputHelper">Пароль</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+        @Html.TextBoxFor(x => x.Password, new { @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+
+    <p class="AuthorizationInputHelper">Пол</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+
+        @Html.DropDownListFor(m => m.GenderId, new SelectList(ViewBag.Genders, "GenderId", "GenderTitle", "Select Gender..."), new { @id = "Gender", @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+
+
+    <p class="AuthorizationInputHelper">Группа крови</p>
+    <div class="AuthorizationInputGroup AuthorizationFlexInputGroup">
+
+        @Html.DropDownListFor(m => m.BloodTypeId, new SelectList(ViewBag.BloodTypes, "BloodTypeId", "BloodTypeTitle", "Select Blood Type..."), new { @id = "BloodType", @class = "TextInputLogin" })
+        <span class="bar"></span>
+    </div>
+
+
+</div>
                 <input class="ButtonInput ButtonInputRegister" type="submit" value="Зарегестрироваться">
                                 <div class="ToRegisterRef"><a href="">Уже зарегестрированны?</a></div>}
     </div>

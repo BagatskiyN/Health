@@ -14,13 +14,11 @@ namespace Health.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-
+                "Default",
+                "{controller}/{action}",
+                new { controller = "Account", action = "Login" }
             );
-            Route newRoute = new Route("{controller}/{action}", new MvcRouteHandler());
-            routes.Add(newRoute);
+       
         }
     }
 }
